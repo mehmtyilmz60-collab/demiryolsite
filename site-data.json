@@ -1,0 +1,30 @@
+{
+  "title": "Demiryol Bilim ve Kültür Kulübü",
+  "subtitle": "TCDD Taşımacılık A.Ş. Gebze Vagon Bakım Onarım Atölye Müdürlüğü",
+  "about": "Demiryol Bilim ve Kültür Kulübü; demiryolu bakım-onarım süreçlerinde iş güvenliğini artırmak, teknik inovasyon projeleri geliştirmek, 5S ve Kaizen standartlarını sahaya entegre etmek amacıyla çalışanlar tarafından kurulmuş bağımsız bir girişimdir.",
+  "announcements": [
+    {
+      "id": 1,
+      "title": "İSG Farkındalık Toplantısı Başarıyla Gerçekleştirildi",
+      "date": "Mayıs 2026",
+      "content": "'Her iş gün sonunda hallolur ama sensiz olmaz!' vizyonuyla düzenlenen toplantımızda sahadaki operasyonel güvenlik ve dijital inovasyon projelerimiz sunuldu."
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "Manevra İkaz Sistemi",
+      "desc": "Vagon hazırlama ve manevra süreçlerinde sahadaki iş güvenliğini üst seviyeye çıkaran, 3 yıldır başarıyla çalışan dijital ikaz altyapısı."
+    },
+    {
+      "id": 2,
+      "title": "Tekerlek Düzleşme & Otomatik Takip (Ar-Ge)",
+      "desc": "Derin öğrenme, kameralar ve RSR sensörleri ile vagon tekerleklerindeki düzleşme ve arızaları anlık tespit eden Ar-Ge projesi."
+    }
+  ],
+  "contact": {
+    "location": "TCDD Taşımacılık A.Ş. Gebze Vagon Bakım Onarım Atölye Müdürlüğü, Gebze / Kocaeli",
+    "email": "info@dbkk.com.tr / iletisim@demiryolbilimkultur.com.tr",
+    "web": "www.demiryolbilimkultur.com.tr / www.kulturvagonu.com.tr"
+  }
+}
