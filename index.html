@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   
   <!-- TARAYICI SEKMESİNDEKİ LOGO (FAVICON) -->
-  <link rel="icon" type="image/jpeg" href="logo.jpg">
-  <link rel="shortcut icon" type="image/jpeg" href="logo.jpg">
-  <link rel="apple-touch-icon" href="logo.jpg">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="shortcut icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
 
   <!-- MOBİL VE TARAYICI ÖNBELLEK ENGELLERİ (CACHE BUSTING) -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -48,7 +48,7 @@
 
     @media (min-width: 769px) { body { padding-bottom: 0; } }
 
-    /* Navbar & KUSURSUZ DARESEL LOGO */
+    /* Navbar & LOGO */
     .nav {
       position: sticky; top: 0; z-index: 9999; height: 115px;
       background: rgba(11, 25, 44, 0.96); backdrop-filter: blur(16px);
@@ -214,6 +214,9 @@
     .modal-title { font-size: 24px; font-weight: 800; color: var(--text-main); margin-bottom: 16px; line-height: 1.3; }
     .modal-body { font-size: 15px; color: var(--text-muted); line-height: 1.75; }
 
+    .modal-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 18px; }
+    .modal-gallery-img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; border: 1px solid var(--card-border); }
+
     /* Social Links */
     .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-top: 25px; }
     .social-card {
@@ -251,7 +254,7 @@
   <nav class="nav">
     <a class="logo-container" onclick="showPage('home')">
       <div class="logo-wrapper">
-        <img src="logo.jpg" alt="Kulüp Logosu" class="logo-img" onerror="this.onerror=null; this.src='resimler/logo.jpg';">
+        <img src="logo.png" alt="Kulüp Logosu" class="logo-img" onerror="this.onerror=null; this.src='resimler/logo.png';">
       </div>
       <div class="logo-text">Demiryol Bilim ve Kültür Kulübü</div>
     </a>
@@ -354,6 +357,7 @@
       <div id="modalTag" class="modal-tag">KATEGORİ</div>
       <h3 id="modalTitle" class="modal-title">Başlık</h3>
       <div id="modalBody" class="modal-body">Açıklama metni...</div>
+      <div id="modalGallery" class="modal-gallery"></div>
     </div>
   </div>
 
@@ -627,10 +631,19 @@
     }
 
     /* MODAL AÇMA / KAPATMA FONKSİYONLARI */
-    function openModal(tag, title, body) {
+    function openModal(tag, title, body, resimler = []) {
       document.getElementById('modalTag').innerText = tag;
       document.getElementById('modalTitle').innerText = title;
       document.getElementById('modalBody').innerHTML = body;
+      
+      const galeri = document.getElementById('modalGallery');
+      galeri.innerHTML = '';
+      if(resimler && resimler.length > 0) {
+        resimler.forEach(src => {
+          galeri.innerHTML += `<img src="${src}" class="modal-gallery-img" alt="Görsel" onerror="this.style.display='none';">`;
+        });
+      }
+      
       document.getElementById('infoModal').classList.add('active');
     }
 
@@ -656,13 +669,21 @@
       const varsayilanDuyurular = [
         { 
           id: 1, 
+          baslik: "🩸 Türk Kızılay Kan Bağışı Organizasyonu Planlanıyor", 
+          kategori: "SOSYAL SORUMLULUK", 
+          metin: "Demiryol-İş Sendikası Haydarpaşa Şubesi ve Demiryol Bilim ve Kültür Kulübü iş birliğiyle, Gebze TCDD Yerleşkemizde Türk Kızılay kan bağışı organizasyonu planlıyoruz.<br><br>Yeterli katılım sayısına ulaşıldığı takdirde, Kızılay Mobil Kan Bağışı Aracı doğrudan Gebze TCDD Yerleşkemize gelerek kan alımı yapacaktır.<br><br><strong>🎁 Bağışçılarımıza Özel Hediyeler:</strong><br>Kan bağışında bulunan tüm mesai arkadaşlarımıza Türk Kızılay tarafından 1 adet Kızılay Akıllı Termos ve 1 adet İzoleli Sağlık Çantası hediye edilecektir.<br><br><em>'Bir ünite kan, üç can demektir.'</em> Tüm mesai arkadaşlarımızı bu anlamlı dayanışmaya davet ediyoruz.<br><br><strong>Demiryol-İş Sendikası Haydarpaşa Şubesi & Demiryol Bilim ve Kültür Kulübü</strong>", 
+          tarih: "GÜNCEL PLANLAMA",
+          resimler: ["kızılayhediye.jfif", "senkızıl.jpeg", "Kızıl.jpeg"]
+        },
+        { 
+          id: 2, 
           baslik: "🛡️ 3. İş Sağlığı ve Güvenliği (İSG) Farkındalık Toplantısı", 
           kategori: "İSG & EMNİYET", 
           metin: "Gebze Vagon Bakım Onarım Atölye Müdürlüğü'nde İSG Haftası kapsamında Kulübümüz organizasyonuyla geniş katılımlı toplantı düzenlendi. Oturumlarda 5S Entegrasyonu, İSG 10 Altın Kural, Fine-Kinney Risk Analizleri, Mesai Esnasında Afet Hazırlığı ve Kulüp Ar-Ge Sunumları gerçekleştirildi.", 
           tarih: "4-10 Mayıs 2026" 
         },
         { 
-          id: 2, 
+          id: 3, 
           baslik: "💡 Ar-Ge Proje Tanıtım ve Beyin Fırtınası Oturumları", 
           kategori: "AR-GE PROJE", 
           metin: "Kulüp bünyesinde geliştirilen Manevra İkaz Sistemi ve Vagon Takip & Otomatik Apleti Tespit Sistemi projelerinin saha çalışanlarına tanıtımı ve teknik geri bildirim toplantıları tamamlanmıştır.", 
@@ -689,13 +710,14 @@
         let safeBaslik = (item.baslik || '').replace(/'/g, "\\'").replace(/"/g, "&quot;");
         let kat = item.kategori || 'GENEL DUYURU';
         let tar = item.tarih || 'GÜNCEL';
+        let imgArr = JSON.stringify(item.resimler || []);
 
         liste.innerHTML += `
-          <div class="card card-clickable" onclick="openModal('${kat} • ${tar}', '${safeBaslik}', '${safeMetin}')">
+          <div class="card card-clickable" onclick='openModal("${kat} • ${tar}", "${safeBaslik}", "${safeMetin}", ${imgArr})'>
             <div class="card-tag">${kat}</div>
             <h3 class="card-title">${item.baslik}</h3>
-            <p class="card-text">${safeMetin.substring(0, 110)}...</p>
-            <span class="card-more-link">Duyuruyu Oku ➔</span>
+            <p class="card-text">${safeMetin.replace(/<br>/g, " ").substring(0, 120)}...</p>
+            <span class="card-more-link">Duyuruyu ve Fotoğrafları Gör ➔</span>
             <span class="card-date">📅 ${tar}</span>
           </div>
         `;
