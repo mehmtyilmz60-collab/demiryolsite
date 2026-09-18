@@ -188,13 +188,13 @@
     .card-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--text-main); }
     .card-text { color: var(--text-muted); font-size: 14px; line-height: 1.65; }
     .card-date { font-size: 12px; color: #64748b; margin-top: 14px; display: block; font-weight: 500; }
-    .card-img { width: 100%; height: 185px; object-fit: cover; border-radius: 10px; margin-bottom: 14px; border: 1px solid rgba(255,255,255,0.08); }
+    .card-img { width: 100%; height: 185px; object-fit: cover; border-radius: 10px; margin-bottom: 14px; border: 1px solid rgba(255,255,255,0.08); cursor: pointer; }
     .card-more-link { display: inline-block; margin-top: 12px; color: var(--logo-gold); font-size: 13px; font-weight: 700; text-decoration: none; }
 
-    /* KLASÖR (YIL) KARTLARI */
+    /* KLASÖR KARTLARI */
     .folder-card {
       background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(15, 23, 42, 0.9));
-      border: 1.5px solid var(--logo-gold); border-radius: 16px; padding: 20px;
+      border: 1.5px solid var(--logo-gold); border-radius: 16px; padding: 22px;
       text-align: center; cursor: pointer; transition: all 0.25s ease;
     }
     .folder-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.25); background: rgba(212, 175, 55, 0.2); }
@@ -202,14 +202,14 @@
     .folder-title { font-size: 20px; font-weight: 800; color: var(--text-main); }
     .folder-subtitle { font-size: 12px; color: var(--logo-gold); margin-top: 4px; font-weight: 600; }
 
-    /* YILLARA GÖRE GALERİ ALANI */
-    .year-gallery-container {
+    /* AÇILIR İÇERİK ALANI */
+    .collapsible-container {
       display: none; background: rgba(15, 23, 42, 0.8); border: 1px solid var(--card-border);
       border-radius: 16px; padding: 24px; margin-top: 16px; margin-bottom: 30px; animation: fadeIn 0.3s ease;
     }
-    .year-gallery-container.active { display: block; }
-    .year-gallery-title { font-size: 18px; font-weight: 700; color: var(--logo-gold); margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
-    .year-close-btn { background: rgba(255,255,255,0.1); border: none; color: #fff; padding: 4px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; }
+    .collapsible-container.active { display: block; }
+    .collapsible-header { font-size: 18px; font-weight: 700; color: var(--logo-gold); margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+    .close-btn { background: rgba(255,255,255,0.1); border: none; color: #fff; padding: 4px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; }
 
     /* Modal Structure */
     .modal-overlay {
@@ -334,62 +334,73 @@
       <button class="flash-card-btn" onclick="sonrakiBilgi()">Sonraki Bilgi 🔄</button>
     </div>
 
-    <!-- TIKLANABİLİR BİLGİ KARTLARI BÖLÜMÜ (DÜNYA DEMİRYOLLARI) -->
-    <div style="margin-top: 40px; margin-bottom: 35px;">
-      <div class="section-head">
-        <h2 class="section-title">🌍 Dünya Demiryolu Teşkilatlarından İlginç Bilgiler</h2>
-        <p class="section-desc">Kartların üzerine tıklayarak detaylı mühendislik ve rekor bilgilerine ulaşabilirsiniz.</p>
+    <!-- TIKLANABİLİR KLASÖR: DÜNYA DEMİRYOLLARI İLGİNÇ BİLGİLER ARŞİVİ -->
+    <div style="margin-top: 35px; margin-bottom: 35px;">
+      
+      <div class="folder-card" onclick="toggleContainer('worldRailFolder')">
+        <div class="folder-icon">🌍</div>
+        <div class="folder-title">Dünya Demiryolu Teşkilatlarından İlginç Bilgiler</div>
+        <div class="folder-subtitle">Mühendislik Rekorları ve İlginç Bilgileri İncelemek İçin Tıklayın ➔</div>
       </div>
 
-      <div class="grid-3">
-        <!-- Kart 1: Shinkansen -->
-        <div class="card card-clickable" onclick="openModal('🇯🇵 JAPONYA • SHINKANSEN', '60 Yıldır Sıfır Ölümlü Kaza Rekoru', '1964 yılında kullanıma açılan Japon Shinkansen (Mermi Tren) yüksek hızlı tren ağında, 60 yılı aşkın süredir saatte 320 km/s hıza rağmen tek bir ölümlü tren kazası dahi yaşanmamıştır.<br><br>Erken uyarı deprem sensörleri, tam otomatik hat denetimi ve yüksek bakım standartları sayesinde Shinkansen ağının tüm hatlarındaki yıllık ortalama gecikme süresi sadece 12 saniyedir.')">
-          <div class="card-tag">🇯🇵 JAPONYA • SHINKANSEN</div>
-          <h3 class="card-title">60 Yıldır Ölümlü Kaza Yok</h3>
-          <p class="card-text">Saatte 320 km hıza rağmen Shinkansen ağında 60 yıldır tek bir ölümlü kaza yaşanmamıştır. Yıllık ortalama gecikme ise 12 saniyedir.</p>
-          <span class="card-more-link">Detayları Oku ➔</span>
+      <!-- TIKLANINCA AÇILAN KARTLAR LİSTESİ -->
+      <div id="worldRailFolder" class="collapsible-container">
+        <div class="collapsible-header">
+          <span>🌍 Dünya Demiryolu Teşkilatları ve Mühendislik Rekorları</span>
+          <button class="close-btn" onclick="toggleContainer('worldRailFolder')">Kapat ✖</button>
         </div>
 
-        <!-- Kart 2: Gotthard Tüneli -->
-        <div class="card card-clickable" onclick="openModal('🇨🇭 İSVİÇRE • GOTTHARD TABAN TÜNELİ', 'Dünyanın En Uzun ve En Derin Demiryolu Tüneli', 'İsviçre Alpleri\'nin tam altından geçen Gotthard Taban Tüneli, 57 kilometre uzunluğuyla dünyadaki en uzun demiryolu tünelidir.<br><br>Dağ yüzeyinin 2.300 metre altından geçen tünel mühendislik açısından büyük zorluklarla inşa edilmiş olup, yolcu ve yük trenlerinin Alpler etrafından dolanmak yerine doğrudan dümdüz bir hatta geçmesini sağlayarak Avrupa içi lojistiği devrimsel boyutta hızlandırmıştır.')">
-          <div class="card-tag">🇨🇭 İSVİÇRE • GOTTHARD TÜNELİ</div>
-          <h3 class="card-title">Dünyanın En Uzun Tüneli</h3>
-          <p class="card-text">Yer yüzeyinin 2.300 metre altında, 57 km uzunluğuyla dünyada en uzun ve en derin tüneldir.</p>
-          <span class="card-more-link">Detayları Oku ➔</span>
-        </div>
+        <div class="grid-3">
+          <!-- Kart 1: Shinkansen -->
+          <div class="card card-clickable" onclick="openModal('🇯🇵 JAPONYA • SHINKANSEN', '60 Yıldır Sıfır Ölümlü Kaza Rekoru', '1964 yılında kullanıma açılan Japon Shinkansen (Mermi Tren) yüksek hızlı tren ağında, 60 yılı aşkın süredir saatte 320 km/s hıza rağmen tek bir ölümlü tren kazası dahi yaşanmamıştır.<br><br>Erken uyarı deprem sensörleri, tam otomatik hat denetimi ve yüksek bakım standartları sayesinde Shinkansen ağının tüm hatlarındaki yıllık ortalama gecikme süresi sadece 12 saniyedir.')">
+            <div class="card-tag">🇯🇵 JAPONYA • SHINKANSEN</div>
+            <h3 class="card-title">60 Yıldır Ölümlü Kaza Yok</h3>
+            <p class="card-text">Saatte 320 km hıza rağmen Shinkansen ağında 60 yıldır tek bir ölümlü kaza yaşanmamıştır. Yıllık ortalama gecikme ise 12 saniyedir.</p>
+            <span class="card-more-link">Detayları Oku ➔</span>
+          </div>
 
-        <!-- Kart 3: Maglev -->
-        <div class="card card-clickable" onclick="openModal('🇨🇳 ÇİN • SHANGHAI MAGLEV', 'Raylara Dokunmadan Havada Süzülen Trenler', 'Şanghay Maglev treni, geleneksel çelik tekerlek ve ray teması olmadan hareket eden dünyadaki ilk ticari manyetik havada süzülme (Maglev) trenidir.<br><br>Güçlü elektromıknatıslar sayesinde tren rayların 10-15 mm üzerinde havada asılı durur. Sürtünme sıfıra yakın olduğu için ticari sefere 431 km/s hızla ulaşır.')">
-          <div class="card-tag">🇨🇳 ÇİN • SHANGHAI MAGLEV</div>
-          <h3 class="card-title">Havada Süzülen Trenler</h3>
-          <p class="card-text">Çelik tekerlek temasız mıknatıslar üzerinde havada süzülerek ticari hatta 431 km/s hıza ulaşan sistem.</p>
-          <span class="card-more-link">Detayları Oku ➔</span>
-        </div>
+          <!-- Kart 2: Gotthard Tüneli -->
+          <div class="card card-clickable" onclick="openModal('🇨🇭 İSVİÇRE • GOTTHARD TABAN TÜNELİ', 'Dünyanın En Uzun ve En Derin Demiryolu Tüneli', 'İsviçre Alpleri\'nin tam altından geçen Gotthard Taban Tüneli, 57 kilometre uzunluğuyla dünyadaki en uzun demiryolu tünelidir.<br><br>Dağ yüzeyinin 2.300 metre altından geçen tünel mühendislik açısından büyük zorluklarla inşa edilmiş olup, yolcu ve yük trenlerinin Alpler etrafından dolanmak yerine doğrudan dümdüz bir hatta geçmesini sağlayarak Avrupa içi lojistiği devrimsel boyutta hızlandırmıştır.')">
+            <div class="card-tag">🇨🇭 İSVİÇRE • GOTTHARD TÜNELİ</div>
+            <h3 class="card-title">Dünyanın En Uzun Tüneli</h3>
+            <p class="card-text">Yer yüzeyinin 2.300 metre altında, 57 km uzunluğuyla dünyada en uzun ve en derin tüneldir.</p>
+            <span class="card-more-link">Detayları Oku ➔</span>
+          </div>
 
-        <!-- Kart 4: BHP Iron Ore -->
-        <div class="card card-clickable" onclick="openModal('🇦🇺 AVUSTRALYA • BHP IRON ORE', 'Dünyanın En Ağır ve En Uzun Treni', '2001 yılında Avustralya\'da demir cevheri taşımacılığında kırılan rekor ile tam 682 vagonlu bir ağır yük treni hazırlanmıştır.<br><br>8 adet dizel-elektrikli lokomotif tarafından çekilen trenin toplam uzunluğu 7,3 kilometreye, net cevher ve tren toplam ağırlığı ise 99.734 tona ulaşarak resmi dünya rekorunu elde etmiştir.')">
-          <div class="card-tag">🇦🇺 AVUSTRALYA • BHP IRON ORE</div>
-          <h3 class="card-title">Dünyanın En Ağır Treni</h3>
-          <p class="card-text">682 vagon ve 8 lokomotiften oluşan 7,3 kilometre uzunluğundaki 99.734 tonluk rekor tren.</p>
-          <span class="card-more-link">Detayları Oku ➔</span>
-        </div>
+          <!-- Kart 3: Maglev -->
+          <div class="card card-clickable" onclick="openModal('🇨🇳 ÇİN • SHANGHAI MAGLEV', 'Raylara Dokunmadan Havada Süzülen Trenler', 'Şanghay Maglev treni, geleneksel çelik tekerlek ve ray teması olmadan hareket eden dünyadaki ilk ticari manyetik havada süzülme (Maglev) trenidir.<br><br>Güçlü elektromıknatıslar sayesinde tren rayların 10-15 mm üzerinde havada asılı durur. Sürtünme sıfıra yakın olduğu için ticari sefere 431 km/s hızla ulaşır.')">
+            <div class="card-tag">🇨🇳 ÇİN • SHANGHAI MAGLEV</div>
+            <h3 class="card-title">Havada Süzülen Trenler</h3>
+            <p class="card-text">Çelik tekerlek temasız mıknatıslar üzerinde havada süzülerek ticari hatta 431 km/s hıza ulaşan sistem.</p>
+            <span class="card-more-link">Detayları Oku ➔</span>
+          </div>
 
-        <!-- Kart 5: TGV Rekoru -->
-        <div class="card card-clickable" onclick="openModal('🇫🇷 FRANSA • TGV V150', '574.8 km/s Çelik Tekerlek Hız Rekoru', '3 Nisan 2007 tarihinde Fransa\'da özel olarak modifiye edilen V150 kodlu TGV tren seti, çelik tekerlekli demiryolu araçlarında kırılması imkansıza yakın olan 574.8 km/s hız rekorunu kırmıştır.<br><br>Bu test esnasında kataner gerilimi 25 kV\'tan 31 kV\'a çıkarılmış, tekerlek çapları büyütülmüş ve hat üzerine yüksek hava direnci sönümleme sistemleri kurulmuştur.')">
-          <div class="card-tag">🇫🇷 FRANSA • TGV REKORU</div>
-          <h3 class="card-title">574.8 km/s Tekerlek Hızı</h3>
-          <p class="card-text">Çelik tekerlekli demiryolu araçlarında kırılması zor olan 574.8 km/s dünya hız rekoru.</p>
-          <span class="card-more-link">Detayları Oku ➔</span>
-        </div>
+          <!-- Kart 4: BHP Iron Ore -->
+          <div class="card card-clickable" onclick="openModal('🇦🇺 AVUSTRALYA • BHP IRON ORE', 'Dünyanın En Ağır ve En Uzun Treni', '2001 yılında Avustralya\'da demir cevheri taşımacılığında kırılan rekor ile tam 682 vagonlu bir ağır yük treni hazırlanmıştır.<br><br>8 adet dizel-elektrikli lokomotif tarafından çekilen trenin toplam uzunluğu 7,3 kilometreye, net cevher ve tren toplam ağırlığı ise 99.734 tona ulaşarak resmi dünya rekorunu elde etmiştir.')">
+            <div class="card-tag">🇦🇺 AVUSTRALYA • BHP IRON ORE</div>
+            <h3 class="card-title">Dünyanın En Ağır Treni</h3>
+            <p class="card-text">682 vagon ve 8 lokomotiften oluşan 7,3 kilometre uzunluğundaki 99.734 tonluk rekor tren.</p>
+            <span class="card-more-link">Detayları Oku ➔</span>
+          </div>
 
-        <!-- Kart 6: Trans-Sibirya -->
-        <div class="card card-clickable" onclick="openModal('🇷🇺 RUSYA • TRANS-SİBİRYA', '8 Farklı Saat Dilimini Kesen Kıta Hattı', 'Moskova ile Vladivostok’u birbirine bağlayan 9.289 kilometrelik Trans-Sibirya Demiryolu, dünya üzerindeki en uzun kesintisiz tren hattıdır.<br><br>Tren yolculuğu boyunca tam 8 farklı saat dilimi geçilir ve yolculuk durmaksızın yaklaşık 7 gün (166 saat) sürer. Hat boyunca yüzlerce nehir köprüsü ve tayga ormanları aşılır.')">
-          <div class="card-tag">🇷🇺 RUSYA • TRANS-SİBİRYA</div>
-          <h3 class="card-title">8 Saat Dilimini Geçen Hat</h3>
-          <p class="card-text">Moskova-Vladivostok arası 9.289 km uzunluğuyla 8 farklı saat dilimini kesen devasa güzergah.</p>
-          <span class="card-more-link">Detayları Oku ➔</span>
+          <!-- Kart 5: TGV Rekoru -->
+          <div class="card card-clickable" onclick="openModal('🇫🇷 FRANSA • TGV V150', '574.8 km/s Çelik Tekerlek Hız Rekoru', '3 Nisan 2007 tarihinde Fransa\'da özel olarak modifiye edilen V150 kodlu TGV tren seti, çelik tekerlekli demiryolu araçlarında kırılması imkansıza yakın olan 574.8 km/s hız rekorunu kırmıştır.<br><br>Bu test esnasında kataner gerilimi 25 kV\'tan 31 kV\'a çıkarılmış, tekerlek çapları büyütülmüş ve hat üzerine yüksek hava direnci sönümleme sistemleri kurulmuştur.')">
+            <div class="card-tag">🇫🇷 FRANSA • TGV REKORU</div>
+            <h3 class="card-title">574.8 km/s Tekerlek Hızı</h3>
+            <p class="card-text">Çelik tekerlekli demiryolu araçlarında kırılması zor olan 574.8 km/s dünya hız rekoru.</p>
+            <span class="card-more-link">Detayları Oku ➔</span>
+          </div>
+
+          <!-- Kart 6: Trans-Sibirya -->
+          <div class="card card-clickable" onclick="openModal('🇷🇺 RUSYA • TRANS-SİBİRYA', '8 Farklı Saat Dilimini Kesen Kıta Hattı', 'Moskova ile Vladivostok’u birbirine bağlayan 9.289 kilometrelik Trans-Sibirya Demiryolu, dünya üzerindeki en uzun kesintisiz tren hattıdır.<br><br>Tren yolculuğu boyunca tam 8 farklı saat dilimi geçilir ve yolculuk durmaksızın yaklaşık 7 gün (166 saat) sürer. Hat boyunca yüzlerce nehir köprüsü ve tayga ormanları aşılır.')">
+            <div class="card-tag">🇷🇺 RUSYA • TRANS-SİBİRYA</div>
+            <h3 class="card-title">8 Saat Dilimini Geçen Hat</h3>
+            <p class="card-text">Moskova-Vladivostok arası 9.289 km uzunluğuyla 8 farklı saat dilimini kesen devasa güzergah.</p>
+            <span class="card-more-link">Detayları Oku ➔</span>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 
@@ -432,7 +443,7 @@
 
     <!-- EĞİTİM ODASI TARİHİ KARTI -->
     <div class="card card-clickable" style="margin-bottom: 35px; border-left: 4px solid var(--logo-gold);" onclick="openModalWithImage('ATÖLYE TARİHİ • İLK GÜNDEN BUGÜNE', 'Eğitim Odası\'nın İlk Düzenlendiği Gün...', '<strong>Eğitim Odası İlk Düzenleme Anısı:</strong><br><br>Atölyemizde eğitim odamızı ilk kez düzenlediğimiz o ilk gün; geleceğe, emniyete ve bilimsel gelişime attığımız ilk adımlardan biriydi.<br><br>O günden beri aynı yer kullanılmakta, bilgi paylaşımı ve İSG farkındalığı bu çatı altında büyümektedir. O günden bugünlere geldik; emeği geçen tüm mesai arkadaşlarımıza teşekkür ederiz.', ['Egitimodası.jpg'])">
-      <img src="Egitimodası.jpg" class="card-img" style="height: 240px;" alt="Eğitim Odası İlk Düzenleme" onerror="this.onerror=null; this.src='resimler/Egitimodası.jpg';">
+      <img src="Egitimodası.jpg" class="card-img" style="height: 240px;" alt="Eğitim Odası İlk Düzenleme" onclick="event.stopPropagation(); openLightboxGroup(['Egitimodası.jpg'], 0)" onerror="this.onerror=null; this.src='resimler/Egitimodası.jpg';">
       <div class="card-tag">ATÖLYE TARİHİ • İLK GÜNDEN BUGÜNE</div>
       <h3 class="card-title">Eğitim Odası'nın İlk Düzenlendiği Gün...</h3>
       <p class="card-text">Eğitim odasını ilk düzenlediğimiz vakit, o günden beri aynı yer kullanılıyor. O günden bugünlere geldik.</p>
@@ -446,21 +457,21 @@
     <div class="grid-3" style="margin-bottom: 25px;">
       
       <!-- 2024 KLASÖRÜ -->
-      <div class="folder-card" onclick="toggleYearGallery('gallery2024')">
+      <div class="folder-card" onclick="toggleContainer('gallery2024')">
         <div class="folder-icon">📁</div>
         <div class="folder-title">2024 İSG Toplantıları</div>
         <div class="folder-subtitle">Görselleri Görmek İçin Tıklayın (2 Fotoğraf)</div>
       </div>
 
       <!-- 2025 KLASÖRÜ -->
-      <div class="folder-card" onclick="toggleYearGallery('gallery2025')">
+      <div class="folder-card" onclick="toggleContainer('gallery2025')">
         <div class="folder-icon">📁</div>
         <div class="folder-title">2025 İSG Toplantıları</div>
         <div class="folder-subtitle">Görselleri Görmek İçin Tıklayın (4 Fotoğraf)</div>
       </div>
 
       <!-- 2026 KLASÖRÜ -->
-      <div class="folder-card" onclick="toggleYearGallery('gallery2026')">
+      <div class="folder-card" onclick="toggleContainer('gallery2026')">
         <div class="folder-icon">📁</div>
         <div class="folder-title">2026 İSG Toplantıları</div>
         <div class="folder-subtitle">Görselleri Görmek İçin Tıklayın (3 Fotoğraf)</div>
@@ -469,10 +480,10 @@
     </div>
 
     <!-- 2024 GALERİ İÇERİĞİ -->
-    <div id="gallery2024" class="year-gallery-container">
-      <div class="year-gallery-title">
+    <div id="gallery2024" class="collapsible-container">
+      <div class="collapsible-header">
         <span>📸 2024 Yılı İSG Farkındalık Toplantısı Fotoğrafları</span>
-        <button class="year-close-btn" onclick="toggleYearGallery('gallery2024')">Kapat ✖</button>
+        <button class="close-btn" onclick="toggleContainer('gallery2024')">Kapat ✖</button>
       </div>
       <div class="gallery-grid">
         <img src="1isg2024.jpg" class="gallery-img" alt="1isg2024" onclick="openLightboxGroup(['1isg2024.jpg', '2isg2024.jpg'], 0)" onerror="this.onerror=null; this.src='resimler/1isg2024.jpg';">
@@ -481,10 +492,10 @@
     </div>
 
     <!-- 2025 GALERİ İÇERİĞİ -->
-    <div id="gallery2025" class="year-gallery-container">
-      <div class="year-gallery-title">
+    <div id="gallery2025" class="collapsible-container">
+      <div class="collapsible-header">
         <span>📸 2025 Yılı İSG Farkındalık Toplantısı Fotoğrafları</span>
-        <button class="year-close-btn" onclick="toggleYearGallery('gallery2025')">Kapat ✖</button>
+        <button class="close-btn" onclick="toggleContainer('gallery2025')">Kapat ✖</button>
       </div>
       <div class="gallery-grid">
         <img src="1isg2025.jpg" class="gallery-img" alt="1isg2025" onclick="openLightboxGroup(['1isg2025.jpg', '2isg2025.jpg', '3isg2025.jpg', '4isg2025.jpg'], 0)" onerror="this.onerror=null; this.src='resimler/1isg2025.jpg';">
@@ -495,10 +506,10 @@
     </div>
 
     <!-- 2026 GALERİ İÇERİĞİ -->
-    <div id="gallery2026" class="year-gallery-container">
-      <div class="year-gallery-title">
+    <div id="gallery2026" class="collapsible-container">
+      <div class="collapsible-header">
         <span>📸 2026 Yılı İSG Farkındalık Toplantısı Fotoğrafları</span>
-        <button class="year-close-btn" onclick="toggleYearGallery('gallery2026')">Kapat ✖</button>
+        <button class="close-btn" onclick="toggleContainer('gallery2026')">Kapat ✖</button>
       </div>
       <div class="gallery-grid">
         <img src="isg 2026.jpg" class="gallery-img" alt="isg 2026" onclick="openLightboxGroup(['isg 2026.jpg', 'isg 2026 2.jpg', 'isg 2026 3.jpg'], 0)" onerror="this.onerror=null; this.src='resimler/isg 2026.jpg';">
@@ -553,7 +564,7 @@
       
       <!-- PROJE 1 -->
       <div class="card card-clickable" onclick="openModalWithImage('PROJE 1 • AKILLI TANIMA', 'Demiryolu Araç Kimliği Tanıma Sistemi', 'Demiryolu araçlarının kimlik bilgilerinin hızlı ve otomatik olarak tespit edilmesi amacıyla Görüntü İşleme Tabanlı Araç Kimliği Tanıma Sistemi geliştirilmiştir.<br><br>Kamera görüntüleri üzerinden yapay zekâ destekli görüntü işleme teknolojileri kullanılarak araç numaraları otomatik olarak okunmakta ve kayıt altına alınmaktadır.', ['proje.jpg'])">
-        <img src="proje.jpg" class="card-img" alt="Proje 1" onerror="this.onerror=null; this.src='resimler/proje.jpg';">
+        <img src="proje.jpg" class="card-img" alt="Proje 1" onclick="event.stopPropagation(); openLightboxGroup(['proje.jpg'], 0)" onerror="this.onerror=null; this.src='resimler/proje.jpg';">
         <div class="card-tag">PROJE 1 • AKILLI TANIMA</div>
         <h3 class="card-title">Demiryolu Araç Kimliği Tanıma Sistemi</h3>
         <p class="card-text">Demiryolu araçlarının kimlik bilgilerinin hızlı ve otomatik olarak tespit edilmesi amacıyla Görüntü İşleme Tabanlı Araç Kimliği Tanıma Sistemi geliştirilmiştir.</p>
@@ -562,7 +573,7 @@
 
       <!-- PROJE 2 -->
       <div class="card card-clickable" onclick="openModalWithImage('PROJE 2 • KESTİRİMCİ BAKIM', 'Apleti Tespit Sistemi', 'Demiryolu araçlarında tekerlek apleti oluşumunun erken tespit edilmesi ve bakım süreçlerinin desteklenmesi amacıyla Piezo Sensör Tabanlı Aplet Tespit Sistemi geliştirilmiştir.<br><br>Ray üzerine yerleştirilen sensörler aracılığıyla tekerlek geçişlerinden oluşan titreşimler analiz edilerek olası apleti ve tekerlek yüzey bozuklukları tespit edilmektedir.', ['proje 2.jpg'])">
-        <img src="proje 2.jpg" class="card-img" alt="Proje 2" onerror="this.onerror=null; this.src='resimler/proje 2.jpg';">
+        <img src="proje 2.jpg" class="card-img" alt="Proje 2" onclick="event.stopPropagation(); openLightboxGroup(['proje 2.jpg'], 0)" onerror="this.onerror=null; this.src='resimler/proje 2.jpg';">
         <div class="card-tag">PROJE 2 • KESTİRİMCİ BAKIM</div>
         <h3 class="card-title">Apleti Tespit Sistemi</h3>
         <p class="card-text">Demiryolu araçlarında tekerlek apleti oluşumunun erken tespit edilmesi ve bakım süreçlerinin desteklenmesi amacıyla Piezo Sensör Tabanlı Aplet Tespit Sistemi geliştirilmiştir.</p>
@@ -571,7 +582,7 @@
 
       <!-- PROJE 3 -->
       <div class="card card-clickable" onclick="openModalWithImage('PROJE 3 • SAHA EMNİYETİ', 'Manevra İkaz Sistemi', 'Atölye ve sahalarımızda gerçekleştirilen manevra operasyonları sırasında iş güvenliğini artırmak ve personeli manevra faaliyeti hakkında bilgilendirmek amacıyla Manevra İkaz Sistemi kurulmuştur.<br><br>Uzaktan kumanda ile devreye alınan sistem, manevra faaliyetleri sırasında personelin sesli olarak uyarılmasını sağlayarak güvenli çalışma koşullarının desteklenmesine katkı sunmaktadır.', ['proje 3.jpg'])">
-        <img src="proje 3.jpg" class="card-img" alt="Proje 3" onerror="this.onerror=null; this.src='resimler/proje 3.jpg';">
+        <img src="proje 3.jpg" class="card-img" alt="Proje 3" onclick="event.stopPropagation(); openLightboxGroup(['proje 3.jpg'], 0)" onerror="this.onerror=null; this.src='resimler/proje 3.jpg';">
         <div class="card-tag">PROJE 3 • SAHA EMNİYETİ</div>
         <h3 class="card-title">Manevra İkaz Sistemi</h3>
         <p class="card-text">Atölye ve sahalarımızda gerçekleştirilen manevra operasyonları sırasında iş güvenliğini artırmak ve personeli manevra faaliyeti hakkında bilgilendirmek amacıyla Manevra İkaz Sistemi kurulmuştur.</p>
@@ -580,7 +591,7 @@
 
       <!-- PROJE 4 -->
       <div class="card card-clickable" onclick="openModalWithImage('PROJE 4 • AKILLI ATÖLYE', 'Dijital Vagon Takip Sistemi', 'Atölyemizde yürütülen vagon bakım ve onarım süreçlerinin etkin şekilde takip edilmesi ve kayıt altına alınması amacıyla Dijital Vagon Takip Sistemi geliştirilmiştir.<br><br>Sistem ile vagonların giriş-çıkış tarihleri, bakım durumları, malzeme bekleme ve tamamlanma süreçleri dijital ortamda takip edilerek çalışmaların daha düzenli ve kontrollü yürütülmesi sağlanmaktadır.', ['1.jpg'])">
-        <img src="1.jpg" class="card-img" alt="Proje 4" onerror="this.onerror=null; this.src='resimler/1.jpg';">
+        <img src="1.jpg" class="card-img" alt="Proje 4" onclick="event.stopPropagation(); openLightboxGroup(['1.jpg'], 0)" onerror="this.onerror=null; this.src='resimler/1.jpg';">
         <div class="card-tag">PROJE 4 • AKILLI ATÖLYE</div>
         <h3 class="card-title">Dijital Vagon Takip Sistemi</h3>
         <p class="card-text">Atölyemizde yürütülen vagon bakım ve onarım süreçlerinin etkin şekilde takip edilmesi ve kayıt altına alınması amacıyla Dijital Vagon Takip Sistemi geliştirilmiştir.</p>
@@ -753,6 +764,7 @@
       document.getElementById('bilgiMetni').innerText = bilgiler[bilgiIndex];
     }
 
+    /* SADECE KIZILAY DUYURUSU AKTİF */
     const duyurularVeri = [
       { 
         id: 1, 
@@ -761,34 +773,12 @@
         metin: "Demiryol-İş Sendikası Haydarpaşa Şubesi ve Demiryol Bilim ve Kültür Kulübü iş birliğiyle, Gebze TCDD Yerleşkemizde Türk Kızılay kan bağışı organizasyonu planlıyoruz.<br><br>Yeterli katılım sayısına ulaşıldığı takdirde, Kızılay Mobil Kan Bağışı Aracı doğrudan Gebze TCDD Yerleşkemize gelerek kan alımı yapacaktır.<br><br><strong>🎁 Bağışçılarımıza Özel Hediyeler:</strong><br>Kan bağışında bulunan tüm mesai arkadaşlarımıza Türk Kızılay tarafından 1 adet Kızılay Akıllı Termos ve 1 adet İzoleli Sağlık Çantası hediye edilecektir.<br><br><em>'Bir ünite kan, üç can demektir.'</em> Tüm mesai arkadaşlarımızı bu anlamlı dayanışmaya davet ediyoruz.<br><br><strong>Demiryol-İş Sendikası Haydarpaşa Şubesi & Demiryol Bilim ve Kültür Kulübü</strong>", 
         tarih: "GÜNCEL PLANLAMA",
         resimler: ["kızılayhediye.jfif", "senkızıl.jpeg", "Kızıl.jpeg"]
-      },
-      { 
-        id: 2, 
-        baslik: "🛡️ 3. İş Sağlığı ve Güvenliği (İSG) Farkındalık Toplantısı", 
-        kategori: "İSG & EMNİYET", 
-        metin: "Gebze Vagon Bakım Onarım Atölye Müdürlüğü'nde İSG Haftası kapsamında Kulübümüz organizasyonuyla geniş katılımlı toplantı düzenlendi. Oturumlarda 5S Entegrasyonu, İSG 10 Altın Kural, Fine-Kinney Risk Analizleri, Mesai Esnasında Afet Hazırlığı ve Kulüp Ar-Ge Sunumları gerçekleştirildi.", 
-        tarih: "4-10 Mayıs 2026",
-        resimler: []
-      },
-      { 
-        id: 3, 
-        baslik: "💡 Ar-Ge Proje Tanıtım ve Beyin Fırtınası Oturumları", 
-        kategori: "AR-GE PROJE", 
-        metin: "Kulüp bünyesinde geliştirilen Manevra İkaz Sistemi ve Vagon Takip & Otomatik Apleti Tespit Sistemi projelerinin saha çalışanlarına tanıtımı ve teknik geri bildirim toplantıları tamamlanmıştır.", 
-        tarih: "10 Eylül 2026",
-        resimler: []
       }
     ];
 
-    /* YIL KLASÖRLERİNİ AÇMA / KAPATMA FONKSİYONU */
-    function toggleYearGallery(containerId) {
+    /* AÇILIR/KAPANIR ALANLAR */
+    function toggleContainer(containerId) {
       const container = document.getElementById(containerId);
-      const allGalleries = document.querySelectorAll('.year-gallery-container');
-      
-      allGalleries.forEach(g => {
-        if(g.id !== containerId) g.classList.remove('active');
-      });
-
       container.classList.toggle('active');
     }
 
