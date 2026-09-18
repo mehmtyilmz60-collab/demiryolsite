@@ -191,6 +191,26 @@
     .card-img { width: 100%; height: 185px; object-fit: cover; border-radius: 10px; margin-bottom: 14px; border: 1px solid rgba(255,255,255,0.08); }
     .card-more-link { display: inline-block; margin-top: 12px; color: var(--logo-gold); font-size: 13px; font-weight: 700; text-decoration: none; }
 
+    /* KLASÖR (YIL) KARTLARI */
+    .folder-card {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(15, 23, 42, 0.9));
+      border: 1.5px solid var(--logo-gold); border-radius: 16px; padding: 20px;
+      text-align: center; cursor: pointer; transition: all 0.25s ease;
+    }
+    .folder-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.25); background: rgba(212, 175, 55, 0.2); }
+    .folder-icon { font-size: 38px; margin-bottom: 8px; }
+    .folder-title { font-size: 20px; font-weight: 800; color: var(--text-main); }
+    .folder-subtitle { font-size: 12px; color: var(--logo-gold); margin-top: 4px; font-weight: 600; }
+
+    /* YILLARA GÖRE KANAVAS / GALERİ ALANI */
+    .year-gallery-container {
+      display: none; background: rgba(15, 23, 42, 0.8); border: 1px solid var(--card-border);
+      border-radius: 16px; padding: 24px; margin-top: 16px; margin-bottom: 30px; animation: fadeIn 0.3s ease;
+    }
+    .year-gallery-container.active { display: block; }
+    .year-gallery-title { font-size: 18px; font-weight: 700; color: var(--logo-gold); margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+    .year-close-btn { background: rgba(255,255,255,0.1); border: none; color: #fff; padding: 4px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; }
+
     /* Modal Structure */
     .modal-overlay {
       display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -249,7 +269,7 @@
     .x-card:hover { border-color: #ffffff; }
 
     /* Galleries */
-    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-bottom: 30px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-bottom: 30px; }
     .gallery-img { width: 100%; height: 210px; object-fit: cover; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.25s ease; background-color: #1a2230; cursor: pointer; }
     .gallery-img:hover { transform: translateY(-3px); border-color: var(--logo-gold); }
 
@@ -393,14 +413,93 @@
     <div id="duyuruListesi" class="grid-2"></div>
   </div>
 
-  <!-- SAYFA 3: ETKİNLİKLER -->
+  <!-- SAYFA 3: ETKİNLİKLER VE İSG KLASÖRLERİ -->
   <div id="etkinlikler" class="page">
     <div class="section-head">
-      <h2 class="section-title">İSG, Çalıştay ve Gelecek Etkinlikler</h2>
-      <p class="section-desc">Atölye içi İSG farkındalığı, Ar-Ge atölyeleri, teknik geziler ve fuar katılımlarımız.</p>
+      <h2 class="section-title">İSG, Çalıştay ve Etkinlikler</h2>
+      <p class="section-desc">Atölyemizde düzenlenen İş Sağlığı ve Güvenliği farkındalık toplantıları, eğitimlerimiz ve planlanan etkinlikler.</p>
     </div>
 
-    <h3 style="color:var(--logo-gold); font-size: 20px; margin-bottom: 18px; text-align:center;">📅 Gelecek ve Planlanan Etkinlikler</h3>
+    <!-- EĞİTİM ODASI TARİHİ KARTI -->
+    <div class="card card-clickable" style="margin-bottom: 35px; border-left: 4px solid var(--logo-gold);" onclick="openModal('ATÖLYE TARİHİ • İLK GÜNDEN BUGÜNE', 'Eğitim Odası\'nın İlk Düzenlendiği Gün...', '<strong>Eğitim Odası İlk Düzenleme Anısı:</strong><br><br>Atölyemizde eğitim odamızı ilk kez düzenlediğimiz o ilk gün; geleceğe, emniyete ve bilimsel gelişime attığımız ilk adımlardan biriydi.<br><br>O günden beri aynı yer kullanılmakta, bilgi paylaşımı ve İSG farkındalığı bu çatı altında büyümektedir. O günden bugünlere geldik; emeği geçen tüm mesai arkadaşlarımıza teşekkür ederiz.')">
+      <img src="Egitimodası.jpg" class="card-img" style="height: 240px;" alt="Eğitim Odası İlk Düzenleme" onerror="this.onerror=null; this.src='resimler/Egitimodası.jpg';">
+      <div class="card-tag">ATÖLYE TARİHİ • İLK GÜNDEN BUGÜNE</div>
+      <h3 class="card-title">Eğitim Odası'nın İlk Düzenlendiği Gün...</h3>
+      <p class="card-text">Eğitim odasını ilk düzenlediğimiz vakit, o günden beri aynı yer kullanılıyor. O günden bugünlere geldik.</p>
+      <span class="card-more-link">Hikayeyi ve Fotoğrafı İncele ➔</span>
+    </div>
+
+    <!-- İSG FARKINDALIK TOPLANTILARI - YIL KLASÖRLERİ BÖLÜMÜ -->
+    <h3 style="color:var(--logo-gold); font-size: 20px; margin-bottom: 16px; text-align:center;">🛡️ İSG Farkındalık Toplantı Arşivleri (Yıllara Göre Klasörler)</h3>
+    <p style="text-align:center; color:var(--text-muted); font-size:13.5px; margin-bottom:20px;">Aşağıdaki yıl klasörlerine tıklayarak ilgili yıla ait toplantı görsellerini görüntüleyebilirsiniz.</p>
+    
+    <div class="grid-3" style="margin-bottom: 25px;">
+      
+      <!-- 2024 KLASÖRİ -->
+      <div class="folder-card" onclick="toggleYearGallery('gallery2024')">
+        <div class="folder-icon">📁</div>
+        <div class="folder-title">2024 İSG Toplantıları</div>
+        <div class="folder-subtitle">Görselleri Görmek İçin Tıklayın (2 Fotoğraf)</div>
+      </div>
+
+      <!-- 2025 KLASÖRİ -->
+      <div class="folder-card" onclick="toggleYearGallery('gallery2025')">
+        <div class="folder-icon">📁</div>
+        <div class="folder-title">2025 İSG Toplantıları</div>
+        <div class="folder-subtitle">Görselleri Görmek İçin Tıklayın (4 Fotoğraf)</div>
+      </div>
+
+      <!-- 2026 KLASÖRİ -->
+      <div class="folder-card" onclick="toggleYearGallery('gallery2026')">
+        <div class="folder-icon">📁</div>
+        <div class="folder-title">2026 İSG Toplantıları</div>
+        <div class="folder-subtitle">Görselleri Görmek İçin Tıklayın (3 Fotoğraf)</div>
+      </div>
+
+    </div>
+
+    <!-- 2024 GALERİ İÇERİĞİ -->
+    <div id="gallery2024" class="year-gallery-container">
+      <div class="year-gallery-title">
+        <span>📸 2024 Yılı İSG Farkındalık Toplantısı Fotoğrafları</span>
+        <button class="year-close-btn" onclick="toggleYearGallery('gallery2024')">Kapat ✖</button>
+      </div>
+      <div class="gallery-grid">
+        <img src="1isg2024.jpg" class="gallery-img" alt="1isg2024" onclick="openLightbox(this.src)" onerror="this.onerror=null; this.src='resimler/1isg2024.jpg';">
+        <img src="2isg2024.jpg" class="gallery-img" alt="2isg2024" onclick="openLightbox(this.src)" onerror="this.onerror=null; this.src='resimler/2isg2024.jpg';">
+      </div>
+    </div>
+
+    <!-- 2025 GALERİ İÇERİĞİ -->
+    <div id="gallery2025" class="year-gallery-container">
+      <div class="year-gallery-title">
+        <span>📸 2025 Yılı İSG Farkındalık Toplantısı Fotoğrafları</span>
+        <button class="year-close-btn" onclick="toggleYearGallery('gallery2025')">Kapat ✖</button>
+      </div>
+      <div class="gallery-grid">
+        <img src="1isg2025.jpg" class="gallery-img" alt="1isg2025" onclick="openLightbox(this.src)" onerror="this.onerror=null; this.src='resimler/1isg2025.jpg';">
+        <img src="2isg2025.jpg" class="gallery-img" alt="2isg2025" onclick="openLightbox(this.src)" onerror="this.onerror=null; this.src='resimler/2isg2025.jpg';">
+        <img src="3isg2025.jpg" class="gallery-img" alt="3isg2025" onclick="openLightbox(this.src)" onerror="this.onerror=null; this.src='resimler/3isg2025.jpg';">
+        <img src="4isg2025.jpg" class="gallery-img" alt="4isg2025" onclick="openLightbox(this.src)" onerror="this.onerror=null; this.src='resimler/4isg2025.jpg';">
+      </div>
+    </div>
+
+    <!-- 2026 GALERİ İÇERİĞİ -->
+    <div id="gallery2026" class="year-gallery-container">
+      <div class="year-gallery-title">
+        <span>📸 2026 Yılı İSG Farkındalık Toplantısı Fotoğrafları</span>
+        <button class="year-close-btn" onclick="toggleYearGallery('gallery2026')">Kapat ✖</button>
+      </div>
+      <div class="gallery-grid">
+        <img src="isg 2026.jpg" class="gallery-img" alt="isg 2026" onclick="openLightbox(this.src)" onerror="this.onerror=null; this.src='resimler/isg 2026.jpg';">
+        <img src="isg 2026 2.jpg" class="gallery-img" alt="isg 2026 2" onclick="openLightbox(this.src)" onerror="this.onerror=null; this.src='resimler/isg 2026 2.jpg';">
+        <img src="isg 2026 3.jpg" class="gallery-img" alt="isg 2026 3" onclick="openLightbox(this.src)" onerror="this.onerror=null; this.src='resimler/isg 2026 3.jpg';">
+      </div>
+    </div>
+
+
+    <!-- DİĞER ETKİNLİKLER -->
+    <h3 style="color:var(--text-main); font-size: 20px; margin-top: 40px; margin-bottom: 18px; text-align:center;">📅 Gelecek ve Planlanan Diğer Etkinlikler</h3>
     <div class="grid-2" style="margin-bottom: 35px;">
       
       <div class="card card-clickable" style="border-left: 4px solid var(--logo-gold);" onclick="openModal('ULUSLARARASI FUAR • 24-26 MART 2027', 'Eurasia Rail Fuar Katılımı', '<strong>Konum:</strong> Uluslararası Fuar & Proje Stant Gösterimi<br><br><strong>Detaylar:</strong> Demiryol Bilim ve Kültür Kulübü bünyesinde geliştirilen yerli ve milli Ar-Ge projeleri (Vagon Takip ve Otomatik Apleti Tespit Sistemi, Manevra İkaz Sistemi vb.) demiryolu sektörüne ve uluslararası katılımcılara özel stant alanımızda tanıtılacaktır.<br><br><strong>Kapsam:</strong> Yerli inovasyon gösterimi, uluslararası sektor iş birlikleri ve teknoloji lansmanı.')">
@@ -410,7 +509,7 @@
         <span class="card-more-link">Etkinlik Detayları ➔</span>
       </div>
 
-      <div class="card card-clickable" onclick="openModal('SAHA İNCELEMESİ • PLANLANAN', 'Teknik Geziler ve Atölye Ziyaretleri', '<strong>Kapsam:</strong> Saha İncelemesi ve Teknik Birikim<br><br><strong>Detaylar:</strong> Demiryolu sektöründeki modern bakım merkezleri, vagon/lokomotif üretim tesisleri ve ileri teknoloji ar-ge merkezlerine yönelik teknik inceleme turları düzenlenecektir.<br><br>Kulüp üyelerimiz ve atölye personelimizin teknolojik yenilikleri yerinde incelesi hedeflenmektedir.')">
+      <div class="card card-clickable" onclick="openModal('SAHA İNCELEMESİ • PLANLANAN', 'Teknik Geziler ve Atölye Ziyaretleri', '<strong>Kapsam:</strong> Saha İncelemesi ve Teknik Birikim<br><br><strong>Detaylar:</strong> Demiryolu sektöründeki modern bakım merkezleri, vagon/lokomotif üretim tesisleri ve ileri teknoloji ar-ge merkezlerine yönelik teknik inceleme turları düzenlenecektir.<br><br>Kulüp üyelerimiz ve atölye personelimizin teknolojik yenilikleri yerinde incelemesi hedeflenmektedir.')">
         <div class="card-tag">SAHA İNCELEMESİ • PLANLANAN</div>
         <h3 class="card-title">Teknik Geziler ve Atölye Ziyaretleri</h3>
         <p class="card-text">Demiryolu sektöründeki modern bakım merkezleri ve teknoloji tesislerine yönelik planlanan teknik turlar.</p>
@@ -432,16 +531,9 @@
       </div>
 
     </div>
-
-    <h3 style="color:var(--text-main); font-size: 18px; margin-bottom: 14px; text-align:center;">📸 İSG Farkındalık Toplantısı Görselleri</h3>
-    <div class="gallery-grid">
-      <img src="isg 2026.jpg" class="gallery-img" alt="İSG 1" onclick="openLightbox(this.src)" onerror="this.onerror=null; this.src='resimler/isg 2026.jpg';">
-      <img src="isg 2026 2.jpg" class="gallery-img" alt="İSG 2" onclick="openLightbox(this.src)" onerror="this.onerror=null; this.src='resimler/isg 2026 2.jpg';">
-      <img src="isg 2026 3.jpg" class="gallery-img" alt="İSG 3" onclick="openLightbox(this.src)" onerror="this.onerror=null; this.src='resimler/isg 2026 3.jpg';">
-    </div>
   </div>
 
-  <!-- SAYFA 4: AR-GE (4 YENİ PROJENİZ) -->
+  <!-- SAYFA 4: AR-GE -->
   <div id="arge" class="page">
     <div class="section-head">
       <h2 class="section-title">Teknik Projelerimiz & Ar-Ge Vizyonu</h2>
@@ -677,6 +769,18 @@
         resimler: []
       }
     ];
+
+    /* YIL KLASÖRLERİNİ AÇMA / KAPATMA FONKSİYONU */
+    function toggleYearGallery(containerId) {
+      const container = document.getElementById(containerId);
+      const allGalleries = document.querySelectorAll('.year-gallery-container');
+      
+      allGalleries.forEach(g => {
+        if(g.id !== containerId) g.classList.remove('active');
+      });
+
+      container.classList.toggle('active');
+    }
 
     /* MODAL VE BÜYÜK RESİM (LIGHTBOX) FONKSİYONLARI */
     function openModalByIndex(index) {
