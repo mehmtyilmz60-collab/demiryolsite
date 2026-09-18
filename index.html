@@ -1,752 +1,299 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  
-  <!-- MOBİL VE TARAYICI ÖNBELLEK ENGELLERİ (CACHE BUSTING) -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demiryol Bilim ve Kültür Kulübü</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #151c2c;
+            --accent-yellow: #f59e0b;
+            --accent-blue: #3b82f6;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #1f2937;
+        }
 
-  <title>Demiryol Bilim ve Kültür Kulübü</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --logo-gold: #d4af37;
-      --logo-gold-glow: #f59e0b;
-      --bg-dark: #0b192c;
-      --card-bg: rgba(30, 41, 59, 0.7);
-      --card-border: rgba(212, 175, 55, 0.25);
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg-dark);
-      background-image: 
-        radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.08) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(15, 23, 42, 0.9) 0px, transparent 50%);
-      background-attachment: fixed;
-      color: var(--text-main);
-      min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: space-between;
-      -webkit-font-smoothing: antialiased;
-      padding-bottom: 70px;
-    }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
 
-    @media (min-width: 769px) { body { padding-bottom: 0; } }
+        /* HEADER & LOGO */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background: rgba(11, 15, 25, 0.9);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
 
-    /* Navbar & LOGO */
-    .nav {
-      position: sticky; top: 0; z-index: 9999; height: 115px;
-      background: rgba(11, 25, 44, 0.96); backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0 40px; border-bottom: 1px solid var(--card-border);
-    }
-    .logo-container { display: flex; align-items: center; gap: 20px; cursor: pointer; text-decoration: none; }
-    
-    .logo-wrapper {
-      width: 105px; height: 105px; border-radius: 50%;
-      background: none; padding: 0;
-      border: 2px solid var(--logo-gold);
-      box-shadow: none !important;
-      filter: none !important;
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden;
-      flex-shrink: 0;
-      transition: transform 0.2s ease;
-    }
-    .logo-container:hover .logo-wrapper { transform: scale(1.03); }
-    .logo-img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; background: none; }
-    
-    .logo-text { font-weight: 800; font-size: 20px; color: var(--text-main); letter-spacing: -0.3px; }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-    .nav-links { display: flex; gap: 8px; }
-    .nav-links button {
-      background: none; border: none; color: var(--text-muted); font-size: 14px;
-      font-weight: 500; cursor: pointer; padding: 9px 16px; border-radius: 10px;
-      transition: all 0.2s ease; font-family: 'Inter', sans-serif;
-    }
-    .nav-links button:hover, .nav-links button.active {
-      color: var(--logo-gold); background: rgba(212, 175, 55, 0.12); font-weight: 600;
-    }
+        .brand img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-yellow);
+        }
 
-    /* Mobil Alt Menü Barı */
-    .mobile-bottom-nav {
-      display: none; position: fixed; bottom: 0; left: 0; right: 0; height: 65px;
-      background: rgba(11, 25, 44, 0.96); backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px); border-top: 1px solid var(--card-border); z-index: 10000;
-      justify-content: space-around; align-items: center; padding: 0 5px;
-    }
-    .mobile-bottom-nav button {
-      background: none; border: none; color: #64748b; font-size: 10px;
-      display: flex; flex-direction: column; align-items: center; gap: 3px;
-      font-weight: 500; cursor: pointer; width: 16%; font-family: 'Inter', sans-serif;
-    }
-    .mobile-bottom-nav button span.icon { font-size: 16px; }
-    .mobile-bottom-nav button.active { color: var(--logo-gold); font-weight: 600; }
+        .brand h1 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
 
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .mobile-bottom-nav { display: flex; }
-      .nav { padding: 0 16px; height: 95px; }
-      .logo-text { font-size: 15px; }
-      .logo-wrapper { width: 80px; height: 80px; }
-    }
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
 
-    /* Sayfa Yapısı */
-    .page { display: none; padding: 38px 20px 60px; max-width: 1150px; margin: 0 auto; width: 100%; animation: fadeIn 0.3s ease-out; }
-    .page.active { display: block; }
+        nav a:hover {
+            color: var(--accent-yellow);
+        }
 
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        /* HERO SECTION */
+        .hero {
+            padding: 4rem 5%;
+            text-align: center;
+            background: radial-gradient(circle at center, #1e293b 0%, var(--bg-color) 70%);
+        }
 
-    /* Hero / Karşılama */
-    .hero {
-      text-align: center; padding: 45px 20px 35px;
-      background: var(--card-bg); border-radius: 20px; margin-bottom: 25px;
-      border: 1px solid var(--card-border); box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
-    .badge {
-      display: inline-block; padding: 6px 18px; border-radius: 20px;
-      background: rgba(212, 175, 55, 0.15); color: var(--logo-gold); border: 1px solid rgba(212, 175, 55, 0.3);
-      font-size: 12px; font-weight: 600; margin-bottom: 18px; letter-spacing: 0.03em;
-    }
-    .hero-title { font-size: 34px; font-weight: 800; line-height: 1.25; margin-bottom: 16px; color: var(--text-main); }
-    @media (min-width: 769px) { .hero-title { font-size: 46px; } }
-    .hero-subtitle { font-size: 15.5px; color: var(--text-muted); max-width: 780px; margin: 0 auto 26px; line-height: 1.62; }
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
 
-    .btn-group { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
-    .btn-glow {
-      background: linear-gradient(135deg, #d4af37, #f59e0b); color: #0b192c; padding: 13px 28px; border-radius: 10px;
-      text-decoration: none; font-weight: 700; font-size: 14px; cursor: pointer; border: none;
-      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); transition: all 0.2s ease; font-family: 'Inter', sans-serif;
-    }
-    .btn-glow:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(245, 158, 11, 0.45); }
-    .btn-outline {
-      background: rgba(255, 255, 255, 0.04); color: var(--text-main); padding: 13px 28px; border-radius: 10px;
-      text-decoration: none; font-weight: 600; font-size: 14px; border: 1px solid rgba(255, 255, 255, 0.15); cursor: pointer;
-      transition: all 0.2s ease; font-family: 'Inter', sans-serif;
-    }
-    .btn-outline:hover { background: rgba(255, 255, 255, 0.08); border-color: var(--logo-gold); }
+        .hero p {
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+            font-size: 1.1rem;
+        }
 
-    /* Flash Kart */
-    .flash-card-container {
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(15, 23, 42, 0.8));
-      border: 1px solid var(--card-border); border-radius: 18px; padding: 24px 28px;
-      margin-bottom: 30px; display: flex; align-items: center; justify-content: space-between;
-      gap: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.25); position: relative; overflow: hidden;
-    }
-    @media (max-width: 768px) {
-      .flash-card-container { flex-direction: column; text-align: center; padding: 20px; }
-    }
-    .flash-card-content { flex: 1; }
-    .flash-card-tag { font-size: 11px; color: var(--logo-gold); font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
-    .flash-card-text { font-size: 15px; color: var(--text-main); font-weight: 500; line-height: 1.6; }
-    .flash-card-btn {
-      background: rgba(212, 175, 55, 0.15); color: var(--logo-gold); border: 1px solid var(--logo-gold);
-      padding: 10px 18px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer;
-      white-space: nowrap; transition: all 0.2s ease; font-family: 'Inter', sans-serif;
-    }
-    .flash-card-btn:hover { background: var(--logo-gold); color: #0b192c; }
+        /* CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 5%;
+        }
 
-    /* Kart Yapıları */
-    .section-head { text-align: center; margin-bottom: 32px; }
-    .section-title { font-size: 28px; font-weight: 700; color: var(--text-main); margin-bottom: 8px; }
-    .section-desc { font-size: 15px; color: var(--text-muted); max-width: 700px; margin: 0 auto; }
+        .section-title {
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-left: 4px solid var(--accent-yellow);
+            padding-left: 1rem;
+        }
 
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
-    
-    .card {
-      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 24px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.25s ease; position: relative;
-    }
-    .card-clickable { cursor: pointer; }
-    .card:hover { border-color: var(--logo-gold); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15); }
-    .card-tag { font-size: 11px; color: var(--logo-gold); text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
-    .card-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--text-main); }
-    .card-text { color: var(--text-muted); font-size: 14px; line-height: 1.65; }
-    .card-date { font-size: 12px; color: #64748b; margin-top: 14px; display: block; font-weight: 500; }
-    .card-img { width: 100%; height: 185px; object-fit: cover; border-radius: 10px; margin-bottom: 14px; border: 1px solid rgba(255,255,255,0.08); }
-    .card-more-link { display: inline-block; margin-top: 12px; color: var(--logo-gold); font-size: 13px; font-weight: 700; text-decoration: none; }
+        /* GRID LAYOUT */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
 
-    /* Modal Structure */
-    .modal-overlay {
-      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(11, 25, 44, 0.88); backdrop-filter: blur(8px);
-      z-index: 20000; justify-content: center; align-items: center; padding: 20px;
-      animation: fadeIn 0.2s ease-out;
-    }
-    .modal-overlay.active { display: flex; }
-    .modal-box {
-      background: #0f172a; border: 2px solid var(--logo-gold); border-radius: 20px;
-      max-width: 680px; width: 100%; padding: 32px; position: relative; max-height: 85vh; overflow-y: auto;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.6); animation: scaleUp 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    @keyframes scaleUp { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-    .modal-close {
-      position: absolute; top: 16px; right: 20px; background: none; border: none;
-      color: var(--text-muted); font-size: 24px; cursor: pointer; transition: color 0.2s;
-    }
-    .modal-close:hover { color: var(--logo-gold); }
-    .modal-tag { font-size: 12px; color: var(--logo-gold); font-weight: 800; text-transform: uppercase; margin-bottom: 8px; }
-    .modal-title { font-size: 24px; font-weight: 800; color: var(--text-main); margin-bottom: 16px; line-height: 1.3; }
-    .modal-body { font-size: 15px; color: var(--text-muted); line-height: 1.75; }
+        /* CARDS */
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.3s, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
-    /* Social Links */
-    .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-top: 25px; }
-    .social-card {
-      background: rgba(255, 255, 255, 0.04); border: 1px solid var(--card-border);
-      border-radius: 12px; padding: 18px 14px; text-align: center; text-decoration: none;
-      color: var(--text-main); font-weight: 600; font-size: 14px; transition: all 0.25s ease;
-      display: flex; flex-direction: column; align-items: center; gap: 10px;
-    }
-    .social-card:hover { transform: translateY(-3px); border-color: var(--logo-gold); background: rgba(212, 175, 55, 0.1); }
-    .social-svg { width: 32px; height: 32px; fill: currentColor; transition: transform 0.2s ease; }
-    .social-card:hover .social-svg { transform: scale(1.12); }
-    .instagram-card:hover { border-color: #e1306c; }
-    .youtube-card:hover { border-color: #ff0000; }
-    .linkedin-card:hover { border-color: #0a66c2; }
-    .x-card:hover { border-color: #ffffff; }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-yellow);
+        }
 
-    /* Admin Panel */
-    .admin-panel { display: none; background: var(--card-bg); border: 2px dashed var(--logo-gold); border-radius: 16px; padding: 26px; margin-top: 35px; }
-    .admin-panel.active { display: block; }
-    .form-group { margin-bottom: 15px; }
-    .form-group label { display: block; font-size: 13px; color: var(--logo-gold); margin-bottom: 6px; font-weight: 600; }
-    .form-input, .form-textarea, .form-select { width: 100%; padding: 11px 14px; border-radius: 8px; background: #0b192c; border: 1px solid rgba(255, 255, 255, 0.15); color: var(--text-main); font-size: 14px; outline: none; font-family: 'Inter', sans-serif; }
-    .delete-btn { display: none; position: absolute; top: 16px; right: 16px; background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 6px; padding: 4px 10px; font-size: 11px; cursor: pointer; font-weight: 600; }
-    .admin-active .delete-btn { display: block; }
+        .card-tag {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--accent-yellow);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
 
-    /* Galleries */
-    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-bottom: 30px; }
-    .gallery-img { width: 100%; height: 210px; object-fit: cover; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.25s ease; background-color: #1a2230; }
-    .gallery-img:hover { transform: translateY(-3px); border-color: var(--logo-gold); }
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: #fff;
+        }
 
-    .contact-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px; padding: 38px 20px; text-align: center; max-width: 850px; margin: 0 auto; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
-    .contact-link { color: var(--logo-gold); text-decoration: none; font-weight: 600; transition: color 0.2s; }
-    .contact-link:hover { text-decoration: underline; color: var(--logo-gold-glow); }
-    .footer { border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 30px 20px; text-align: center; background-color: #050c17; font-size: 13px; color: #64748b; margin-top: auto; }
-    .footer-socials { display: flex; justify-content: center; gap: 20px; margin-bottom: 14px; }
-    .footer-socials a { color: var(--text-muted); text-decoration: none; display: flex; align-items: center; justify-content: center; transition: color 0.2s, transform 0.2s; }
-    .footer-socials a:hover { color: var(--logo-gold); transform: translateY(-2px); }
-    .footer-socials svg { width: 22px; height: 22px; fill: currentColor; }
-  </style>
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 5%;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            nav a {
+                margin: 0 0.5rem;
+            }
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="nav">
-    <a class="logo-container" onclick="showPage('home')">
-      <div class="logo-wrapper">
-        <img src="resimler/logo.jpg?v=1.0.1" alt="Kulüp Logosu" class="logo-img" onerror="if(this.src.indexOf('.png')==-1){this.src='resimler/logo.png?v=1.0.1';}else if(this.src.indexOf('.PNG')==-1){this.src='resimler/logo.PNG?v=1.0.1';}else{this.src='resimler/Logo.jpg?v=1.0.1';}">
-      </div>
-      <div class="logo-text">Demiryol Bilim ve Kültür Kulübü</div>
-    </a>
-    <div class="nav-links">
-      <button class="active" onclick="showPage('home')">Ana Sayfa</button>
-      <button onclick="showPage('duyurular')">Duyurular</button>
-      <button onclick="showPage('etkinlikler')">Etkinlikler</button>
-      <button onclick="showPage('arge')">Projeler & Ar-Ge</button>
-      <button onclick="showPage('hakkimizda')">Hakkımızda</button>
-      <button onclick="showPage('iletisim')">İletişim</button>
-    </div>
-  </nav>
+    <header>
+        <div class="brand">
+            <img src="logo.jpg" alt="Demiryol Bilim ve Kültür Kulübü Logosu" onerror="this.src='https://via.placeholder.com/50?text=DBKK'">
+            <h1>Demiryol Bilim ve Kültür Kulübü</h1>
+        </div>
+        <nav>
+            <a href="#projeler">Projeler</a>
+            <a href="#duyurular">Duyurular</a>
+            <a href="#hakkimizda">Hakkımızda</a>
+            <a href="#iletisim">İletişim</a>
+        </nav>
+    </header>
 
-  <!-- SAYFA 1: ANA SAYFA -->
-  <div id="home" class="page active">
     <section class="hero">
-      <div class="badge">BİLİMİN RAYLARINDA, KÜLTÜRÜN IŞIĞINDA</div>
-      <h1 class="hero-title">Saha Tecrübesiyle Şekillenen<br>Yerli & İnovatif Teknolojiler</h1>
-      <p class="hero-subtitle">
-        TCDD Taşımacılık A.Ş. Gebze Vagon Bakım Onarım Atölye Müdürlüğü bünyesinde doğan; demiryolu mekaniği, emniyet sistemleri ve saha tecrübesini bilimsel yaklaşımlarla harmanlayan kurumsal platform.
-      </p>
-      <div class="btn-group">
-        <button class="btn-glow" onclick="showPage('arge')">Ar-Ge Projelerimiz</button>
-        <button class="btn-outline" onclick="showPage('duyurular')">Güncel Duyurular</button>
-      </div>
+        <h2>BİLİMİN RAYLARINDA, KÜLTÜRÜN IŞIĞINDA</h2>
+        <p>Atölyelerimizdeki tecrübeyi ar-ge projeleri, demiryolu emniyeti ve dijital dönüşüm ile buluşturuyoruz.</p>
     </section>
 
-    <!-- Demiryolu İnce Bilgileri Flash Kartı -->
-    <div class="flash-card-container">
-      <div class="flash-card-content">
-        <div class="flash-card-tag" id="bilgiEtiket">💡 BİLİYOR MUYDUNUZ? • TEKNİK & DÜNYA DEMİRYOLU BİLGİSİ</div>
-        <div class="flash-card-text" id="bilgiMetni">Yük vagonlarında tekerlek yüzeyinde oluşan 1 mm'lik apleti (düzleşme), raya uygulanan darbe kuvvetini %300 oranında artırır. Sensörlü takip sistemleri bu arızaları anında yakalar.</div>
-      </div>
-      <button class="flash-card-btn" onclick="sonrakiBilgi()">Sonraki Bilgi 🔄</button>
-    </div>
+    <div class="container">
+        
+        <!-- PROJELER SECTION -->
+        <h2 class="section-title" id="projeler">Proje & Ar-Ge Çalışmalarımız</h2>
+        <div class="grid">
+            
+            <div class="card">
+                <div>
+                    <img src="proje.jpg" alt="Demiryolu Araç Kimliği Tanıma Sistemi" onerror="this.style.display='none'">
+                    <div class="card-tag">PROJE 1 • AKILLI TANIMA</div>
+                    <h3>Demiryolu Araç Kimliği Tanıma Sistemi</h3>
+                    <p>Demiryolu araçlarının kimlik bilgilerinin hızlı ve otomatik olarak tespit edilmesi amacıyla Görüntü İşleme Tabanlı Araç Kimliği Tanıma Sistemi geliştirilmiştir. Kamera görüntüleri üzerinden yapay zekâ destekli görüntü işleme teknolojileri kullanılarak araç numaraları otomatik olarak okunmakta ve kayıt altına alınmaktadır.</p>
+                </div>
+            </div>
 
-    <!-- TIKLANABİLİR BİLGİ KARTLARI BÖLÜMÜ -->
-    <div style="margin-top: 40px; margin-bottom: 35px;">
-      <div class="section-head">
-        <h2 class="section-title">🌍 Dünya Demiryolu Teşkilatlarından İlginç Bilgiler</h2>
-        <p class="section-desc">Kartların üzerine tıklayarak detaylı mühendislik ve rekor bilgilerine ulaşabilirsiniz.</p>
-      </div>
+            <div class="card">
+                <div>
+                    <img src="proje 2.jpg" alt="Apleti Tespit Sistemi" onerror="this.style.display='none'">
+                    <div class="card-tag">PROJE 2 • KESTİRİMCİ BAKIM</div>
+                    <h3>Apleti Tespit Sistemi</h3>
+                    <p>Demiryolu araçlarında tekerlek apleti oluşumunun erken tespit edilmesi ve bakım süreçlerinin desteklenmesi amacıyla Piezo Sensör Tabanlı Aplet Tespit Sistemi geliştirilmiştir. Ray üzerine yerleştirilen sensörler aracılığıyla tekerlek geçişlerinden oluşan titreşimler analiz edilerek olası apleti ve tekerlek yüzey bozuklukları tespit edilmektedir.</p>
+                </div>
+            </div>
 
-      <div class="grid-3">
-        <!-- Kart 1: Shinkansen -->
-        <div class="card card-clickable" onclick="openModal('🇯🇵 JAPONYA • SHINKANSEN', '60 Yıldır Sıfır Ölümlü Kaza Rekoru', '1964 yılında kullanıma açılan Japon Shinkansen (Mermi Tren) yüksek hızlı tren ağında, 60 yılı aşkın süredir saatte 320 km/s hıza rağmen tek bir ölümlü tren kazası dahi yaşanmamıştır.<br><br>Erken uyarı deprem sensörleri, tam otomatik hat denetimi ve yüksek bakım standartları sayesinde Shinkansen ağının tüm hatlarındaki yıllık ortalama gecikme süresi sadece 12 saniyedir.')">
-          <div class="card-tag">🇯🇵 JAPONYA • SHINKANSEN</div>
-          <h3 class="card-title">60 Yıldır Ölümlü Kaza Yok</h3>
-          <p class="card-text">Saatte 320 km hıza rağmen Shinkansen ağında 60 yıldır tek bir ölümlü kaza yaşanmamıştır. Yıllık ortalama gecikme ise 12 saniyedir.</p>
-          <span class="card-more-link">Detayları Oku ➔</span>
+            <div class="card">
+                <div>
+                    <img src="proje 3.jpg" alt="Manevra İkaz Sistemi" onerror="this.style.display='none'">
+                    <div class="card-tag">PROJE 3 • SAHA EMNİYETİ</div>
+                    <h3>Manevra İkaz Sistemi</h3>
+                    <p>Atölye ve sahalarımızda gerçekleştirilen manevra operasyonları sırasında iş güvenliğini artırmak ve personeli manevra faaliyeti hakkında bilgilendirmek amacıyla Manevra İkaz Sistemi kurulmuştur. Uzaktan kumanda ile devreye alınan sistem, manevra faaliyetleri sırasında personelin sesli olarak uyarılmasını sağlayarak güvenli çalışma koşullarının desteklenmesine katkı sunmaktadır.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <img src="1.jpg" alt="Dijital Vagon Takip Sistemi" onerror="this.style.display='none'">
+                    <div class="card-tag">PROJE 4 • AKILLI ATÖLYE</div>
+                    <h3>Dijital Vagon Takip Sistemi</h3>
+                    <p>Atölyemizde yürütülen vagon bakım ve onarım süreçlerinin etkin şekilde takip edilmesi ve kayıt altına alınması amacıyla Dijital Vagon Takip Sistemi geliştirilmiştir. Sistem ile vagonların giriş-çıkış tarihleri, bakım durumları, malzeme bekleme ve tamamlanma süreçleri dijital ortamda takip edilerek çalışmaların daha düzenli ve kontrollü yürütülmesi sağlanmaktadır.</p>
+                </div>
+            </div>
+
         </div>
 
-        <!-- Kart 2: Gotthard Tüneli -->
-        <div class="card card-clickable" onclick="openModal('🇨🇭 İSVİÇRE • GOTTHARD TABAN TÜNELİ', 'Dünyanın En Uzun ve En Derin Demiryolu Tüneli', 'İsviçre Alpleri\'nin tam altından geçen Gotthard Taban Tüneli, 57 kilometre uzunluğuyla dünyadaki en uzun demiryolu tünelidir.<br><br>Dağ yüzeyinin 2.300 metre altından geçen tünel mühendislik açısından büyük zorluklarla inşa edilmiş olup, yolcu ve yük trenlerinin Alpler etrafından dolanmak yerine doğrudan dümdüz bir hatta geçmesini sağlayarak Avrupa içi lojistiği devrimsel boyutta hızlandırmıştır.')">
-          <div class="card-tag">🇨🇭 İSVİÇRE • GOTTHARD TÜNELİ</div>
-          <h3 class="card-title">Dünyanın En Uzun Tüneli</h3>
-          <p class="card-text">Yer yüzeyinin 2.300 metre altında, 57 km uzunluğuyla dünyada en uzun ve en derin tüneldir.</p>
-          <span class="card-more-link">Detayları Oku ➔</span>
+        <!-- DUYURULAR SECTION -->
+        <h2 class="section-title" id="duyurular">Güncel Duyurular</h2>
+        <div class="grid" id="duyuru-container">
+            <!-- site-veri.json üzerinden otomatik yüklenecektir -->
         </div>
 
-        <!-- Kart 3: Maglev -->
-        <div class="card card-clickable" onclick="openModal('🇨🇳 ÇİN • SHANGHAI MAGLEV', 'Raylara Dokunmadan Havada Süzülen Trenler', 'Şanghay Maglev treni, geleneksel çelik tekerlek ve ray teması olmadan hareket eden dünyadaki ilk ticari manyetik havada süzülme (Maglev) trenidir.<br><br>Güçlü elektromıknatıslar sayesinde tren rayların 10-15 mm üzerinde havada asılı durur. Sürtünme sıfıra yakın olduğu için ticari sefere 431 km/s hızla ulaşır.')">
-          <div class="card-tag">🇨🇳 ÇİN • SHANGHAI MAGLEV</div>
-          <h3 class="card-title">Havada Süzülen Trenler</h3>
-          <p class="card-text">Çelik tekerlek temasız mıknatıslar üzerinde havada süzülerek ticari hatta 431 km/s hıza ulaşan sistem.</p>
-          <span class="card-more-link">Detayları Oku ➔</span>
-        </div>
-
-        <!-- Kart 4: BHP Iron Ore -->
-        <div class="card card-clickable" onclick="openModal('🇦🇺 AVUSTRALYA • BHP IRON ORE', 'Dünyanın En Ağır ve En Uzun Treni', '2001 yılında Avustralya\'da demir cevheri taşımacılığında kırılan rekor ile tam 682 vagonlu bir ağır yük treni hazırlanmıştır.<br><br>8 adet dizel-elektrikli lokomotif tarafından çekilen trenin toplam uzunluğu 7,3 kilometreye, net cevher ve tren toplam ağırlığı ise 99.734 tona ulaşarak resmi dünya rekorunu elde etmiştir.')">
-          <div class="card-tag">🇦🇺 AVUSTRALYA • BHP IRON ORE</div>
-          <h3 class="card-title">Dünyanın En Ağır Treni</h3>
-          <p class="card-text">682 vagon ve 8 lokomotiften oluşan 7,3 kilometre uzunluğundaki 99.734 tonluk rekor tren.</p>
-          <span class="card-more-link">Detayları Oku ➔</span>
-        </div>
-
-        <!-- Kart 5: TGV Rekoru -->
-        <div class="card card-clickable" onclick="openModal('🇫🇷 FRANSA • TGV V150', '574.8 km/s Çelik Tekerlek Hız Rekoru', '3 Nisan 2007 tarihinde Fransa\'da özel olarak modifiye edilen V150 kodlu TGV tren seti, çelik tekerlekli demiryolu araçlarında kırılması imkansıza yakın olan 574.8 km/s hız rekorunu kırmıştır.<br><br>Bu test esnasında kataner gerilimi 25 kV\'tan 31 kV\'a çıkarılmış, tekerlek çapları büyütülmüş ve hat üzerine yüksek hava direnci sönümleme sistemleri kurulmuştur.')">
-          <div class="card-tag">🇫🇷 FRANSA • TGV REKORU</div>
-          <h3 class="card-title">574.8 km/s Tekerlek Hızı</h3>
-          <p class="card-text">Çelik tekerlekli demiryolu araçlarında kırılması zor olan 574.8 km/s dünya hız rekoru.</p>
-          <span class="card-more-link">Detayları Oku ➔</span>
-        </div>
-
-        <!-- Kart 6: Trans-Sibirya -->
-        <div class="card card-clickable" onclick="openModal('🇷🇺 RUSYA • TRANS-SİBİRYA', '8 Farklı Saat Dilimini Kesen Kıta Hattı', 'Moskova ile Vladivostok’u birbirine bağlayan 9.289 kilometrelik Trans-Sibirya Demiryolu, dünya üzerindeki en uzun kesintisiz tren hattıdır.<br><br>Tren yolculuğu boyunca tam 8 farklı saat dilimi geçilir ve yolculuk durmaksızın yaklaşık 7 gün (166 saat) sürer. Hat boyunca yüzlerce nehir köprüsü ve tayga ormanları aşılır.')">
-          <div class="card-tag">🇷🇺 RUSYA • TRANS-SİBİRYA</div>
-          <h3 class="card-title">8 Saat Dilimini Geçen Hat</h3>
-          <p class="card-text">Moskova-Vladivostok arası 9.289 km uzunluğuyla 8 farklı saat dilimini kesen devasa güzergah.</p>
-          <span class="card-more-link">Detayları Oku ➔</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- AÇILIR BİLGİ PENCERESİ (MODAL) -->
-  <div id="infoModal" class="modal-overlay" onclick="closeModalOnOuter(event)">
-    <div class="modal-box">
-      <button class="modal-close" onclick="closeModal()">✖</button>
-      <div id="modalTag" class="modal-tag">KATEGORİ</div>
-      <h3 id="modalTitle" class="modal-title">Başlık</h3>
-      <div id="modalBody" class="modal-body">Açıklama metni...</div>
-    </div>
-  </div>
-
-  <!-- SAYFA 2: DUYURULAR -->
-  <div id="duyurular" class="page">
-    <div class="section-head">
-      <h2 class="section-title">Kulüp Duyuruları ve Haberler</h2>
-      <p class="section-desc">Atölye, Ar-Ge ve kulüp içi en güncel gelişmelere kartlara tıklayarak ulaşabilirsiniz.</p>
     </div>
 
-    <!-- Tıklanabilir Duyuru Listesi -->
-    <div id="duyuruListesi" class="grid-2"></div>
+    <footer>
+        <p>&copy; 2026 Demiryol Bilim ve Kültür Kulübü. Tüm Hakları Saklıdır.</p>
+    </footer>
 
-    <!-- Yönetim Paneli -->
-    <div id="adminFormu" class="admin-panel">
-      <h3 style="color:var(--logo-gold); font-size: 17px; margin-bottom: 14px;">🔒 Yönetici Paneli - Yeni Duyuru Ekle</h3>
-      <form onsubmit="yeniDuyuruEkle(event)">
-        <div class="form-group">
-          <label>Duyuru Başlığı</label>
-          <input type="text" id="duyuruBaslik" class="form-input" placeholder="Başlık girin..." required>
-        </div>
-        <div class="form-group">
-          <label>Kategori</label>
-          <select id="duyuruKategori" class="form-select">
-            <option value="GENEL DUYURU">Genel Duyuru</option>
-            <option value="AR-GE PROJE">Ar-Ge & Proje</option>
-            <option value="İSG & EMNİYET">İSG & Emniyet</option>
-            <option value="ETKİNLİK">Etkinlik & Çalıştay</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Duyuru Metni</label>
-          <textarea id="duyuruMetin" class="form-textarea" rows="4" required></textarea>
-        </div>
-        <button type="submit" class="btn-glow" style="width: 100%;">Duyuruyu Kaydet & Yayınla</button>
-      </form>
-    </div>
-  </div>
+    <script>
+        async function duyurulariYukle() {
+            try {
+                const response = await fetch('site-veri.json?v=' + new Date().getTime());
+                const data = await response.json();
+                const container = document.getElementById('duyuru-container');
+                
+                if (data.duyurular && data.duyurular.length > 0) {
+                    container.innerHTML = '';
+                    data.duyurular.forEach(item => {
+                        const card = document.createElement('div');
+                        card.className = 'card';
+                        card.innerHTML = `
+                            ${item.resim ? `<img src="${item.resim}" alt="${item.baslik}">` : ''}
+                            <div class="card-tag">${item.tarih || 'GÜNCEL'}</div>
+                            <h3>${item.baslik}</h3>
+                            <p>${item.ozet}</p>
+                        `;
+                        container.appendChild(card);
+                    });
+                }
+            } catch (err) {
+                console.log("Veri dosyası yüklenemedi.");
+            }
+        }
 
-  <!-- SAYFA 3: ETKİNLİKLER -->
-  <div id="etkinlikler" class="page">
-    <div class="section-head">
-      <h2 class="section-title">İSG, Çalıştay ve Gelecek Etkinlikler</h2>
-      <p class="section-desc">Atölye içi İSG farkındalığı, Ar-Ge atölyeleri, teknik geziler ve fuar katılımlarımız.</p>
-    </div>
-
-    <h3 style="color:var(--logo-gold); font-size: 20px; margin-bottom: 18px; text-align:center;">📅 Gelecek ve Planlanan Etkinlikler</h3>
-    <div class="grid-2" style="margin-bottom: 35px;">
-      
-      <div class="card card-clickable" style="border-left: 4px solid var(--logo-gold);" onclick="openModal('ULUSLARARASI FUAR • 24-26 MART 2027', 'Eurasia Rail Fuar Katılımı', '<strong>Konum:</strong> Uluslararası Fuar & Proje Stant Gösterimi<br><br><strong>Detaylar:</strong> Demiryol Bilim ve Kültür Kulübü bünyesinde geliştirilen yerli ve milli Ar-Ge projeleri (Vagon Takip ve Otomatik Apleti Tespit Sistemi, Manevra İkaz Sistemi vb.) demiryolu sektörüne ve uluslararası katılımcılara özel stant alanımızda tanıtılacaktır.<br><br><strong>Kapsam:</strong> Yerli inovasyon gösterimi, uluslararası sektor iş birlikleri ve teknoloji lansmanı.')">
-        <div class="card-tag">ULUSLARARASI FUAR • 24-26 MART 2027</div>
-        <h3 class="card-title">Eurasia Rail Fuar Katılımı</h3>
-        <p class="card-text">Yerli ve milli Ar-Ge projelerimizin demiryolu sektörüne ve uluslararası katılımcılara stant gösterimi ile tanıtımı yapılacaktır.</p>
-        <span class="card-more-link">Etkinlik Detayları ➔</span>
-      </div>
-
-      <div class="card card-clickable" onclick="openModal('SAHA İNCELEMESİ • PLANLANAN', 'Teknik Geziler ve Atölye Ziyaretleri', '<strong>Kapsam:</strong> Saha İncelemesi ve Teknik Birikim<br><br><strong>Detaylar:</strong> Demiryolu sektöründeki modern bakım merkezleri, vagon/lokomotif üretim tesisleri ve ileri teknoloji ar-ge merkezlerine yönelik teknik inceleme turları düzenlenecektir.<br><br>Kulüp üyelerimiz ve atölye personelimizin teknolojik yenilikleri yerinde incelemesi hedeflenmektedir.')">
-        <div class="card-tag">SAHA İNCELEMESİ • PLANLANAN</div>
-        <h3 class="card-title">Teknik Geziler ve Atölye Ziyaretleri</h3>
-        <p class="card-text">Demiryolu sektöründeki modern bakım merkezleri ve teknoloji tesislerine yönelik planlanan teknik turlar.</p>
-        <span class="card-more-link">Etkinlik Detayları ➔</span>
-      </div>
-
-      <div class="card card-clickable" onclick="openModal('SOSYAL ETKİNLİK • BAHAR 2027', 'Bahar ve Sosyal Kültür Buluşmaları', '<strong>Kapsam:</strong> Sosyal Organizasyon ve Dayanışma<br><br><strong>Detaylar:</strong> Kulüp üyeleri, atölye çalışanları ve aileleri arasındaki sosyal bağı, dayanışmayı ve kurum kültürünü pekiştiren geleneksel bahar buluşmaları ve kültür gezileri gerçekleştirilecektir.')">
-        <div class="card-tag">SOSYAL ETKİNLİK • BAHAR 2027</div>
-        <h3 class="card-title">Bahar ve Sosyal Kültür Buluşmaları</h3>
-        <p class="card-text">Kulüp üyeleri ve bakım personeli arasındaki dayanışmayı pekiştiren geleneksel sosyal organizasyonlar.</p>
-        <span class="card-more-link">Etkinlik Detayları ➔</span>
-      </div>
-
-      <div class="card card-clickable" onclick="openModal('ÇALIŞTAY / WORKSHOP • DÜZENLİ', 'Ar-Ge & İnovasyon Atölyeleri', '<strong>Kapsam:</strong> Çalıştay / Workshop & Proje Geliştirme<br><br><strong>Detaylar:</strong> Atölye sahasında karşılaşılan teknik ve operasyonel problemlere yönelik pratik ve hızlı çözüm fikirlerinin değerlendirildiği tasarım odaklı çalışma gruplarıdır.<br><br>Tüm personelin fikir geliştirebileceği beyin fırtınası oturumları periyodik olarak düzenlenmektedir.')">
-        <div class="card-tag">ÇALIŞTAY / WORKSHOP • DÜZENLİ</div>
-        <h3 class="card-title">Ar-Ge & İnovasyon Atölyeleri</h3>
-        <p class="card-text">Sahada karşılaşılan teknik problemlere yönelik pratik çözüm fikirlerinin değerlendirildiği tasarım çalışma grupları.</p>
-        <span class="card-more-link">Etkinlik Detayları ➔</span>
-      </div>
-
-    </div>
-
-    <h3 style="color:var(--text-main); font-size: 18px; margin-bottom: 14px; text-align:center;">📸 İSG Farkındalık Toplantısı Görselleri</h3>
-    <div class="gallery-grid">
-      <img src="resimler/isg 2026.jpg?v=1.0.1" class="gallery-img" alt="İSG 1">
-      <img src="resimler/isg 2026 2.jpg?v=1.0.1" class="gallery-img" alt="İSG 2">
-      <img src="resimler/isg 2026 3.jpg?v=1.0.1" class="gallery-img" alt="İSG 3">
-    </div>
-  </div>
-
-  <!-- SAYFA 4: AR-GE -->
-  <div id="arge" class="page">
-    <div class="section-head">
-      <h2 class="section-title">Teknik Projelerimiz & Ar-Ge Vizyonu</h2>
-      <p class="section-desc">Kartlara tıklayarak projelerin teknik mimarisine ve detaylı saha raporlarına ulaşabilirsiniz.</p>
-    </div>
-    <div class="grid-2">
-      
-      <div class="card card-clickable" onclick="openModal('PROJE 1 • SAHA EMNİYETİ', 'Manevra İkaz ve Saha Emniyet Sistemi', '<strong>Proje Amacı:</strong> Atölye içi ve hat sahası manevra operasyonlarında çalışan güvenliğini en üst seviyeye çıkarmak.<br><br><strong>Teknik Altyapı:</strong> Manevra hatlarına entegre edilmiş sesli ve ışıklı erken uyarı üniteleri, manevra araçları (Zephir vb.) ile anlık radyo frekanslı iletişim ve personel tespit sensörleri kapsar.<br><br><strong>Kazanımlar:</strong> Manevra kaynaklı ramak kala olayları ve iş kazası risklerini sıfıra indirmeyi hedefler.')">
-        <img src="resimler/proje.jpg?v=1.0.1" class="card-img" alt="Proje 1" onerror="this.src='resimler/1.jpg?v=1.0.1'">
-        <div class="card-tag">Proje 1 • Saha Emniyeti</div>
-        <h3 class="card-title">Manevra İkaz ve Saha Emniyet Sistemi</h3>
-        <p class="card-text">Atölye içi ve saha manevra operasyonlarında çalışan güvenliğini en üst seviyeye çıkarmak amacıyla geliştirilen ikaz altyapısıdır.</p>
-        <span class="card-more-link">Proje Detaylarını İncele ➔</span>
-      </div>
-
-      <div class="card card-clickable" onclick="openModal('PROJE 2 • ERKEN ARIZA TESPİTİ', 'Vagon Takip ve Otomatik Apleti Tespiti', '<strong>Proje Amacı:</strong> Yük vagonlarının tekerlek yüzeyinde oluşan apleti (düzleşme) ve geometrik arızaları araç hat üzerindeyken otomatik tespit etmek.<br><br><strong>Teknik Altyapı:</strong> Ray hattına monte edilen piezoelektrik ve RSR sensörleri, yüksek hızlı endüstriyel kameralar, gürültü analiz üniteleri ve CUDA destekli derin öğrenme algoritmaları.<br><br><strong>Kazanımlar:</strong> Ray ve bojilere verilen darbe hasarlarını önler, kestirimci bakım altyapısı sağlayarak işletme maliyetlerini düşürür.')">
-        <img src="resimler/proje 2.jpg?v=1.0.1" class="card-img" alt="Proje 2" onerror="this.src='resimler/2.jpg?v=1.0.1'">
-        <div class="card-tag">Proje 2 • Erken Arıza Tespiti</div>
-        <h3 class="card-title">Vagon Takip ve Otomatik Apleti Tespiti</h3>
-        <p class="card-text">Ray hattına entegre piezoelektrik sensörler ile tekerlek yüzeyindeki apleti kusurlarını otomatik tespit eder.</p>
-        <span class="card-more-link">Proje Detaylarını İncele ➔</span>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- SAYFA 5: HAKKIMIZDA -->
-  <div id="hakkimizda" class="page">
-    <div class="section-head">
-      <h2 class="section-title">Hakkımızda</h2>
-      <p class="section-desc">Saha deneyimi, mühendislik disiplini ve kurumsal demiryolu kültürü.</p>
-    </div>
-
-    <div class="card" style="margin-bottom: 28px; background: rgba(212, 175, 55, 0.05);">
-      <div class="card-tag">KURUMSAL KİMLİK</div>
-      <h3 class="card-title" style="color:var(--logo-gold); font-size: 22px; margin-bottom: 14px;">Biz Kimiz?</h3>
-      <p class="card-text" style="font-size: 15px; line-height: 1.8;">
-        Demiryol Bilim ve Kültür Kulübü, TCDD Taşımacılık A.Ş. Gebze Vagon Bakım Onarım Atölye Müdürlüğü bünyesinde doğan; demiryolu mekaniği, emniyet sistemleri ve saha tecrübesini bilimsel yaklaşımlarla harmanlayan kurumsal bir platformdur.
-      </p>
-      <p class="card-text" style="font-size: 15px; line-height: 1.8; margin-top: 12px;">
-        Kulübümüz; vagon bakım-onarımı süreçlerinden pnömatik fren sistemlerine, tekerlek torna operasyonlarından dijital otomasyon ve Ar-Ge çözümlerine kadar uzanan geniş bir alanda teknik hafızayı korumak ve geliştirmek amacıyla kurulmuştur. İşçi ve memur ayrımı gözetmeksizin tüm demiryolu çalışanlarını aynı çatı altında buluşturan yapımız, saha pratiklerini mühendislik disiplini ve kurumsal kültürle geleceğe taşımaktadır.
-      </p>
-    </div>
-
-    <h3 style="color:var(--text-main); font-size: 18px; margin-bottom: 14px; text-align:center;">📸 Atölyemiz ve Çalışma Sahamız</h3>
-    <div class="gallery-grid" style="margin-bottom: 35px;">
-      <img src="resimler/1.jpg?v=1.0.1" class="gallery-img" alt="Atölye 1">
-      <img src="resimler/2.jpg?v=1.0.1" class="gallery-img" alt="Atölye 2">
-      <img src="resimler/3.jpg?v=1.0.1" class="gallery-img" alt="Atölye 3">
-    </div>
-
-    <div class="section-head" style="margin-top: 20px; margin-bottom: 24px;">
-      <h3 style="font-size: 22px; color:var(--text-main);">Temel Çalışma İlkelerimiz ve Yaklaşımımız</h3>
-    </div>
-
-    <div class="grid-3" style="margin-bottom: 35px;">
-      <div class="card card-clickable" onclick="openModal('Saha Deneyimi', 'Yerli İnovasyon & Saha Birikimi', 'Gebze atölye sahasındaki nitelikli iş gücü ve teknik birikimle, demiryolu operasyonlarının ihtiyaç duyduğu yerli ve milli Ar-Ge çözümlerini üretiyoruz. Sahadaki her arıza ve ihtiyaç, bilimsel projelerimize girdi teşkil eder.')">
-        <div class="card-tag">YERLİ İNOVASYON</div>
-        <h3 class="card-title">Saha Deneyimi</h3>
-        <p class="card-text">Gebze atölye sahasındaki nitelikli iş gücü ve teknik birikimle yerli çözümler üretiyoruz.</p>
-        <span class="card-more-link">Detay ➔</span>
-      </div>
-
-      <div class="card card-clickable" onclick="openModal('İSG VE EMNİYET KÜLTÜRÜ', 'Önce İnsan Güvenliği', '\'Önce İnsan ve İş Güvenliği\' ilkesiyle, atölye ve hat sahalarında Fine-Kinney risk değerlendirmeleri, 5S ve Kaizen metodolojileri ile sürekli iyileştirme odaklı bir çalışma ortamı inşa ediyoruz.')">
-        <div class="card-tag">İSG VE EMNİYET KÜLTÜRÜ</div>
-        <h3 class="card-title">Önce İnsan Güvenliği</h3>
-        <p class="card-text">Atölye sahalarında Fine-Kinney risk değerlendirmeleri ve 5S metodolojisi ile güvenli ortam.</p>
-        <span class="card-more-link">Detay ➔</span>
-      </div>
-
-      <div class="card card-clickable" onclick="openModal('TEKNİK HAFIZA', 'Fikri Mülkiyet & Kurum Hafızası', 'Geliştirilen projelerin, yazılımların ve teknik tasarımların belgelenmesi, fikri mülkiyet haklarının korunması ve kurum hafızasının sürdürülebilir kılınması temel önceliğimizdir.')">
-        <div class="card-tag">TEKNİK HAFIZA</div>
-        <h3 class="card-title">Fikri Mülkiyet</h3>
-        <p class="card-text">Geliştirilen projelerin ve yazılımların belgelenerek kurum hafızasının sürdürülebilir kılınması.</p>
-        <span class="card-more-link">Detay ➔</span>
-      </div>
-    </div>
-
-    <div class="grid-2">
-      <div class="card" style="border-left: 4px solid var(--logo-gold);">
-        <div class="card-tag">🎯 HEDEFİMİZ</div>
-        <h3 class="card-title" style="color:var(--logo-gold); font-size: 20px;">Misyonumuz</h3>
-        <p class="card-text" style="line-height: 1.75;">
-          Demiryolu taşımacılığı ve vagon bakım-onarım süreçlerinde teknik standartları yükseltmek; saha emniyetini artırıcı teknolojik projeler (Manevra İkaz, Araç Takip, Tekerlek Muayene vb.) geliştirmek; İş Sağlığı ve Güvenliği farkındalığını üst seviyeye çıkararak çalışanlar arasındaki bilgi paylaşımını ve kurumsal bağı pekiştirmektir.
-        </p>
-      </div>
-
-      <div class="card" style="border-left: 4px solid var(--logo-gold-glow);">
-        <div class="card-tag">👁️ GELECEK VİZYONUMUZ</div>
-        <h3 class="card-title" style="color:var(--logo-gold); font-size: 20px;">Vizyonumuz</h3>
-        <p class="card-text" style="line-height: 1.75;">
-          Gebze'den yakılan teknik ve kültürel meşaleyi ulusal ölçekte bir standart haline getirerek; demiryolu teknolojileri, saha emniyeti ve teknik inovasyon alanlarında referans gösterilen, üreten ve kurumsal kültüre öncülük eden saygın bir bilim ve kültür platformu olmaktır.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- SAYFA 6: İLETİŞİM & SOSYAL MEDYA -->
-  <div id="iletisim" class="page">
-    <div class="contact-card">
-      <h3 style="font-size: 24px; margin-bottom: 20px; color:var(--text-main);">Kulüp İletişim Bilgileri</h3>
-      <p style="color:var(--text-muted); margin-bottom: 10px; font-size: 14.5px;"><strong>Kulüp Adı:</strong> Demiryol Bilim ve Kültür Kulübü</p>
-      <p style="color:var(--text-muted); margin-bottom: 10px; font-size: 14.5px;"><strong>Yerleşke:</strong> TCDD Taşımacılık A.Ş. Gebze Vagon Bakım Onarım Atölye Müdürlüğü, Gebze / Kocaeli</p>
-      <p style="color:var(--text-muted); margin-bottom: 10px; font-size: 14.5px;">
-        <strong>Resmi E-Posta:</strong> 
-        <a href="mailto:info@demiryolbilimkultur.com.tr" class="contact-link">info@demiryolbilimkultur.com.tr</a> | 
-        <a href="mailto:iletisim@demiryolbilimkultur.com.tr" class="contact-link">iletisim@demiryolbilimkultur.com.tr</a>
-      </p>
-      <p style="color:var(--text-muted); margin-bottom: 25px; font-size: 14.5px;">
-        <strong>Web Adresi:</strong> 
-        <a href="#" onclick="showPage('home'); return false;" class="contact-link">www.demiryolbilimkultur.com.tr</a>
-      </p>
-
-      <h4 style="color:var(--logo-gold); font-size: 16px; margin-bottom: 15px;">Sosyal Medya Hesaplarımız</h4>
-      <div class="social-grid">
-        <a href="https://www.instagram.com" target="_blank" class="social-card instagram-card">
-          <svg class="social-svg" style="fill:#e1306c;" viewBox="0 0 24 24">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-          </svg>
-          Instagram
-        </a>
-        <a href="https://www.youtube.com" target="_blank" class="social-card youtube-card">
-          <svg class="social-svg" style="fill:#ff0000;" viewBox="0 0 24 24">
-            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-          </svg>
-          YouTube
-        </a>
-        <a href="https://www.linkedin.com" target="_blank" class="social-card linkedin-card">
-          <svg class="social-svg" style="fill:#0a66c2;" viewBox="0 0 24 24">
-            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-          </svg>
-          LinkedIn
-        </a>
-        <a href="https://www.x.com" target="_blank" class="social-card x-card">
-          <svg class="social-svg" style="fill:#ffffff;" viewBox="0 0 24 24">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-          </svg>
-          X / Twitter
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Mobil Alt Menü Barı -->
-  <div class="mobile-bottom-nav">
-    <button class="active" onclick="showPage('home')"><span class="icon">🏠</span> Ana Sayfa</button>
-    <button onclick="showPage('duyurular')"><span class="icon">📢</span> Duyuru</button>
-    <button onclick="showPage('etkinlikler')"><span class="icon">📅</span> Etkinlik</button>
-    <button onclick="showPage('arge')"><span class="icon">⚡</span> Ar-Ge</button>
-    <button onclick="showPage('hakkimizda')"><span class="icon">ℹ️</span> Kulüp</button>
-    <button onclick="showPage('iletisim')"><span class="icon">📞</span> İletişim</button>
-  </div>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-socials">
-      <a href="https://www.instagram.com" target="_blank" title="Instagram">
-        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      </a>
-      <a href="https://www.youtube.com" target="_blank" title="YouTube">
-        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-      </a>
-      <a href="https://www.linkedin.com" target="_blank" title="LinkedIn">
-        <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-      </a>
-      <a href="https://www.x.com" target="_blank" title="X / Twitter">
-        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      </a>
-    </div>
-    <p style="color:var(--logo-gold); margin-bottom: 6px; font-weight: 600;">BİLİMİN RAYLARINDA, KÜLTÜRÜN IŞIĞINDA</p>
-    <p>© 2026 Demiryol Bilim ve Kültür Kulübü. Tüm Hakları Saklıdır / All Rights Reserved. <span onclick="adminGiris()" style="cursor:pointer; opacity:0.3; font-weight:bold;">🔒 Giriş</span></p>
-  </footer>
-
-  <script>
-    const bilgiler = [
-      "Yük vagonlarında tekerlek yüzeyinde oluşan 1 mm'lik apleti (düzleşme), raya uygulanan darbe kuvvetini %300 oranında artırır. Sensörlü takip sistemleri bu arızaları anında yakalar.",
-      "Japon Shinkansen ağında 1964 yılından bu yana saatte 320 km hızla taşınan milyonlarca yolcuya rağmen tek bir ölümlü kaza yaşanmadığını biliyor muydunuz?",
-      "Dünyanın en uzun tüneli olan İsviçre Gotthard Taban Tüneli, yer yüzeyinin 2.300 metre altında tam 57 kilometre uzunluğundadır.",
-      "Japonya'da başlayan 5S metodolojisinin (Seiri, Seiton, Seiso, Seiketsu, Shitsuke) üretim sahalarındaki iş kazalarını %70'e varan oranlarda azaltan bir emniyet kültürü olduğunu biliyor muydunuz?",
-      "Heinrich Kaza Piramidi'ne göre: Meydana gelen her 1 ağır iş kazasının temelinde 29 hafif yaralanma ve 300 adet 'ramak kala' olayı yatar. Aksaklıkları bildirmek hayat kurtarır!",
-      "Vagon pnömatik fren sistemlerindeki distribütör valfler, tren boyunca fren sinyalini ses hızına yakın bir süratle (yaklaşık 250-280 m/sn) iletir."
-    ];
-    let bilgiIndex = 0;
-
-    function sonrakiBilgi() {
-      bilgiIndex = (bilgiIndex + 1) % bilgiler.length;
-      document.getElementById('bilgiMetni').innerText = bilgiler[bilgiIndex];
-    }
-
-    /* MODAL AÇMA / KAPATMA FONKSİYONLARI */
-    function openModal(tag, title, body) {
-      document.getElementById('modalTag').innerText = tag;
-      document.getElementById('modalTitle').innerText = title;
-      document.getElementById('modalBody').innerHTML = body;
-      document.getElementById('infoModal').classList.add('active');
-    }
-
-    function closeModal() {
-      document.getElementById('infoModal').classList.remove('active');
-    }
-
-    function closeModalOnOuter(e) {
-      if(e.target.id === 'infoModal') {
-        closeModal();
-      }
-    }
-
-    document.addEventListener('keydown', function(e) {
-      if(e.key === 'Escape') closeModal();
-    });
-
-    /* HEDEFLENEN HERKESE AÇIK SABİT DUYURULAR */
-    const varsayilanDuyurular = [
-      { 
-        id: 1, 
-        baslik: "🛡️ 3. İş Sağlığı ve Güvenliği (İSG) Farkındalık Toplantısı", 
-        kategori: "İSG & EMNİYET", 
-        metin: "Gebze Vagon Bakım Onarım Atölye Müdürlüğü'nde İSG Haftası (4-10 Mayıs) kapsamında Kulübümüz organizasyonuyla geniş katılımlı toplantı düzenlendi. Protokolde TCDD Taşımacılık A.Ş. Genel Müdürü Ufuk Yalçın, Demiryol-İş Sendikası Genel Sekreteri Hüseyin Kaya, TÜBİTAK RUTE Müdürü Dr. Tolgahan Kaya, TCDD Taşımacılık 1. Bölge Müdürü Uğur Taşkınsakarya, Demiryol-İş Haydarpaşa Şube Başkanı Selahattin Çelimli ve atölye çalışanlarımız yer aldılar. Oturumlarda 5S Entegrasyonu, İSG 10 Altın Kural, Fine-Kinney Risk Analizleri, Mesai Esnasında Afet Hazırlığı ve Kulüp Ar-Ge Sunumları gerçekleştirildi.", 
-        tarih: "4-10 Mayıs 2026" 
-      },
-      { 
-        id: 2, 
-        baslik: "💡 Ar-Ge Proje Tanıtım ve Beyin Fırtınası Oturumları", 
-        kategori: "AR-GE PROJE", 
-        metin: "Kulüp bünyesinde geliştirilen Manevra İkaz Sistemi ve Vagon Takip & Otomatik Apleti Tespit Sistemi projelerinin saha çalışanlarına tanıtımı ve teknik geri bildirim toplantıları tamamlanmıştır.", 
-        tarih: "10 Eylül 2026" 
-      }
-    ];
-
-    function duyurulariYukle() {
-      let kayitli = localStorage.getItem('dbkk_duyurular');
-      let duyurular = kayitli ? JSON.parse(kayitli) : varsayilanDuyurular;
-      if (!kayitli) localStorage.setItem('dbkk_duyurular', JSON.stringify(varsayilanDuyurular));
-
-      const liste = document.getElementById('duyuruListesi');
-      liste.innerHTML = '';
-
-      duyurular.forEach(item => {
-        let safeMetin = item.metin.replace(/'/g, "\\'").replace(/"/g, "&quot;").replace(/\r?\n/g, "<br>");
-        let safeBaslik = item.baslik.replace(/'/g, "\\'").replace(/"/g, "&quot;");
-
-        liste.innerHTML += `
-          <div class="card card-clickable" onclick="openModal('${item.kategori} • ${item.tarih}', '${safeBaslik}', '${safeMetin}')">
-            <button class="delete-btn" onclick="event.stopPropagation(); duyuruSil(${item.id})">Sil 🗑️</button>
-            <div class="card-tag">${item.kategori}</div>
-            <h3 class="card-title">${item.baslik}</h3>
-            <p class="card-text">${item.metin.substring(0, 110)}...</p>
-            <span class="card-more-link">Duyuruyu Oku ➔</span>
-            <span class="card-date">📅 ${item.tarih}</span>
-          </div>
-        `;
-      });
-    }
-
-    function adminGiris() {
-      let sifre = prompt("Yönetici Şifresini Giriniz:");
-      if(sifre === "1234") {
-        document.getElementById('adminFormu').classList.add('active');
-        document.body.classList.add('admin-active');
-        alert("Yönetici paneli açıldı! Artık duyuru ekleyebilir ve silebilirsiniz.");
-      } else if(sifre !== null) {
-        alert("Hatalı şifre!");
-      }
-    }
-
-    function yeniDuyuruEkle(e) {
-      e.preventDefault();
-      const baslik = document.getElementById('duyuruBaslik').value;
-      const kategori = document.getElementById('duyuruKategori').value;
-      const metin = document.getElementById('duyuruMetin').value;
-      const bugün = new Date().toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
-
-      let kayitli = JSON.parse(localStorage.getItem('dbkk_duyurular')) || varsayilanDuyurular;
-      kayitli.unshift({ id: Date.now(), baslik, kategori, metin, tarih: bugün });
-
-      localStorage.setItem('dbkk_duyurular', JSON.stringify(kayitli));
-      document.getElementById('duyuruBaslik').value = '';
-      document.getElementById('duyuruMetin').value = '';
-      duyurulariYukle();
-      alert("Duyurunuz tarayıcınıza eklendi!");
-    }
-
-    function duyuruSil(id) {
-      if(confirm('Silmek istediğinize emin misiniz?')) {
-        let kayitli = JSON.parse(localStorage.getItem('dbkk_duyurular')) || varsayilanDuyurular;
-        kayitli = kayitli.filter(item => item.id !== id);
-        localStorage.setItem('dbkk_duyurular', JSON.stringify(kayitli));
-        duyurulariYukle();
-      }
-    }
-
-    function showPage(pageId) {
-      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-      document.querySelectorAll('.nav-links button').forEach(btn => btn.classList.remove('active'));
-      document.querySelectorAll('.mobile-bottom-nav button').forEach(btn => btn.classList.remove('active'));
-
-      document.getElementById(pageId).classList.add('active');
-      
-      const desktopBtn = Array.from(document.querySelectorAll('.nav-links button')).find(btn => btn.getAttribute('onclick').includes(pageId));
-      if(desktopBtn) desktopBtn.classList.add('active');
-
-      const mobileBtn = Array.from(document.querySelectorAll('.mobile-bottom-nav button')).find(btn => btn.getAttribute('onclick').includes(pageId));
-      if(mobileBtn) mobileBtn.classList.add('active');
-
-      window.scrollTo(0, 0);
-    }
-
-    window.onload = duyurulariYukle;
-  </script>
-
+        document.addEventListener('DOMContentLoaded', duyurulariYukle);
+    </script>
 </body>
 </html>
