@@ -48,7 +48,7 @@
 
     @media (min-width: 769px) { body { padding-bottom: 0; } }
 
-    /* Navbar & LOGO */
+    /* Navbar & KUSURSUZ DARESEL LOGO */
     .nav {
       position: sticky; top: 0; z-index: 9999; height: 115px;
       background: rgba(11, 25, 44, 0.96); backdrop-filter: blur(16px);
@@ -60,7 +60,7 @@
     
     .logo-wrapper {
       width: 105px; height: 105px; border-radius: 50%;
-      background: none; padding: 0;
+      background: transparent; padding: 0;
       border: 2px solid var(--logo-gold);
       box-shadow: none !important;
       filter: none !important;
@@ -70,7 +70,15 @@
       transition: transform 0.2s ease;
     }
     .logo-container:hover .logo-wrapper { transform: scale(1.03); }
-    .logo-img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; background: none; }
+    
+    .logo-img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      border-radius: 50%; 
+      display: block;
+      background: none; 
+    }
     
     .logo-text { font-weight: 800; font-size: 20px; color: var(--text-main); letter-spacing: -0.3px; }
 
@@ -408,7 +416,7 @@
     </div>
   </div>
 
-  <!-- SAYFA 4: AR-GE (GÜNCELLENEN 4 PROJENİZ) -->
+  <!-- SAYFA 4: AR-GE (4 YENİ PROJENİZ) -->
   <div id="arge" class="page">
     <div class="section-head">
       <h2 class="section-title">Teknik Projelerimiz & Ar-Ge Vizyonu</h2>
@@ -640,7 +648,7 @@
       if(e.key === 'Escape') closeModal();
     });
 
-    /* DUYURULARI CANLI SITE-VERI.JSON DOSYASINDAN YÜKLEME (HERKES İÇİN ANLIK GÜNCEL) */
+    /* DUYURULARI site-data.json DOSYASINDAN VE YEREL HAFIZADAN YÜKLEME */
     async function duyurulariYukle() {
       const liste = document.getElementById('duyuruListesi');
       liste.innerHTML = '';
@@ -665,7 +673,7 @@
       let duyurular = varsayilanDuyurular;
 
       try {
-        const response = await fetch('site-veri.json?v=' + new Date().getTime());
+        const response = await fetch('site-data.json?v=' + new Date().getTime());
         if (response.ok) {
           const data = await response.json();
           if (data.duyurular && data.duyurular.length > 0) {
@@ -673,7 +681,7 @@
           }
         }
       } catch (err) {
-        console.log("site-veri.json okunamadı, varsayılan duyurular gösteriliyor.");
+        console.log("site-data.json okunamadı, varsayılanlar yüklendi.");
       }
 
       duyurular.forEach(item => {
@@ -697,8 +705,8 @@
     function adminGiris() {
       let sifre = prompt("Yönetici Şifrenizi Giriniz:");
       if(sifre === "123456" || sifre === "1234") {
-        alert("Yönetici doğrulaması başarılı! Tüm ziyaretçilere anında yansıyacak canlı duyuruları GitHub üzerindeki site-veri.json dosyasından kolayca düzenleyebilirsiniz.");
-        window.open("https://github.com/mehmtyilmz60-collab/demiryolsite/edit/main/site-veri.json", "_blank");
+        alert("Yönetici doğrulaması başarılı! Canlı duyuruları GitHub üzerindeki site-data.json dosyasından düzenleyebilirsiniz.");
+        window.open("https://github.com/mehmtyilmz60-collab/demiryolsite/edit/main/site-data.json", "_blank");
       } else if(sifre !== null) {
         alert("Hatalı şifre!");
       }
