@@ -21,6 +21,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -34,8 +35,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 5%;
-            background: rgba(11, 15, 25, 0.9);
+            padding: 1.2rem 5%;
+            background: rgba(11, 15, 25, 0.95);
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
@@ -61,14 +62,13 @@
             font-size: 1.25rem;
             font-weight: 800;
             color: #fff;
-            letter-spacing: -0.5px;
         }
 
         nav a {
             color: var(--text-muted);
             text-decoration: none;
             margin-left: 1.5rem;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 600;
             transition: color 0.3s;
         }
@@ -77,9 +77,9 @@
             color: var(--accent-yellow);
         }
 
-        /* HERO SECTION */
+        /* HERO */
         .hero {
-            padding: 4rem 5%;
+            padding: 4.5rem 5%;
             text-align: center;
             background: radial-gradient(circle at center, #1e293b 0%, var(--bg-color) 70%);
         }
@@ -88,20 +88,21 @@
             font-size: 2.5rem;
             margin-bottom: 1rem;
             color: #fff;
+            font-weight: 800;
         }
 
         .hero p {
             color: var(--text-muted);
-            max-width: 700px;
-            margin: 0 auto 2rem auto;
-            font-size: 1.1rem;
+            max-width: 750px;
+            margin: 0 auto;
+            font-size: 1.15rem;
         }
 
         /* CONTAINER */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 5%;
+            padding: 3rem 5%;
         }
 
         .section-title {
@@ -112,9 +113,10 @@
             gap: 0.75rem;
             border-left: 4px solid var(--accent-yellow);
             padding-left: 1rem;
+            color: #fff;
         }
 
-        /* GRID LAYOUT */
+        /* GRID */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -149,7 +151,7 @@
         }
 
         .card h3 {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             margin-bottom: 0.75rem;
             color: #fff;
         }
@@ -157,7 +159,6 @@
         .card p {
             color: var(--text-muted);
             font-size: 0.95rem;
-            margin-bottom: 1rem;
         }
 
         .card img {
@@ -168,13 +169,54 @@
             margin-bottom: 1rem;
         }
 
-        /* FOOTER */
+        /* HAKKIMIZDA & İLETİŞİM PANELERİ */
+        .info-panel {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 4rem;
+            color: var(--text-muted);
+        }
+
+        .info-panel h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contact-item strong {
+            color: var(--accent-yellow);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        /* FOOTER & ADMIN MODAL */
         footer {
             border-top: 1px solid var(--border-color);
             padding: 2rem 5%;
             text-align: center;
             color: var(--text-muted);
             font-size: 0.85rem;
+        }
+
+        .admin-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            text-decoration: underline;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+        }
+
+        .admin-btn:hover {
+            color: var(--accent-yellow);
         }
 
         @media (max-width: 768px) {
@@ -195,11 +237,13 @@
 
     <header>
         <div class="brand">
-            <img src="logo.jpg" alt="Demiryol Bilim ve Kültür Kulübü Logosu" onerror="this.src='https://via.placeholder.com/50?text=DBKK'">
+            <!-- GitHub'a attığınız logo.jpg, Logo.jpg veya logo.png ile otomatik uyum sağlar -->
+            <img src="logo.jpg" alt="Kulüp Logosu" onerror="this.onerror=null; this.src='logo.png';">
             <h1>Demiryol Bilim ve Kültür Kulübü</h1>
         </div>
         <nav>
-            <a href="#projeler">Projeler</a>
+            <a href="#projeler">Projeler & Ar-Ge</a>
+            <a href="#ilginç-bilgiler">İlginç Bilgiler</a>
             <a href="#duyurular">Duyurular</a>
             <a href="#hakkimizda">Hakkımızda</a>
             <a href="#iletisim">İletişim</a>
@@ -249,25 +293,79 @@
                     <img src="1.jpg" alt="Dijital Vagon Takip Sistemi" onerror="this.style.display='none'">
                     <div class="card-tag">PROJE 4 • AKILLI ATÖLYE</div>
                     <h3>Dijital Vagon Takip Sistemi</h3>
-                    <p>Atölyemizde yürütülen vagon bakım ve onarım süreçlerinin etkin şekilde takip edilmesi ve kayıt altına alınması amacıyla Dijital Vagon Takip Sistemi geliştirilmiştir. Sistem ile vagonların giriş-çıkış tarihleri, bakım durumları, malzeme bekleme ve tamamlanma süreçleri dijital ortamda takip edilerek çalışmaların daha düzenli ve kontrollü yürütülmesi sağlanmaktadır.</p>
+                    <p>Atölyemizde yürütülen vagon bakım ve onarım süreçlerinin etkin şekilde takip edilmesi ve kayıt altına alınması amacıyla Dijital Vagon Takip Sistemi geliştirilmiştir. Sistem ile vagonların giriş-çıkış tarihleri, bakım durumları, malzeme bekleme ve tamamlanma süreçleri dijital ortamda takip edilerek çalışmaların daha düzenli ve controlled yürütülmesi sağlanmaktadır.</p>
                 </div>
             </div>
 
         </div>
 
+        <!-- DÜNYA DEMİRYOLLARINDAN İLGİNÇ BİLGİLER -->
+        <h2 class="section-title" id="ilginç-bilgiler">Dünya Demiryollarından İlginç Bilgiler</h2>
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <div class="card-tag">AU AVUSTRALYA • BHP IRON ORE</div>
+                    <h3>Dünyanın En Ağır Treni</h3>
+                    <p>682 vagon ve 8 lokomotiften oluşan 7,3 kilometre uzunluğundaki 99.734 tonluk rekor tren.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div>
+                    <div class="card-tag">FR FRANSA • TGV REKORU</div>
+                    <h3>574.8 km/s Tekerlek Hızı</h3>
+                    <p>Çelik tekerlekli demiryolu araçlarında kırılması zor olan 574.8 km/s dünya hız rekoru.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div>
+                    <div class="card-tag">RU RUSYA • TRANS-SİBİRYA</div>
+                    <h3>8 Saat Dilimini Geçen Hat</h3>
+                    <p>Moskova-Vladivostok arası 9.289 km uzunluğuyla 8 farklı saat dilimini kesen devasa güzergah.</p>
+                </div>
+            </div>
+        </div>
+
         <!-- DUYURULAR SECTION -->
         <h2 class="section-title" id="duyurular">Güncel Duyurular</h2>
         <div class="grid" id="duyuru-container">
-            <!-- site-veri.json üzerinden otomatik yüklenecektir -->
+            <!-- site-veri.json üzerinden dinamik yüklenecektir -->
+        </div>
+
+        <!-- HAKKIMIZDA SECTION -->
+        <h2 class="section-title" id="hakkimizda">Hakkımızda</h2>
+        <div class="info-panel">
+            <h3>Demiryol Bilim ve Kültür Kulübü</h3>
+            <p>Demiryol Bilim ve Kültür Kulübü; demiryolu bakımı, iş emniyeti, ar-ge ve dijitalleşme alanlarında saha tecrübesiyle teknik inovasyonu birleştirmek amacıyla kurulmuş bağımsız bir çalışan girişimidir. Amacımız atölye standartlarımızı yükseltmek, 5S/Kaizen süreçlerini yaygınlaştırmak ve yerli mühendislik çözümleri geliştirmektir.</p>
+        </div>
+
+        <!-- İLETİŞİM SECTION -->
+        <h2 class="section-title" id="iletisim">İletişim</h2>
+        <div class="info-panel">
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <strong>Konum / Atölye</strong>
+                    Gebze Vagon Bakım Atölye Müdürlüğü, Kocaeli
+                </div>
+                <div class="contact-item">
+                    <strong>E-Posta</strong>
+                    info@demiryolbilimkultur.com.tr
+                </div>
+                <div class="contact-item">
+                    <strong>Web Adresleri</strong>
+                    demiryolbilimkultur.com.tr<br>kulturvagonu.com.tr
+                </div>
+            </div>
         </div>
 
     </div>
 
     <footer>
         <p>&copy; 2026 Demiryol Bilim ve Kültür Kulübü. Tüm Hakları Saklıdır.</p>
+        <button class="admin-btn" onclick="adminGiris()">Yönetici Girişi</button>
     </footer>
 
     <script>
+        // GitHub site-veri.json Yükleyici
         async function duyurulariYukle() {
             try {
                 const response = await fetch('site-veri.json?v=' + new Date().getTime());
@@ -289,7 +387,17 @@
                     });
                 }
             } catch (err) {
-                console.log("Veri dosyası yüklenemedi.");
+                console.log("Duyuru verisi yüklenemedi.");
+            }
+        }
+
+        function adminGiris() {
+            const sifre = prompt("Yönetici Şifrenizi Girin:");
+            if (sifre === "123456") {
+                alert("Yönetici paneline bağlandınız. Duyuruları ve içerikleri doğrudan GitHub deponuzdaki site-veri.json dosyasını düzenleyerek anında güncelleyebilirsiniz.");
+                window.open("https://github.com/mehmtyilmz60-collab/demiryolsite/edit/main/site-veri.json", "_blank");
+            } else if (sifre !== null) {
+                alert("Hatalı şifre!");
             }
         }
 
