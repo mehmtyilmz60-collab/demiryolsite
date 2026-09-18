@@ -10,7 +10,7 @@
   <link rel="shortcut icon" type="image/png" href="logo.png">
   <link rel="apple-touch-icon" href="logo.png">
 
-  <!-- MOBİL VE TARAYICI ÖNBELLEK ENGELLERİ (CACHE BUSTING) -->
+  <!-- MOBİL VE TARAYICI ÖNBELLEK ENGELLERİ -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
@@ -214,8 +214,8 @@
     .modal-title { font-size: 24px; font-weight: 800; color: var(--text-main); margin-bottom: 16px; line-height: 1.3; }
     .modal-body { font-size: 15px; color: var(--text-muted); line-height: 1.75; }
 
-    .modal-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 18px; }
-    .modal-gallery-img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; border: 1px solid var(--card-border); }
+    .modal-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-top: 20px; }
+    .modal-gallery-img { width: 100%; height: 140px; object-fit: cover; border-radius: 10px; border: 1px solid var(--card-border); }
 
     /* Social Links */
     .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-top: 25px; }
@@ -630,20 +630,58 @@
       document.getElementById('bilgiMetni').innerText = bilgiler[bilgiIndex];
     }
 
-    /* MODAL AÇMA / KAPATMA FONKSİYONLARI */
-    function openModal(tag, title, body, resimler = []) {
-      document.getElementById('modalTag').innerText = tag;
-      document.getElementById('modalTitle').innerText = title;
-      document.getElementById('modalBody').innerHTML = body;
+    const duyurularVeri = [
+      { 
+        id: 1, 
+        baslik: "🩸 Türk Kızılay Kan Bağışı Organizasyonu Planlanıyor", 
+        kategori: "SOSYAL SORUMLULUK", 
+        metin: "Demiryol-İş Sendikası Haydarpaşa Şubesi ve Demiryol Bilim ve Kültür Kulübü iş birliğiyle, Gebze TCDD Yerleşkemizde Türk Kızılay kan bağışı organizasyonu planlıyoruz.<br><br>Yeterli katılım sayısına ulaşıldığı takdirde, Kızılay Mobil Kan Bağışı Aracı doğrudan Gebze TCDD Yerleşkemize gelerek kan alımı yapacaktır.<br><br><strong>🎁 Bağışçılarımıza Özel Hediyeler:</strong><br>Kan bağışında bulunan tüm mesai arkadaşlarımıza Türk Kızılay tarafından 1 adet Kızılay Akıllı Termos ve 1 adet İzoleli Sağlık Çantası hediye edilecektir.<br><br><em>'Bir ünite kan, üç can demektir.'</em> Tüm mesai arkadaşlarımızı bu anlamlı dayanışmaya davet ediyoruz.<br><br><strong>Demiryol-İş Sendikası Haydarpaşa Şubesi & Demiryol Bilim ve Kültür Kulübü</strong>", 
+        tarih: "GÜNCEL PLANLAMA",
+        resimler: ["kızılayhediye.jfif", "senkızıl.jpeg", "Kızıl.jpeg"]
+      },
+      { 
+        id: 2, 
+        baslik: "🛡️ 3. İş Sağlığı ve Güvenliği (İSG) Farkındalık Toplantısı", 
+        kategori: "İSG & EMNİYET", 
+        metin: "Gebze Vagon Bakım Onarım Atölye Müdürlüğü'nde İSG Haftası kapsamında Kulübümüz organizasyonuyla geniş katılımlı toplantı düzenlendi. Oturumlarda 5S Entegrasyonu, İSG 10 Altın Kural, Fine-Kinney Risk Analizleri, Mesai Esnasında Afet Hazırlığı ve Kulüp Ar-Ge Sunumları gerçekleştirildi.", 
+        tarih: "4-10 Mayıs 2026",
+        resimler: []
+      },
+      { 
+        id: 3, 
+        baslik: "💡 Ar-Ge Proje Tanıtım ve Beyin Fırtınası Oturumları", 
+        kategori: "AR-GE PROJE", 
+        metin: "Kulüp bünyesinde geliştirilen Manevra İkaz Sistemi ve Vagon Takip & Otomatik Apleti Tespit Sistemi projelerinin saha çalışanlarına tanıtımı ve teknik geri bildirim toplantıları tamamlanmıştır.", 
+        tarih: "10 Eylül 2026",
+        resimler: []
+      }
+    ];
+
+    /* MODAL AÇMA / KAPATMA */
+    function openModalByIndex(index) {
+      const item = duyurularVeri[index];
+      if(!item) return;
+
+      document.getElementById('modalTag').innerText = item.kategori + ' • ' + item.tarih;
+      document.getElementById('modalTitle').innerText = item.baslik;
+      document.getElementById('modalBody').innerHTML = item.metin;
       
       const galeri = document.getElementById('modalGallery');
       galeri.innerHTML = '';
-      if(resimler && resimler.length > 0) {
-        resimler.forEach(src => {
-          galeri.innerHTML += `<img src="${src}" class="modal-gallery-img" alt="Görsel" onerror="this.style.display='none';">`;
+      if(item.resimler && item.resimler.length > 0) {
+        item.resimler.forEach(src => {
+          galeri.innerHTML += `<img src="${src}" class="modal-gallery-img" alt="Fotoğraf" onerror="this.style.display='none';">`;
         });
       }
       
+      document.getElementById('infoModal').classList.add('active');
+    }
+
+    function openModal(tag, title, body) {
+      document.getElementById('modalTag').innerText = tag;
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalBody').innerHTML = body;
+      document.getElementById('modalGallery').innerHTML = '';
       document.getElementById('infoModal').classList.add('active');
     }
 
@@ -652,73 +690,27 @@
     }
 
     function closeModalOnOuter(e) {
-      if(e.target.id === 'infoModal') {
-        closeModal();
-      }
+      if(e.target.id === 'infoModal') closeModal();
     }
 
     document.addEventListener('keydown', function(e) {
       if(e.key === 'Escape') closeModal();
     });
 
-    /* DUYURULARI site-data.json DOSYASINDAN VE YEREL HAFIZADAN YÜKLEME */
-    async function duyurulariYukle() {
+    /* DUYURULARI LİSTELEME */
+    function duyurulariYukle() {
       const liste = document.getElementById('duyuruListesi');
       liste.innerHTML = '';
 
-      const varsayilanDuyurular = [
-        { 
-          id: 1, 
-          baslik: "🩸 Türk Kızılay Kan Bağışı Organizasyonu Planlanıyor", 
-          kategori: "SOSYAL SORUMLULUK", 
-          metin: "Demiryol-İş Sendikası Haydarpaşa Şubesi ve Demiryol Bilim ve Kültür Kulübü iş birliğiyle, Gebze TCDD Yerleşkemizde Türk Kızılay kan bağışı organizasyonu planlıyoruz.<br><br>Yeterli katılım sayısına ulaşıldığı takdirde, Kızılay Mobil Kan Bağışı Aracı doğrudan Gebze TCDD Yerleşkemize gelerek kan alımı yapacaktır.<br><br><strong>🎁 Bağışçılarımıza Özel Hediyeler:</strong><br>Kan bağışında bulunan tüm mesai arkadaşlarımıza Türk Kızılay tarafından 1 adet Kızılay Akıllı Termos ve 1 adet İzoleli Sağlık Çantası hediye edilecektir.<br><br><em>'Bir ünite kan, üç can demektir.'</em> Tüm mesai arkadaşlarımızı bu anlamlı dayanışmaya davet ediyoruz.<br><br><strong>Demiryol-İş Sendikası Haydarpaşa Şubesi & Demiryol Bilim ve Kültür Kulübü</strong>", 
-          tarih: "GÜNCEL PLANLAMA",
-          resimler: ["kızılayhediye.jfif", "senkızıl.jpeg", "Kızıl.jpeg"]
-        },
-        { 
-          id: 2, 
-          baslik: "🛡️ 3. İş Sağlığı ve Güvenliği (İSG) Farkındalık Toplantısı", 
-          kategori: "İSG & EMNİYET", 
-          metin: "Gebze Vagon Bakım Onarım Atölye Müdürlüğü'nde İSG Haftası kapsamında Kulübümüz organizasyonuyla geniş katılımlı toplantı düzenlendi. Oturumlarda 5S Entegrasyonu, İSG 10 Altın Kural, Fine-Kinney Risk Analizleri, Mesai Esnasında Afet Hazırlığı ve Kulüp Ar-Ge Sunumları gerçekleştirildi.", 
-          tarih: "4-10 Mayıs 2026" 
-        },
-        { 
-          id: 3, 
-          baslik: "💡 Ar-Ge Proje Tanıtım ve Beyin Fırtınası Oturumları", 
-          kategori: "AR-GE PROJE", 
-          metin: "Kulüp bünyesinde geliştirilen Manevra İkaz Sistemi ve Vagon Takip & Otomatik Apleti Tespit Sistemi projelerinin saha çalışanlarına tanıtımı ve teknik geri bildirim toplantıları tamamlanmıştır.", 
-          tarih: "10 Eylül 2026" 
-        }
-      ];
-
-      let duyurular = varsayilanDuyurular;
-
-      try {
-        const response = await fetch('site-data.json?v=' + new Date().getTime());
-        if (response.ok) {
-          const data = await response.json();
-          if (data.duyurular && data.duyurular.length > 0) {
-            duyurular = data.duyurular;
-          }
-        }
-      } catch (err) {
-        console.log("site-data.json okunamadı, varsayılanlar yüklendi.");
-      }
-
-      duyurular.forEach(item => {
-        let safeMetin = (item.metin || item.ozet || '').replace(/'/g, "\\'").replace(/"/g, "&quot;").replace(/\r?\n/g, "<br>");
-        let safeBaslik = (item.baslik || '').replace(/'/g, "\\'").replace(/"/g, "&quot;");
-        let kat = item.kategori || 'GENEL DUYURU';
-        let tar = item.tarih || 'GÜNCEL';
-        let imgArr = JSON.stringify(item.resimler || []);
-
+      duyurularVeri.forEach((item, idx) => {
+        let ozetMetin = item.metin.replace(/<[^>]*>?/gm, ' ').substring(0, 115) + '...';
         liste.innerHTML += `
-          <div class="card card-clickable" onclick='openModal("${kat} • ${tar}", "${safeBaslik}", "${safeMetin}", ${imgArr})'>
-            <div class="card-tag">${kat}</div>
+          <div class="card card-clickable" onclick="openModalByIndex(${idx})">
+            <div class="card-tag">${item.kategori}</div>
             <h3 class="card-title">${item.baslik}</h3>
-            <p class="card-text">${safeMetin.replace(/<br>/g, " ").substring(0, 120)}...</p>
+            <p class="card-text">${ozetMetin}</p>
             <span class="card-more-link">Duyuruyu ve Fotoğrafları Gör ➔</span>
-            <span class="card-date">📅 ${tar}</span>
+            <span class="card-date">📅 ${item.tarih}</span>
           </div>
         `;
       });
