@@ -5,6 +5,11 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   
+  <!-- TARAYICI SEKMESİNDEKİ LOGO (FAVICON) -->
+  <link rel="icon" type="image/jpeg" href="logo.jpg">
+  <link rel="shortcut icon" type="image/jpeg" href="logo.jpg">
+  <link rel="apple-touch-icon" href="logo.jpg">
+
   <!-- MOBİL VE TARAYICI ÖNBELLEK ENGELLERİ (CACHE BUSTING) -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
@@ -217,15 +222,6 @@
     .linkedin-card:hover { border-color: #0a66c2; }
     .x-card:hover { border-color: #ffffff; }
 
-    /* Admin Panel */
-    .admin-panel { display: none; background: var(--card-bg); border: 2px dashed var(--logo-gold); border-radius: 16px; padding: 26px; margin-top: 35px; }
-    .admin-panel.active { display: block; }
-    .form-group { margin-bottom: 15px; }
-    .form-group label { display: block; font-size: 13px; color: var(--logo-gold); margin-bottom: 6px; font-weight: 600; }
-    .form-input, .form-textarea, .form-select { width: 100%; padding: 11px 14px; border-radius: 8px; background: #0b192c; border: 1px solid rgba(255, 255, 255, 0.15); color: var(--text-main); font-size: 14px; outline: none; font-family: 'Inter', sans-serif; }
-    .delete-btn { display: none; position: absolute; top: 16px; right: 16px; background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 6px; padding: 4px 10px; font-size: 11px; cursor: pointer; font-weight: 600; }
-    .admin-active .delete-btn { display: block; }
-
     /* Galleries */
     .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-bottom: 30px; }
     .gallery-img { width: 100%; height: 210px; object-fit: cover; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.25s ease; background-color: #1a2230; }
@@ -247,7 +243,7 @@
   <nav class="nav">
     <a class="logo-container" onclick="showPage('home')">
       <div class="logo-wrapper">
-        <img src="resimler/logo.jpg?v=1.0.1" alt="Kulüp Logosu" class="logo-img" onerror="if(this.src.indexOf('.png')==-1){this.src='resimler/logo.png?v=1.0.1';}else if(this.src.indexOf('.PNG')==-1){this.src='resimler/logo.PNG?v=1.0.1';}else{this.src='resimler/Logo.jpg?v=1.0.1';}">
+        <img src="logo.jpg" alt="Kulüp Logosu" class="logo-img" onerror="this.onerror=null; this.src='resimler/logo.jpg';">
       </div>
       <div class="logo-text">Demiryol Bilim ve Kültür Kulübü</div>
     </a>
@@ -362,31 +358,6 @@
 
     <!-- Tıklanabilir Duyuru Listesi -->
     <div id="duyuruListesi" class="grid-2"></div>
-
-    <!-- Yönetim Paneli -->
-    <div id="adminFormu" class="admin-panel">
-      <h3 style="color:var(--logo-gold); font-size: 17px; margin-bottom: 14px;">🔒 Yönetici Paneli - Yeni Duyuru Ekle</h3>
-      <form onsubmit="yeniDuyuruEkle(event)">
-        <div class="form-group">
-          <label>Duyuru Başlığı</label>
-          <input type="text" id="duyuruBaslik" class="form-input" placeholder="Başlık girin..." required>
-        </div>
-        <div class="form-group">
-          <label>Kategori</label>
-          <select id="duyuruKategori" class="form-select">
-            <option value="GENEL DUYURU">Genel Duyuru</option>
-            <option value="AR-GE PROJE">Ar-Ge & Proje</option>
-            <option value="İSG & EMNİYET">İSG & Emniyet</option>
-            <option value="ETKİNLİK">Etkinlik & Çalıştay</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Duyuru Metni</label>
-          <textarea id="duyuruMetin" class="form-textarea" rows="4" required></textarea>
-        </div>
-        <button type="submit" class="btn-glow" style="width: 100%;">Duyuruyu Kaydet & Yayınla</button>
-      </form>
-    </div>
   </div>
 
   <!-- SAYFA 3: ETKİNLİKLER -->
@@ -431,13 +402,13 @@
 
     <h3 style="color:var(--text-main); font-size: 18px; margin-bottom: 14px; text-align:center;">📸 İSG Farkındalık Toplantısı Görselleri</h3>
     <div class="gallery-grid">
-      <img src="resimler/isg 2026.jpg?v=1.0.1" class="gallery-img" alt="İSG 1">
-      <img src="resimler/isg 2026 2.jpg?v=1.0.1" class="gallery-img" alt="İSG 2">
-      <img src="resimler/isg 2026 3.jpg?v=1.0.1" class="gallery-img" alt="İSG 3">
+      <img src="isg 2026.jpg" class="gallery-img" alt="İSG 1" onerror="this.onerror=null; this.src='resimler/isg 2026.jpg';">
+      <img src="isg 2026 2.jpg" class="gallery-img" alt="İSG 2" onerror="this.onerror=null; this.src='resimler/isg 2026 2.jpg';">
+      <img src="isg 2026 3.jpg" class="gallery-img" alt="İSG 3" onerror="this.onerror=null; this.src='resimler/isg 2026 3.jpg';">
     </div>
   </div>
 
-  <!-- SAYFA 4: AR-GE -->
+  <!-- SAYFA 4: AR-GE (GÜNCELLENEN 4 PROJENİZ) -->
   <div id="arge" class="page">
     <div class="section-head">
       <h2 class="section-title">Teknik Projelerimiz & Ar-Ge Vizyonu</h2>
@@ -445,19 +416,39 @@
     </div>
     <div class="grid-2">
       
-      <div class="card card-clickable" onclick="openModal('PROJE 1 • SAHA EMNİYETİ', 'Manevra İkaz ve Saha Emniyet Sistemi', '<strong>Proje Amacı:</strong> Atölye içi ve hat sahası manevra operasyonlarında çalışan güvenliğini en üst seviyeye çıkarmak.<br><br><strong>Teknik Altyapı:</strong> Manevra hatlarına entegre edilmiş sesli ve ışıklı erken uyarı üniteleri, manevra araçları (Zephir vb.) ile anlık radyo frekanslı iletişim ve personel tespit sensörleri kapsar.<br><br><strong>Kazanımlar:</strong> Manevra kaynaklı ramak kala olayları ve iş kazası risklerini sıfıra indirmeyi hedefler.')">
-        <img src="resimler/proje.jpg?v=1.0.1" class="card-img" alt="Proje 1" onerror="this.src='resimler/1.jpg?v=1.0.1'">
-        <div class="card-tag">Proje 1 • Saha Emniyeti</div>
-        <h3 class="card-title">Manevra İkaz ve Saha Emniyet Sistemi</h3>
-        <p class="card-text">Atölye içi ve saha manevra operasyonlarında çalışan güvenliğini en üst seviyeye çıkarmak amacıyla geliştirilen ikaz altyapısıdır.</p>
+      <!-- PROJE 1 -->
+      <div class="card card-clickable" onclick="openModal('PROJE 1 • AKILLI TANIMA', 'Demiryolu Araç Kimliği Tanıma Sistemi', 'Demiryolu araçlarının kimlik bilgilerinin hızlı ve otomatik olarak tespit edilmesi amacıyla Görüntü İşleme Tabanlı Araç Kimliği Tanıma Sistemi geliştirilmiştir.<br><br>Kamera görüntüleri üzerinden yapay zekâ destekli görüntü işleme teknolojileri kullanılarak araç numaraları otomatik olarak okunmakta ve kayıt altına alınmaktadır.')">
+        <img src="proje.jpg" class="card-img" alt="Proje 1" onerror="this.onerror=null; this.src='resimler/proje.jpg';">
+        <div class="card-tag">PROJE 1 • AKILLI TANIMA</div>
+        <h3 class="card-title">Demiryolu Araç Kimliği Tanıma Sistemi</h3>
+        <p class="card-text">Demiryolu araçlarının kimlik bilgilerinin hızlı ve otomatik olarak tespit edilmesi amacıyla Görüntü İşleme Tabanlı Araç Kimliği Tanıma Sistemi geliştirilmiştir.</p>
         <span class="card-more-link">Proje Detaylarını İncele ➔</span>
       </div>
 
-      <div class="card card-clickable" onclick="openModal('PROJE 2 • ERKEN ARIZA TESPİTİ', 'Vagon Takip ve Otomatik Apleti Tespiti', '<strong>Proje Amacı:</strong> Yük vagonlarının tekerlek yüzeyinde oluşan apleti (düzleşme) ve geometrik arızaları araç hat üzerindeyken otomatik tespit etmek.<br><br><strong>Teknik Altyapı:</strong> Ray hattına monte edilen piezoelektrik ve RSR sensörleri, yüksek hızlı endüstriyel kameralar, gürültü analiz üniteleri ve CUDA destekli derin öğrenme algoritmaları.<br><br><strong>Kazanımlar:</strong> Ray ve bojilere verilen darbe hasarlarını önler, kestirimci bakım altyapısı sağlayarak işletme maliyetlerini düşürür.')">
-        <img src="resimler/proje 2.jpg?v=1.0.1" class="card-img" alt="Proje 2" onerror="this.src='resimler/2.jpg?v=1.0.1'">
-        <div class="card-tag">Proje 2 • Erken Arıza Tespiti</div>
-        <h3 class="card-title">Vagon Takip ve Otomatik Apleti Tespiti</h3>
-        <p class="card-text">Ray hattına entegre piezoelektrik sensörler ile tekerlek yüzeyindeki apleti kusurlarını otomatik tespit eder.</p>
+      <!-- PROJE 2 -->
+      <div class="card card-clickable" onclick="openModal('PROJE 2 • KESTİRİMCİ BAKIM', 'Apleti Tespit Sistemi', 'Demiryolu araçlarında tekerlek apleti oluşumunun erken tespit edilmesi ve bakım süreçlerinin desteklenmesi amacıyla Piezo Sensör Tabanlı Aplet Tespit Sistemi geliştirilmiştir.<br><br>Ray üzerine yerleştirilen sensörler aracılığıyla tekerlek geçişlerinden oluşan titreşimler analiz edilerek olası apleti ve tekerlek yüzey bozuklukları tespit edilmektedir.')">
+        <img src="proje 2.jpg" class="card-img" alt="Proje 2" onerror="this.onerror=null; this.src='resimler/proje 2.jpg';">
+        <div class="card-tag">PROJE 2 • KESTİRİMCİ BAKIM</div>
+        <h3 class="card-title">Apleti Tespit Sistemi</h3>
+        <p class="card-text">Demiryolu araçlarında tekerlek apleti oluşumunun erken tespit edilmesi ve bakım süreçlerinin desteklenmesi amacıyla Piezo Sensör Tabanlı Aplet Tespit Sistemi geliştirilmiştir.</p>
+        <span class="card-more-link">Proje Detaylarını İncele ➔</span>
+      </div>
+
+      <!-- PROJE 3 -->
+      <div class="card card-clickable" onclick="openModal('PROJE 3 • SAHA EMNİYETİ', 'Manevra İkaz Sistemi', 'Atölye ve sahalarımızda gerçekleştirilen manevra operasyonları sırasında iş güvenliğini artırmak ve personeli manevra faaliyeti hakkında bilgilendirmek amacıyla Manevra İkaz Sistemi kurulmuştur.<br><br>Uzaktan kumanda ile devreye alınan sistem, manevra faaliyetleri sırasında personelin sesli olarak uyarılmasını sağlayarak güvenli çalışma koşullarının desteklenmesine katkı sunmaktadır.')">
+        <img src="proje 3.jpg" class="card-img" alt="Proje 3" onerror="this.onerror=null; this.src='resimler/proje 3.jpg';">
+        <div class="card-tag">PROJE 3 • SAHA EMNİYETİ</div>
+        <h3 class="card-title">Manevra İkaz Sistemi</h3>
+        <p class="card-text">Atölye ve sahalarımızda gerçekleştirilen manevra operasyonları sırasında iş güvenliğini artırmak ve personeli manevra faaliyeti hakkında bilgilendirmek amacıyla Manevra İkaz Sistemi kurulmuştur.</p>
+        <span class="card-more-link">Proje Detaylarını İncele ➔</span>
+      </div>
+
+      <!-- PROJE 4 -->
+      <div class="card card-clickable" onclick="openModal('PROJE 4 • AKILLI ATÖLYE', 'Dijital Vagon Takip Sistemi', 'Atölyemizde yürütülen vagon bakım ve onarım süreçlerinin etkin şekilde takip edilmesi ve kayıt altına alınması amacıyla Dijital Vagon Takip Sistemi geliştirilmiştir.<br><br>Sistem ile vagonların giriş-çıkış tarihleri, bakım durumları, malzeme bekleme ve tamamlanma süreçleri dijital ortamda takip edilerek çalışmaların daha düzenli ve kontrollü yürütülmesi sağlanmaktadır.')">
+        <img src="1.jpg" class="card-img" alt="Proje 4" onerror="this.onerror=null; this.src='resimler/1.jpg';">
+        <div class="card-tag">PROJE 4 • AKILLI ATÖLYE</div>
+        <h3 class="card-title">Dijital Vagon Takip Sistemi</h3>
+        <p class="card-text">Atölyemizde yürütülen vagon bakım ve onarım süreçlerinin etkin şekilde takip edilmesi ve kayıt altına alınması amacıyla Dijital Vagon Takip Sistemi geliştirilmiştir.</p>
         <span class="card-more-link">Proje Detaylarını İncele ➔</span>
       </div>
 
@@ -484,9 +475,9 @@
 
     <h3 style="color:var(--text-main); font-size: 18px; margin-bottom: 14px; text-align:center;">📸 Atölyemiz ve Çalışma Sahamız</h3>
     <div class="gallery-grid" style="margin-bottom: 35px;">
-      <img src="resimler/1.jpg?v=1.0.1" class="gallery-img" alt="Atölye 1">
-      <img src="resimler/2.jpg?v=1.0.1" class="gallery-img" alt="Atölye 2">
-      <img src="resimler/3.jpg?v=1.0.1" class="gallery-img" alt="Atölye 3">
+      <img src="1.jpg" class="gallery-img" alt="Atölye 1" onerror="this.onerror=null; this.src='resimler/1.jpg';">
+      <img src="2.jpg" class="gallery-img" alt="Atölye 2" onerror="this.onerror=null; this.src='resimler/2.jpg';">
+      <img src="3.jpg" class="gallery-img" alt="Atölye 3" onerror="this.onerror=null; this.src='resimler/3.jpg';">
     </div>
 
     <div class="section-head" style="margin-top: 20px; margin-bottom: 24px;">
@@ -649,83 +640,67 @@
       if(e.key === 'Escape') closeModal();
     });
 
-    /* HEDEFLENEN HERKESE AÇIK SABİT DUYURULAR */
-    const varsayilanDuyurular = [
-      { 
-        id: 1, 
-        baslik: "🛡️ 3. İş Sağlığı ve Güvenliği (İSG) Farkındalık Toplantısı", 
-        kategori: "İSG & EMNİYET", 
-        metin: "Gebze Vagon Bakım Onarım Atölye Müdürlüğü'nde İSG Haftası (4-10 Mayıs) kapsamında Kulübümüz organizasyonuyla geniş katılımlı toplantı düzenlendi. Protokolde TCDD Taşımacılık A.Ş. Genel Müdürü Ufuk Yalçın, Demiryol-İş Sendikası Genel Sekreteri Hüseyin Kaya, TÜBİTAK RUTE Müdürü Dr. Tolgahan Kaya, TCDD Taşımacılık 1. Bölge Müdürü Uğur Taşkınsakarya, Demiryol-İş Haydarpaşa Şube Başkanı Selahattin Çelimli ve atölye çalışanlarımız yer aldılar. Oturumlarda 5S Entegrasyonu, İSG 10 Altın Kural, Fine-Kinney Risk Analizleri, Mesai Esnasında Afet Hazırlığı ve Kulüp Ar-Ge Sunumları gerçekleştirildi.", 
-        tarih: "4-10 Mayıs 2026" 
-      },
-      { 
-        id: 2, 
-        baslik: "💡 Ar-Ge Proje Tanıtım ve Beyin Fırtınası Oturumları", 
-        kategori: "AR-GE PROJE", 
-        metin: "Kulüp bünyesinde geliştirilen Manevra İkaz Sistemi ve Vagon Takip & Otomatik Apleti Tespit Sistemi projelerinin saha çalışanlarına tanıtımı ve teknik geri bildirim toplantıları tamamlanmıştır.", 
-        tarih: "10 Eylül 2026" 
-      }
-    ];
-
-    function duyurulariYukle() {
-      let kayitli = localStorage.getItem('dbkk_duyurular');
-      let duyurular = kayitli ? JSON.parse(kayitli) : varsayilanDuyurular;
-      if (!kayitli) localStorage.setItem('dbkk_duyurular', JSON.stringify(varsayilanDuyurular));
-
+    /* DUYURULARI CANLI SITE-VERI.JSON DOSYASINDAN YÜKLEME (HERKES İÇİN ANLIK GÜNCEL) */
+    async function duyurulariYukle() {
       const liste = document.getElementById('duyuruListesi');
       liste.innerHTML = '';
 
+      const varsayilanDuyurular = [
+        { 
+          id: 1, 
+          baslik: "🛡️ 3. İş Sağlığı ve Güvenliği (İSG) Farkındalık Toplantısı", 
+          kategori: "İSG & EMNİYET", 
+          metin: "Gebze Vagon Bakım Onarım Atölye Müdürlüğü'nde İSG Haftası kapsamında Kulübümüz organizasyonuyla geniş katılımlı toplantı düzenlendi. Oturumlarda 5S Entegrasyonu, İSG 10 Altın Kural, Fine-Kinney Risk Analizleri, Mesai Esnasında Afet Hazırlığı ve Kulüp Ar-Ge Sunumları gerçekleştirildi.", 
+          tarih: "4-10 Mayıs 2026" 
+        },
+        { 
+          id: 2, 
+          baslik: "💡 Ar-Ge Proje Tanıtım ve Beyin Fırtınası Oturumları", 
+          kategori: "AR-GE PROJE", 
+          metin: "Kulüp bünyesinde geliştirilen Manevra İkaz Sistemi ve Vagon Takip & Otomatik Apleti Tespit Sistemi projelerinin saha çalışanlarına tanıtımı ve teknik geri bildirim toplantıları tamamlanmıştır.", 
+          tarih: "10 Eylül 2026" 
+        }
+      ];
+
+      let duyurular = varsayilanDuyurular;
+
+      try {
+        const response = await fetch('site-veri.json?v=' + new Date().getTime());
+        if (response.ok) {
+          const data = await response.json();
+          if (data.duyurular && data.duyurular.length > 0) {
+            duyurular = data.duyurular;
+          }
+        }
+      } catch (err) {
+        console.log("site-veri.json okunamadı, varsayılan duyurular gösteriliyor.");
+      }
+
       duyurular.forEach(item => {
-        let safeMetin = item.metin.replace(/'/g, "\\'").replace(/"/g, "&quot;").replace(/\r?\n/g, "<br>");
-        let safeBaslik = item.baslik.replace(/'/g, "\\'").replace(/"/g, "&quot;");
+        let safeMetin = (item.metin || item.ozet || '').replace(/'/g, "\\'").replace(/"/g, "&quot;").replace(/\r?\n/g, "<br>");
+        let safeBaslik = (item.baslik || '').replace(/'/g, "\\'").replace(/"/g, "&quot;");
+        let kat = item.kategori || 'GENEL DUYURU';
+        let tar = item.tarih || 'GÜNCEL';
 
         liste.innerHTML += `
-          <div class="card card-clickable" onclick="openModal('${item.kategori} • ${item.tarih}', '${safeBaslik}', '${safeMetin}')">
-            <button class="delete-btn" onclick="event.stopPropagation(); duyuruSil(${item.id})">Sil 🗑️</button>
-            <div class="card-tag">${item.kategori}</div>
+          <div class="card card-clickable" onclick="openModal('${kat} • ${tar}', '${safeBaslik}', '${safeMetin}')">
+            <div class="card-tag">${kat}</div>
             <h3 class="card-title">${item.baslik}</h3>
-            <p class="card-text">${item.metin.substring(0, 110)}...</p>
+            <p class="card-text">${safeMetin.substring(0, 110)}...</p>
             <span class="card-more-link">Duyuruyu Oku ➔</span>
-            <span class="card-date">📅 ${item.tarih}</span>
+            <span class="card-date">📅 ${tar}</span>
           </div>
         `;
       });
     }
 
     function adminGiris() {
-      let sifre = prompt("Yönetici Şifresini Giriniz:");
-      if(sifre === "1234") {
-        document.getElementById('adminFormu').classList.add('active');
-        document.body.classList.add('admin-active');
-        alert("Yönetici paneli açıldı! Artık duyuru ekleyebilir ve silebilirsiniz.");
+      let sifre = prompt("Yönetici Şifrenizi Giriniz:");
+      if(sifre === "123456" || sifre === "1234") {
+        alert("Yönetici doğrulaması başarılı! Tüm ziyaretçilere anında yansıyacak canlı duyuruları GitHub üzerindeki site-veri.json dosyasından kolayca düzenleyebilirsiniz.");
+        window.open("https://github.com/mehmtyilmz60-collab/demiryolsite/edit/main/site-veri.json", "_blank");
       } else if(sifre !== null) {
         alert("Hatalı şifre!");
-      }
-    }
-
-    function yeniDuyuruEkle(e) {
-      e.preventDefault();
-      const baslik = document.getElementById('duyuruBaslik').value;
-      const kategori = document.getElementById('duyuruKategori').value;
-      const metin = document.getElementById('duyuruMetin').value;
-      const bugün = new Date().toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
-
-      let kayitli = JSON.parse(localStorage.getItem('dbkk_duyurular')) || varsayilanDuyurular;
-      kayitli.unshift({ id: Date.now(), baslik, kategori, metin, tarih: bugün });
-
-      localStorage.setItem('dbkk_duyurular', JSON.stringify(kayitli));
-      document.getElementById('duyuruBaslik').value = '';
-      document.getElementById('duyuruMetin').value = '';
-      duyurulariYukle();
-      alert("Duyurunuz tarayıcınıza eklendi!");
-    }
-
-    function duyuruSil(id) {
-      if(confirm('Silmek istediğinize emin misiniz?')) {
-        let kayitli = JSON.parse(localStorage.getItem('dbkk_duyurular')) || varsayilanDuyurular;
-        kayitli = kayitli.filter(item => item.id !== id);
-        localStorage.setItem('dbkk_duyurular', JSON.stringify(kayitli));
-        duyurulariYukle();
       }
     }
 
