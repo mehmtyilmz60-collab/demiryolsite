@@ -214,8 +214,23 @@
     .modal-title { font-size: 24px; font-weight: 800; color: var(--text-main); margin-bottom: 16px; line-height: 1.3; }
     .modal-body { font-size: 15px; color: var(--text-muted); line-height: 1.75; }
 
+    /* TIKLANABİLİR BÜYÜYEN RESİM GALERİSİ */
     .modal-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-top: 20px; }
-    .modal-gallery-img { width: 100%; height: 140px; object-fit: cover; border-radius: 10px; border: 1px solid var(--card-border); }
+    .modal-gallery-img { 
+      width: 100%; height: 140px; object-fit: cover; border-radius: 10px; 
+      border: 1px solid var(--card-border); cursor: pointer; transition: transform 0.2s, border-color 0.2s; 
+    }
+    .modal-gallery-img:hover { transform: scale(1.04); border-color: var(--logo-gold); }
+
+    /* TAM EKRAN BÜYÜK RESİM PENCERESİ (LIGHTBOX) */
+    .lightbox-overlay {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.95); z-index: 30000; justify-content: center; align-items: center;
+      padding: 15px; animation: fadeIn 0.2s ease-out;
+    }
+    .lightbox-overlay.active { display: flex; }
+    .lightbox-img { max-width: 95%; max-height: 90vh; border-radius: 12px; border: 2px solid var(--logo-gold); box-shadow: 0 0 30px rgba(212,175,55,0.3); }
+    .lightbox-close { position: absolute; top: 20px; right: 25px; color: #fff; font-size: 32px; cursor: pointer; background: none; border: none; }
 
     /* Social Links */
     .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-top: 25px; }
@@ -235,7 +250,7 @@
 
     /* Galleries */
     .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-bottom: 30px; }
-    .gallery-img { width: 100%; height: 210px; object-fit: cover; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.25s ease; background-color: #1a2230; }
+    .gallery-img { width: 100%; height: 210px; object-fit: cover; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.25s ease; background-color: #1a2230; cursor: pointer; }
     .gallery-img:hover { transform: translateY(-3px); border-color: var(--logo-gold); }
 
     .contact-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px; padding: 38px 20px; text-align: center; max-width: 850px; margin: 0 auto; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
@@ -361,6 +376,12 @@
     </div>
   </div>
 
+  <!-- TAM EKRAN BÜYÜK RESİM GÖSTERİCİ (LIGHTBOX) -->
+  <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✖</button>
+    <img id="lightboxImg" class="lightbox-img" src="" alt="Büyük Görsel">
+  </div>
+
   <!-- SAYFA 2: DUYURULAR -->
   <div id="duyurular" class="page">
     <div class="section-head">
@@ -389,7 +410,7 @@
         <span class="card-more-link">Etkinlik Detayları ➔</span>
       </div>
 
-      <div class="card card-clickable" onclick="openModal('SAHA İNCELEMESİ • PLANLANAN', 'Teknik Geziler ve Atölye Ziyaretleri', '<strong>Kapsam:</strong> Saha İncelemesi ve Teknik Birikim<br><br><strong>Detaylar:</strong> Demiryolu sektöründeki modern bakım merkezleri, vagon/lokomotif üretim tesisleri ve ileri teknoloji ar-ge merkezlerine yönelik teknik inceleme turları düzenlenecektir.<br><br>Kulüp üyelerimiz ve atölye personelimizin teknolojik yenilikleri yerinde incelemesi hedeflenmektedir.')">
+      <div class="card card-clickable" onclick="openModal('SAHA İNCELEMESİ • PLANLANAN', 'Teknik Geziler ve Atölye Ziyaretleri', '<strong>Kapsam:</strong> Saha İncelemesi ve Teknik Birikim<br><br><strong>Detaylar:</strong> Demiryolu sektöründeki modern bakım merkezleri, vagon/lokomotif üretim tesisleri ve ileri teknoloji ar-ge merkezlerine yönelik teknik inceleme turları düzenlenecektir.<br><br>Kulüp üyelerimiz ve atölye personelimizin teknolojik yenilikleri yerinde incelesi hedeflenmektedir.')">
         <div class="card-tag">SAHA İNCELEMESİ • PLANLANAN</div>
         <h3 class="card-title">Teknik Geziler ve Atölye Ziyaretleri</h3>
         <p class="card-text">Demiryolu sektöründeki modern bakım merkezleri ve teknoloji tesislerine yönelik planlanan teknik turlar.</p>
@@ -414,9 +435,9 @@
 
     <h3 style="color:var(--text-main); font-size: 18px; margin-bottom: 14px; text-align:center;">📸 İSG Farkındalık Toplantısı Görselleri</h3>
     <div class="gallery-grid">
-      <img src="isg 2026.jpg" class="gallery-img" alt="İSG 1" onerror="this.onerror=null; this.src='resimler/isg 2026.jpg';">
-      <img src="isg 2026 2.jpg" class="gallery-img" alt="İSG 2" onerror="this.onerror=null; this.src='resimler/isg 2026 2.jpg';">
-      <img src="isg 2026 3.jpg" class="gallery-img" alt="İSG 3" onerror="this.onerror=null; this.src='resimler/isg 2026 3.jpg';">
+      <img src="isg 2026.jpg" class="gallery-img" alt="İSG 1" onclick="openLightbox(this.src)" onerror="this.onerror=null; this.src='resimler/isg 2026.jpg';">
+      <img src="isg 2026 2.jpg" class="gallery-img" alt="İSG 2" onclick="openLightbox(this.src)" onerror="this.onerror=null; this.src='resimler/isg 2026 2.jpg';">
+      <img src="isg 2026 3.jpg" class="gallery-img" alt="İSG 3" onclick="openLightbox(this.src)" onerror="this.onerror=null; this.src='resimler/isg 2026 3.jpg';">
     </div>
   </div>
 
@@ -487,9 +508,9 @@
 
     <h3 style="color:var(--text-main); font-size: 18px; margin-bottom: 14px; text-align:center;">📸 Atölyemiz ve Çalışma Sahamız</h3>
     <div class="gallery-grid" style="margin-bottom: 35px;">
-      <img src="1.jpg" class="gallery-img" alt="Atölye 1" onerror="this.onerror=null; this.src='resimler/1.jpg';">
-      <img src="2.jpg" class="gallery-img" alt="Atölye 2" onerror="this.onerror=null; this.src='resimler/2.jpg';">
-      <img src="3.jpg" class="gallery-img" alt="Atölye 3" onerror="this.onerror=null; this.src='resimler/3.jpg';">
+      <img src="1.jpg" class="gallery-img" alt="Atölye 1" onclick="openLightbox(this.src)" onerror="this.onerror=null; this.src='resimler/1.jpg';">
+      <img src="2.jpg" class="gallery-img" alt="Atölye 2" onclick="openLightbox(this.src)" onerror="this.onerror=null; this.src='resimler/2.jpg';">
+      <img src="3.jpg" class="gallery-img" alt="Atölye 3" onclick="openLightbox(this.src)" onerror="this.onerror=null; this.src='resimler/3.jpg';">
     </div>
 
     <div class="section-head" style="margin-top: 20px; margin-bottom: 24px;">
@@ -657,7 +678,7 @@
       }
     ];
 
-    /* MODAL AÇMA / KAPATMA */
+    /* MODAL VE BÜYÜK RESİM (LIGHTBOX) FONKSİYONLARI */
     function openModalByIndex(index) {
       const item = duyurularVeri[index];
       if(!item) return;
@@ -670,7 +691,7 @@
       galeri.innerHTML = '';
       if(item.resimler && item.resimler.length > 0) {
         item.resimler.forEach(src => {
-          galeri.innerHTML += `<img src="${src}" class="modal-gallery-img" alt="Fotoğraf" onerror="this.style.display='none';">`;
+          galeri.innerHTML += `<img src="${src}" class="modal-gallery-img" alt="Fotoğraf" onclick="openLightbox(this.src)" onerror="this.style.display='none';">`;
         });
       }
       
@@ -693,8 +714,21 @@
       if(e.target.id === 'infoModal') closeModal();
     }
 
+    /* RESMİ BÜYÜK BOYUTTA (TAM EKRAN) AÇMA */
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('active');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+
     document.addEventListener('keydown', function(e) {
-      if(e.key === 'Escape') closeModal();
+      if(e.key === 'Escape') {
+        closeModal();
+        closeLightbox();
+      }
     });
 
     /* DUYURULARI LİSTELEME */
