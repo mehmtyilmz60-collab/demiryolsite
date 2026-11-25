@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   
   <!-- TARAYICI SEKMESİNDEKİ LOGO (FAVICON) -->
-  <link rel="icon" type="image/jpeg" href="logo.jpg">
-  <link rel="shortcut icon" type="image/jpeg" href="logo.jpg">
-  <link rel="apple-touch-icon" href="logo.jpg">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="shortcut icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
 
   <!-- MOBİL VE TARAYICI ÖNBELLEK ENGELLERİ (CACHE BUSTING) -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -60,17 +60,15 @@
     
     .logo-wrapper {
       width: 105px; height: 105px; border-radius: 50%;
-      background: none; padding: 0;
+      background: #0b192c; padding: 0;
       border: 2px solid var(--logo-gold);
-      box-shadow: none !important;
-      filter: none !important;
       display: flex; align-items: center; justify-content: center;
       overflow: hidden;
       flex-shrink: 0;
       transition: transform 0.2s ease;
     }
     .logo-container:hover .logo-wrapper { transform: scale(1.03); }
-    .logo-img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; background: none; }
+    .logo-img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; }
     
     .logo-text { font-weight: 800; font-size: 20px; color: var(--text-main); letter-spacing: -0.3px; }
 
@@ -173,6 +171,7 @@
     .card {
       background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 24px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); transition: all 0.25s ease; position: relative;
+      display: flex; flex-direction: column;
     }
     .card-clickable { cursor: pointer; }
     .card:hover { border-color: var(--logo-gold); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15); }
@@ -181,29 +180,42 @@
     .card-text { color: var(--text-muted); font-size: 14px; line-height: 1.65; }
     .card-date { font-size: 12px; color: #64748b; margin-top: 14px; display: block; font-weight: 500; }
     .card-img { width: 100%; height: 185px; object-fit: cover; border-radius: 10px; margin-bottom: 14px; border: 1px solid rgba(255,255,255,0.08); }
-    .card-more-link { display: inline-block; margin-top: 12px; color: var(--logo-gold); font-size: 13px; font-weight: 700; text-decoration: none; }
+    
+    /* Afiş Kart Görseli (Dikey afişler için) */
+    .poster-img {
+      width: 100%; height: 340px; object-fit: cover; object-position: top center;
+      border-radius: 12px; margin-bottom: 14px; border: 1px solid rgba(212, 175, 55, 0.25);
+    }
+
+    .card-more-link { display: inline-block; margin-top: auto; padding-top: 12px; color: var(--logo-gold); font-size: 13px; font-weight: 700; text-decoration: none; }
 
     /* Modal Structure */
     .modal-overlay {
       display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(11, 25, 44, 0.88); backdrop-filter: blur(8px);
+      background: rgba(11, 25, 44, 0.9); backdrop-filter: blur(8px);
       z-index: 20000; justify-content: center; align-items: center; padding: 20px;
       animation: fadeIn 0.2s ease-out;
     }
     .modal-overlay.active { display: flex; }
     .modal-box {
       background: #0f172a; border: 2px solid var(--logo-gold); border-radius: 20px;
-      max-width: 680px; width: 100%; padding: 32px; position: relative; max-height: 85vh; overflow-y: auto;
+      max-width: 680px; width: 100%; padding: 32px; position: relative; max-height: 88vh; overflow-y: auto;
       box-shadow: 0 15px 40px rgba(0,0,0,0.6); animation: scaleUp 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     @keyframes scaleUp { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
     .modal-close {
-      position: absolute; top: 16px; right: 20px; background: none; border: none;
-      color: var(--text-muted); font-size: 24px; cursor: pointer; transition: color 0.2s;
+      position: absolute; top: 16px; right: 20px; background: rgba(15, 23, 42, 0.8); border: 1px solid var(--card-border);
+      color: var(--text-muted); font-size: 20px; width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s;
     }
-    .modal-close:hover { color: var(--logo-gold); }
+    .modal-close:hover { color: var(--logo-gold); border-color: var(--logo-gold); }
     .modal-tag { font-size: 12px; color: var(--logo-gold); font-weight: 800; text-transform: uppercase; margin-bottom: 8px; }
     .modal-title { font-size: 24px; font-weight: 800; color: var(--text-main); margin-bottom: 16px; line-height: 1.3; }
+    .modal-img {
+      width: 100%; max-height: 62vh; object-fit: contain; border-radius: 12px;
+      margin-bottom: 18px; border: 1px solid rgba(212, 175, 55, 0.3); background: #050c17;
+      display: none;
+    }
     .modal-body { font-size: 15px; color: var(--text-muted); line-height: 1.75; }
 
     /* Social Links */
@@ -224,7 +236,7 @@
 
     /* Galleries */
     .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-bottom: 30px; }
-    .gallery-img { width: 100%; height: 210px; object-fit: cover; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.25s ease; background-color: #1a2230; }
+    .gallery-img { width: 100%; height: 220px; object-fit: cover; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.25s ease; background-color: #1a2230; cursor: pointer; }
     .gallery-img:hover { transform: translateY(-3px); border-color: var(--logo-gold); }
 
     .contact-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px; padding: 38px 20px; text-align: center; max-width: 850px; margin: 0 auto; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
@@ -243,7 +255,7 @@
   <nav class="nav">
     <a class="logo-container" onclick="showPage('home')">
       <div class="logo-wrapper">
-        <img src="logo.jpg" alt="Kulüp Logosu" class="logo-img" onerror="this.onerror=null; this.src='resimler/logo.jpg';">
+        <img src="logo.png" alt="Demiryol Bilim ve Kültür Kulübü Logosu" class="logo-img" onerror="if(this.src.indexOf('logo.png')!==-1){this.src='resimler/logo.png';}else if(this.src.indexOf('resimler/logo.png')!==-1){this.src='logo.jpg';}else{this.onerror=null;this.src='resimler/logo.jpg';}">
       </div>
       <div class="logo-text">Demiryol Bilim ve Kültür Kulübü</div>
     </a>
@@ -278,6 +290,43 @@
         <div class="flash-card-text" id="bilgiMetni">Yük vagonlarında tekerlek yüzeyinde oluşan 1 mm'lik apleti (düzleşme), raya uygulanan darbe kuvvetini %300 oranında artırır. Sensörlü takip sistemleri bu arızaları anında yakalar.</div>
       </div>
       <button class="flash-card-btn" onclick="sonrakiBilgi()">Sonraki Bilgi 🔄</button>
+    </div>
+
+    <!-- HATIRLATMALAR & ÖZEL GÜNLER BÖLÜMÜ -->
+    <div style="margin-top: 38px; margin-bottom: 42px;">
+      <div class="section-head">
+        <h2 class="section-title">📌 Hatırlatmalar ve Özel Günler</h2>
+        <p class="section-desc">Tarihimize iz bırakan değerlerimiz, anma günlerimiz ve kurumsal kutlamalarımız.</p>
+      </div>
+
+      <div class="grid-3">
+        <!-- Hatırlatma 1: Öğretmenler Günü -->
+        <div class="card card-clickable" onclick="openModal('24 KASIM • ÖZEL KUTLAMA', '24 Kasım Öğretmenler Günü Kutlu Olsun', 'Demiryol Bilim ve Kültür Kulübü olarak, başta <strong>Nadir Kök</strong> hocam olmak üzere tüm Eskişehir Eğitim Merkezi hocalarımızın Öğretmenler Günü\'nü en içten dileklerimizle kutlar, mesleki birikimimize kattıkları değer için şükranlarımızı sunarız.', 'ogretmenlergunu.jpeg')">
+          <img src="ogretmenlergunu.jpeg" class="poster-img" alt="24 Kasım Öğretmenler Günü" onerror="this.onerror=null; this.src='resimler/ogretmenlergunu.jpeg';">
+          <div class="card-tag">24 KASIM • ÖZEL KUTLAMA</div>
+          <h3 class="card-title">Öğretmenler Günü Kutlu Olsun</h3>
+          <p class="card-text">Başta Nadir Kök hocam olmak üzere tüm Eskişehir Eğitim Merkezi hocalarımızın Öğretmenler Günü'nü kutlarız.</p>
+          <span class="card-more-link">Afişi Tam Boyut Gör ➔</span>
+        </div>
+
+        <!-- Hatırlatma 2: Fahreddin Paşa -->
+        <div class="card card-clickable" onclick="openModal('22 KASIM 1948 • RAHMET VE SAYGIYLA', 'Medine Müdafii Çöl Kaplanı Fahreddin Paşa', 'Hicaz Demiryolu raylarında yürüyen o irade; 2 yıl 7 ay boyunca Medine\'yi imkânsızlıklar içinde savunan \'Medine Müdafii\' Çöl Kaplanı Ömer Fahreddin (Türkkan) Paşa\'yı vefatının 78. yıl dönümünde rahmet ve saygıyla anıyoruz.<br><br><em>&ldquo;Bugün o raylara, o tekerlere dokunan her birimiz için bu duruş; yaptığımız işin ve bize bırakılan emanetin en büyük hatırlatıcısıdır. Ruhu şad olsun.&rdquo;</em>', 'Fahrettinpasa.jpg')">
+          <img src="Fahrettinpasa.jpg" class="poster-img" alt="Fahreddin Paşa" onerror="this.onerror=null; this.src='resimler/Fahrettinpasa.jpg';">
+          <div class="card-tag">22 KASIM 1948 • ANMA GÜNÜ</div>
+          <h3 class="card-title">Medine Müdafii Fahreddin Paşa</h3>
+          <p class="card-text">Hicaz Demiryolu ve Medine müdafaasının kahramanı Çöl Kaplanı Fahreddin Paşa'yı vefatının 78. yılında rahmetle anıyoruz.</p>
+          <span class="card-more-link">Afişi Tam Boyut Gör ➔</span>
+        </div>
+
+        <!-- Hatırlatma 3: Nuri Demirağ -->
+        <div class="card card-clickable" onclick="openModal('13 KASIM 1957 • RAHMETLE ANIYORUZ', 'Nuri Demirağ (1886 - 1957)', 'Cumhuriyet tarihimizin ilk demiryolu müteahhitlerinden, ülkemizin demiryolu ağının inşasında ve yerli havacılık sanayimizin kuruluşunda öncü rol üstlenen büyük devlet ve sanayi adamı <strong>Nuri Demirağ</strong>\'ı vefatının yıl dönümünde rahmet ve minnetle anıyoruz.', 'Nuridemirdag.jpeg')">
+          <img src="Nuridemirdag.jpeg" class="poster-img" alt="Nuri Demirağ" onerror="this.onerror=null; this.src='resimler/Nuridemirdag.jpeg';">
+          <div class="card-tag">13 KASIM 1957 • ANMA GÜNÜ</div>
+          <h3 class="card-title">Nuri Demirağ'ı Rahmetle Anıyoruz</h3>
+          <p class="card-text">Demiryolculuğun ve yerli havacılığın öncü isimlerinden Nuri Demirağ'ı saygı ve rahmetle anıyoruz.</p>
+          <span class="card-more-link">Afişi Tam Boyut Gör ➔</span>
+        </div>
+      </div>
     </div>
 
     <!-- TIKLANABİLİR BİLGİ KARTLARI BÖLÜMÜ -->
@@ -345,6 +394,7 @@
       <button class="modal-close" onclick="closeModal()">✖</button>
       <div id="modalTag" class="modal-tag">KATEGORİ</div>
       <h3 id="modalTitle" class="modal-title">Başlık</h3>
+      <img id="modalImg" class="modal-img" src="" alt="Görsel Önizleme">
       <div id="modalBody" class="modal-body">Açıklama metni...</div>
     </div>
   </div>
@@ -367,17 +417,17 @@
       <p class="section-desc">Atölye içi İSG farkındalığı, Ar-Ge atölyeleri, teknik geziler ve fuar katılımlarımız.</p>
     </div>
 
-    <h3 style="color:var(--logo-gold); font-size: 20px; margin-bottom: 18px; text-align:center;">📅 Gelecek ve Planlanan Etkinlikler</h3>
+    <h3 style="color:var(--logo-gold); font-size: 20px; margin-bottom: 18px; text-align:center;">📅 Etkinlikler ve Kilometre Taşları</h3>
     <div class="grid-2" style="margin-bottom: 35px;">
       
-      <div class="card card-clickable" style="border-left: 4px solid var(--logo-gold);" onclick="openModal('ULUSLARARASI FUAR • 24-26 MART 2027', 'Eurasia Rail Fuar Katılımı', '<strong>Konum:</strong> Uluslararası Fuar & Proje Stant Gösterimi<br><br><strong>Detaylar:</strong> Demiryol Bilim ve Kültür Kulübü bünyesinde geliştirilen yerli ve milli Ar-Ge projeleri (Vagon Takip ve Otomatik Apleti Tespit Sistemi, Manevra İkaz Sistemi vb.) demiryolu sektörüne ve uluslararası katılımcılara özel stant alanımızda tanıtılacaktır.<br><br><strong>Kapsam:</strong> Yerli inovasyon gösterimi, uluslararası sektor iş birlikleri ve teknoloji lansmanı.')">
+      <div class="card card-clickable" style="border-left: 4px solid var(--logo-gold);" onclick="openModal('ULUSLARARASI FUAR • 24-26 MART 2027', 'Eurasia Rail Fuar Katılımı', '<strong>Konum:</strong> Uluslararası Fuar & Proje Stant Gösterimi<br><br><strong>Detaylar:</strong> Demiryol Bilim ve Kültür Kulübü bünyesinde geliştirilen yerli ve milli Ar-Ge projeleri (Vagon Takip ve Otomatik Apleti Tespit Sistemi, Manevra İkaz Sistemi vb.) demiryolu sektörüne ve uluslararası katılımcılara özel stant alanımızda tanıtılacaktır.<br><br><strong>Kapsam:</strong> Yerli inovasyon gösterimi, uluslararası sektör iş birlikleri ve teknoloji lansmanı.')">
         <div class="card-tag">ULUSLARARASI FUAR • 24-26 MART 2027</div>
         <h3 class="card-title">Eurasia Rail Fuar Katılımı</h3>
         <p class="card-text">Yerli ve milli Ar-Ge projelerimizin demiryolu sektörüne ve uluslararası katılımcılara stant gösterimi ile tanıtımı yapılacaktır.</p>
         <span class="card-more-link">Etkinlik Detayları ➔</span>
       </div>
 
-      <!-- Resim Kaldırılan Kart (Sadece Metin) -->
+      <!-- Resimsiz Kart: Eğitim Odasının İlk Düşünüldüğü Gün -->
       <div class="card card-clickable" onclick="openModal('TARİHİ NOT • 23 MAYIS 2023', 'Eğitim Odasının İlk Düşünüldüğü Gün', '<strong>Kapsam:</strong> Atölye Altyapısı ve Eğitim Gelişimi<br><br><strong>Detaylar:</strong> Gebze Vagon Bakım Onarım Atölye Müdürlüğü bünyesinde personelin eğitim faaliyetlerini sürdürebileceği, teknik toplantıların ve Ar-Ge çalışmalarının planlanacağı özel eğitim odasının fikir aşamasının oluşturulduğu ve ilk adımların atıldığı tarihi gündür.')">
         <div class="card-tag">TARİHİ NOT • 23 MAYIS 2023</div>
         <h3 class="card-title">Eğitim Odasının İlk Düşünüldüğü Gün</h3>
@@ -408,15 +458,22 @@
 
     </div>
 
+    <h3 style="color:var(--logo-gold); font-size: 18px; margin-bottom: 14px; text-align:center;">🚆 Sektörel Fuar ve Teknoloji Ziyaretlerimiz</h3>
+    <div class="gallery-grid" style="margin-bottom: 35px;">
+      <img src="Fuar.jpg" class="gallery-img" alt="Fuar Ziyareti 1" onclick="openModal('FUAR ZİYARETİ', 'TCDD Taşımacılık Standı Ziyareti', 'Demiryol Bilim ve Kültür Kulübü ekibimizin sektörel lojistik ve demiryolu teknolojileri fuar ziyareti.', 'Fuar.jpg')" onerror="this.onerror=null; this.src='resimler/Fuar.jpg';">
+      <img src="Fuar2.jpg" class="gallery-img" alt="Fuar Ziyareti 2" onclick="openModal('FUAR ZİYARETİ', 'Ticaretin Demir Yolu Platformu', 'Kulüp ekibimizin fuar alanındaki incelemeleri ve teknik temasları.', 'Fuar2.jpg')" onerror="this.onerror=null; this.src='resimler/Fuar2.jpg';">
+      <img src="fuarrobot.jpg" class="gallery-img" alt="Fuar Ziyareti 3" onclick="openModal('TEKNOLOJİ İNCELEMESİ', 'Akıllı Otomasyon ve Robotik Sistemler', 'Fuar kapsamında sergilenen yapay zekâ ve otonom robotik teknolojilerin incelenmesi.', 'fuarrobot.jpg')" onerror="this.onerror=null; this.src='resimler/fuarrobot.jpg';">
+    </div>
+
     <h3 style="color:var(--text-main); font-size: 18px; margin-bottom: 14px; text-align:center;">📸 İSG Farkındalık Toplantısı Görselleri</h3>
     <div class="gallery-grid">
-      <img src="isg 2026.jpg" class="gallery-img" alt="İSG 1" onerror="this.onerror=null; this.src='resimler/isg 2026.jpg';">
-      <img src="isg 2026 2.jpg" class="gallery-img" alt="İSG 2" onerror="this.onerror=null; this.src='resimler/isg 2026 2.jpg';">
-      <img src="isg 2026 3.jpg" class="gallery-img" alt="İSG 3" onerror="this.onerror=null; this.src='resimler/isg 2026 3.jpg';">
+      <img src="isg 2026.jpg" class="gallery-img" alt="İSG 1" onclick="openModal('İSG FARKINDALIK TOPLANTISI', '3. Geleneksel İSG Farkındalık Toplantısı', 'Gebze Vagon Bakım Onarım Atölye Müdürlüğü İSG Farkındalık Toplantısı karesi.', 'isg 2026.jpg')" onerror="this.onerror=null; this.src='resimler/isg 2026.jpg';">
+      <img src="isg 2026 2.jpg" class="gallery-img" alt="İSG 2" onclick="openModal('İSG FARKINDALIK TOPLANTISI', '3. Geleneksel İSG Farkındalık Toplantısı', 'Atölye personeli ve kulüp üyelerimizin katılımıyla gerçekleşen oturumlar.', 'isg 2026 2.jpg')" onerror="this.onerror=null; this.src='resimler/isg 2026 2.jpg';">
+      <img src="isg 2026 3.jpg" class="gallery-img" alt="İSG 3" onclick="openModal('İSG FARKINDALIK TOPLANTISI', '3. Geleneksel İSG Farkındalık Toplantısı', 'İSG 10 Altın Kural ve saha emniyeti sunumları.', 'isg 2026 3.jpg')" onerror="this.onerror=null; this.src='resimler/isg 2026 3.jpg';">
     </div>
   </div>
 
-  <!-- SAYFA 4: AR-GE (GÜNCELLENEN 4 PROJENİZ) -->
+  <!-- SAYFA 4: AR-GE -->
   <div id="arge" class="page">
     <div class="section-head">
       <h2 class="section-title">Teknik Projelerimiz & Ar-Ge Vizyonu</h2>
@@ -425,7 +482,7 @@
     <div class="grid-2">
       
       <!-- PROJE 1 -->
-      <div class="card card-clickable" onclick="openModal('PROJE 1 • AKILLI TANIMA', 'Demiryolu Araç Kimliği Tanıma Sistemi', 'Demiryolu araçlarının kimlik bilgilerinin hızlı ve otomatik olarak tespit edilmesi amacıyla Görüntü İşleme Tabanlı Araç Kimliği Tanıma Sistemi geliştirilmiştir.<br><br>Kamera görüntüleri üzerinden yapay zekâ destekli görüntü işleme teknolojileri kullanılarak araç numaraları otomatik olarak okunmakta ve kayıt altına alınmaktadır.')">
+      <div class="card card-clickable" onclick="openModal('PROJE 1 • AKILLI TANIMA', 'Demiryolu Araç Kimliği Tanıma Sistemi', 'Demiryolu araçlarının kimlik bilgilerinin hızlı ve otomatik olarak tespit edilmesi amacıyla Görüntü İşleme Tabanlı Araç Kimliği Tanıma Sistemi geliştirilmiştir.<br><br>Kamera görüntüleri üzerinden yapay zekâ destekli görüntü işleme teknolojileri kullanılarak araç numaraları otomatik olarak okunmakta ve kayıt altına alınmaktadır.', 'proje.jpg')">
         <img src="proje.jpg" class="card-img" alt="Proje 1" onerror="this.onerror=null; this.src='resimler/proje.jpg';">
         <div class="card-tag">PROJE 1 • AKILLI TANIMA</div>
         <h3 class="card-title">Demiryolu Araç Kimliği Tanıma Sistemi</h3>
@@ -434,7 +491,7 @@
       </div>
 
       <!-- PROJE 2 -->
-      <div class="card card-clickable" onclick="openModal('PROJE 2 • KESTİRİMCİ BAKIM', 'Apleti Tespit Sistemi', 'Demiryolu araçlarında tekerlek apleti oluşumunun erken tespit edilmesi ve bakım süreçlerinin desteklenmesi amacıyla Piezo Sensör Tabanlı Aplet Tespit Sistemi geliştirilmiştir.<br><br>Ray üzerine yerleştirilen sensörler aracılığıyla tekerlek geçişlerinden oluşan titreşimler analiz edilerek olası apleti ve tekerlek yüzey bozuklukları tespit edilmektedir.')">
+      <div class="card card-clickable" onclick="openModal('PROJE 2 • KESTİRİMCİ BAKIM', 'Apleti Tespit Sistemi', 'Demiryolu araçlarında tekerlek apleti oluşumunun erken tespit edilmesi ve bakım süreçlerinin desteklenmesi amacıyla Piezo Sensör Tabanlı Aplet Tespit Sistemi geliştirilmiştir.<br><br>Ray üzerine yerleştirilen sensörler aracılığıyla tekerlek geçişlerinden oluşan titreşimler analiz edilerek olası apleti ve tekerlek yüzey bozuklukları tespit edilmektedir.', 'proje 2.jpg')">
         <img src="proje 2.jpg" class="card-img" alt="Proje 2" onerror="this.onerror=null; this.src='resimler/proje 2.jpg';">
         <div class="card-tag">PROJE 2 • KESTİRİMCİ BAKIM</div>
         <h3 class="card-title">Apleti Tespit Sistemi</h3>
@@ -443,7 +500,7 @@
       </div>
 
       <!-- PROJE 3 -->
-      <div class="card card-clickable" onclick="openModal('PROJE 3 • SAHA EMNİYETİ', 'Manevra İkaz Sistemi', 'Atölye ve sahalarımızda gerçekleştirilen manevra operasyonları sırasında iş güvenliğini artırmak ve personeli manevra faaliyeti hakkında bilgilendirmek amacıyla Manevra İkaz Sistemi kurulmuştur.<br><br>Uzaktan kumanda ile devreye alınan sistem, manevra faaliyetleri sırasında personelin sesli olarak uyarılmasını sağlayarak güvenli çalışma koşullarının desteklenmesine katkı sunmaktadır.')">
+      <div class="card card-clickable" onclick="openModal('PROJE 3 • SAHA EMNİYETİ', 'Manevra İkaz Sistemi', 'Atölye ve sahalarımızda gerçekleştirilen manevra operasyonları sırasında iş güvenliğini artırmak ve personeli manevra faaliyeti hakkında bilgilendirmek amacıyla Manevra İkaz Sistemi kurulmuştur.<br><br>Uzaktan kumanda ile devreye alınan sistem, manevra faaliyetleri sırasında personelin sesli olarak uyarılmasını sağlayarak güvenli çalışma koşullarının desteklenmesine katkı sunmaktadır.', 'proje 3.jpg')">
         <img src="proje 3.jpg" class="card-img" alt="Proje 3" onerror="this.onerror=null; this.src='resimler/proje 3.jpg';">
         <div class="card-tag">PROJE 3 • SAHA EMNİYETİ</div>
         <h3 class="card-title">Manevra İkaz Sistemi</h3>
@@ -452,7 +509,7 @@
       </div>
 
       <!-- PROJE 4 -->
-      <div class="card card-clickable" onclick="openModal('PROJE 4 • AKILLI ATÖLYE', 'Dijital Vagon Takip Sistemi', 'Atölyemizde yürütülen vagon bakım ve onarım süreçlerinin etkin şekilde takip edilmesi ve kayıt altına alınması amacıyla Dijital Vagon Takip Sistemi geliştirilmiştir.<br><br>Sistem ile vagonların giriş-çıkış tarihleri, bakım durumları, malzeme bekleme ve tamamlanma süreçleri dijital ortamda takip edilerek çalışmaların daha düzenli ve kontrollü yürütülmesi sağlanmaktadır.')">
+      <div class="card card-clickable" onclick="openModal('PROJE 4 • AKILLI ATÖLYE', 'Dijital Vagon Takip Sistemi', 'Atölyemizde yürütülen vagon bakım ve onarım süreçlerinin etkin şekilde takip edilmesi ve kayıt altına alınması amacıyla Dijital Vagon Takip Sistemi geliştirilmiştir.<br><br>Sistem ile vagonların giriş-çıkış tarihleri, bakım durumları, malzeme bekleme ve tamamlanma süreçleri dijital ortamda takip edilerek çalışmaların daha düzenli ve kontrollü yürütülmesi sağlanmaktadır.', '1.jpg')">
         <img src="1.jpg" class="card-img" alt="Proje 4" onerror="this.onerror=null; this.src='resimler/1.jpg';">
         <div class="card-tag">PROJE 4 • AKILLI ATÖLYE</div>
         <h3 class="card-title">Dijital Vagon Takip Sistemi</h3>
@@ -627,10 +684,27 @@
     }
 
     /* MODAL AÇMA / KAPATMA FONKSİYONLARI */
-    function openModal(tag, title, body) {
+    function openModal(tag, title, body, imgSrc = '') {
       document.getElementById('modalTag').innerText = tag;
       document.getElementById('modalTitle').innerText = title;
       document.getElementById('modalBody').innerHTML = body;
+      
+      const imgEl = document.getElementById('modalImg');
+      if (imgSrc) {
+        imgEl.src = imgSrc;
+        imgEl.onerror = function() {
+          if (this.src.indexOf('resimler/') === -1) {
+            this.src = 'resimler/' + imgSrc;
+          } else {
+            this.style.display = 'none';
+          }
+        };
+        imgEl.style.display = 'block';
+      } else {
+        imgEl.style.display = 'none';
+        imgEl.src = '';
+      }
+
       document.getElementById('infoModal').classList.add('active');
     }
 
@@ -648,7 +722,7 @@
       if(e.key === 'Escape') closeModal();
     });
 
-    /* DUYURULARI CANLI SITE-VERI.JSON DOSYASINDAN YÜKLEME (HERKES İÇİN ANLIK GÜNCEL) */
+    /* DUYURULARI CANLI SITE-VERI.JSON DOSYASINDAN YÜKLEME */
     async function duyurulariYukle() {
       const liste = document.getElementById('duyuruListesi');
       liste.innerHTML = '';
