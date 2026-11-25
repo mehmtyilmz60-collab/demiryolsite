@@ -74,14 +74,20 @@
     
     .logo-text { font-weight: 800; font-size: 20px; color: var(--text-main); letter-spacing: -0.3px; }
 
-    .nav-links { display: flex; gap: 8px; }
-    .nav-links button {
+    .nav-links { display: flex; gap: 6px; }
+    .nav-links button, .nav-links a.nav-btn-link {
       background: none; border: none; color: var(--text-muted); font-size: 14px;
-      font-weight: 500; cursor: pointer; padding: 9px 16px; border-radius: 10px;
-      transition: all 0.2s ease; font-family: 'Inter', sans-serif;
+      font-weight: 500; cursor: pointer; padding: 9px 14px; border-radius: 10px;
+      transition: all 0.2s ease; font-family: 'Inter', sans-serif; text-decoration: none; display: inline-flex; align-items: center;
     }
-    .nav-links button:hover, .nav-links button.active {
+    .nav-links button:hover, .nav-links button.active, .nav-links a.nav-btn-link:hover, .nav-links a.nav-btn-link.active {
       color: var(--logo-gold); background: rgba(212, 175, 55, 0.12); font-weight: 600;
+    }
+    .nav-links a.fren-evi-nav {
+      color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.08);
+    }
+    .nav-links a.fren-evi-nav:hover {
+      background: rgba(239, 68, 68, 0.2); color: #f87171;
     }
 
     /* Mobil Alt Menü Barı */
@@ -89,15 +95,16 @@
       display: none; position: fixed; bottom: 0; left: 0; right: 0; height: 65px;
       background: rgba(11, 25, 44, 0.96); backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px); border-top: 1px solid var(--card-border); z-index: 10000;
-      justify-content: space-around; align-items: center; padding: 0 5px;
+      justify-content: space-around; align-items: center; padding: 0 2px;
     }
-    .mobile-bottom-nav button {
-      background: none; border: none; color: #64748b; font-size: 10px;
-      display: flex; flex-direction: column; align-items: center; gap: 3px;
-      font-weight: 500; cursor: pointer; width: 16%; font-family: 'Inter', sans-serif;
+    .mobile-bottom-nav button, .mobile-bottom-nav a {
+      background: none; border: none; color: #64748b; font-size: 9.5px;
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      font-weight: 500; cursor: pointer; width: 14.5%; font-family: 'Inter', sans-serif; text-decoration: none;
     }
-    .mobile-bottom-nav button span.icon { font-size: 16px; }
-    .mobile-bottom-nav button.active { color: var(--logo-gold); font-weight: 600; }
+    .mobile-bottom-nav span.icon { font-size: 15px; }
+    .mobile-bottom-nav button.active, .mobile-bottom-nav a.active { color: var(--logo-gold); font-weight: 600; }
+    .mobile-bottom-nav a.fren-evi-mobile { color: #ef4444; }
 
     @media (max-width: 768px) {
       .nav-links { display: none; }
@@ -135,6 +142,14 @@
       box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); transition: all 0.2s ease; font-family: 'Inter', sans-serif;
     }
     .btn-glow:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(245, 158, 11, 0.45); }
+    
+    .btn-fren-hero {
+      background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; padding: 13px 28px; border-radius: 10px;
+      text-decoration: none; font-weight: 700; font-size: 14px; cursor: pointer; border: none;
+      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.35); transition: all 0.2s ease; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-fren-hero:hover { transform: translateY(-1px); background: #b91c1c; box-shadow: 0 6px 20px rgba(239, 68, 68, 0.5); }
+
     .btn-outline {
       background: rgba(255, 255, 255, 0.04); color: var(--text-main); padding: 13px 28px; border-radius: 10px;
       text-decoration: none; font-weight: 600; font-size: 14px; border: 1px solid rgba(255, 255, 255, 0.15); cursor: pointer;
@@ -254,6 +269,7 @@
     </a>
     <div class="nav-links">
       <button class="active" onclick="showPage('home')">Ana Sayfa</button>
+      <a href="fren-evi.html" class="nav-btn-link fren-evi-nav">🛑 Fren Evi</a>
       <button onclick="showPage('duyurular')">Duyurular</button>
       <button onclick="showPage('etkinlikler')">Etkinlikler</button>
       <button onclick="showPage('arge')">Projeler & Ar-Ge</button>
@@ -271,6 +287,7 @@
         TCDD Taşımacılık A.Ş. Gebze Vagon Bakım Onarım Atölye Müdürlüğü bünyesinde doğan; demiryolu mekaniği, emniyet sistemleri ve saha tecrübesini bilimsel yaklaşımlarla harmanlayan kurumsal platform.
       </p>
       <div class="btn-group">
+        <a href="fren-evi.html" class="btn-fren-hero">🛑 Fren Evi Paneli</a>
         <button class="btn-glow" onclick="showPage('arge')">Ar-Ge Projelerimiz</button>
         <button class="btn-outline" onclick="showPage('duyurular')">Güncel Duyurular</button>
       </div>
@@ -459,7 +476,7 @@
     </div>
   </div>
 
-  <!-- SAYFA 4: AR-GE (4 PROJE EKSİKSİZ VE KENDİ RESİMLERİYLE) -->
+  <!-- SAYFA 4: AR-GE -->
   <div id="arge" class="page">
     <div class="section-head">
       <h2 class="section-title">Teknik Projelerimiz & Ar-Ge Vizyonu</h2>
@@ -467,7 +484,6 @@
     </div>
     <div class="grid-2">
       
-      <!-- PROJE 1 -->
       <div class="card card-clickable" onclick="openModal('PROJE 1 • AKILLI TANIMA', 'Demiryolu Araç Kimliği Tanıma Sistemi', 'Demiryolu araçlarının kimlik bilgilerinin hızlı ve otomatik olarak tespit edilmesi amacıyla Görüntü İşleme Tabanlı Araç Kimliği Tanıma Sistemi geliştirilmiştir.<br><br>Kamera görüntüleri üzerinden yapay zekâ destekli görüntü işleme teknolojileri kullanılarak araç numaraları otomatik olarak okunmakta ve kayıt altına alınmaktadır.', 'proje.jpg')">
         <img src="proje.jpg" class="card-img" alt="Proje 1" onerror="this.onerror=null; this.src='resimler/proje.jpg';">
         <div class="card-tag">PROJE 1 • AKILLI TANIMA</div>
@@ -476,7 +492,6 @@
         <span class="card-more-link">Proje Detaylarını İncele ➔</span>
       </div>
 
-      <!-- PROJE 2 -->
       <div class="card card-clickable" onclick="openModal('PROJE 2 • KESTİRİMCİ BAKIM', 'Apleti Tespit Sistemi', 'Demiryolu araçlarında tekerlek apleti oluşumunun erken tespit edilmesi ve bakım süreçlerinin desteklenmesi amacıyla Piezo Sensör Tabanlı Aplet Tespit Sistemi geliştirilmiştir.<br><br>Ray üzerine yerleştirilen sensörler aracılığıyla tekerlek geçişlerinden oluşan titreşimler analiz edilerek olası apleti ve tekerlek yüzey bozuklukları tespit edilmektedir.', 'proje 2.jpg')">
         <img src="proje 2.jpg" class="card-img" alt="Proje 2" onerror="this.onerror=null; this.src='resimler/proje 2.jpg';">
         <div class="card-tag">PROJE 2 • KESTİRİMCİ BAKIM</div>
@@ -485,7 +500,6 @@
         <span class="card-more-link">Proje Detaylarını İncele ➔</span>
       </div>
 
-      <!-- PROJE 3 -->
       <div class="card card-clickable" onclick="openModal('PROJE 3 • SAHA EMNİYETİ', 'Manevra İkaz Sistemi', 'Atölye ve sahalarımızda gerçekleştirilen manevra operasyonları sırasında iş güvenliğini artırmak ve personeli manevra faaliyeti hakkında bilgilendirmek amacıyla Manevra İkaz Sistemi kurulmuştur.<br><br>Uzaktan kumanda ile devreye alınan sistem, manevra faaliyetleri sırasında personelin sesli olarak uyarılmasını sağlayarak güvenli çalışma koşullarının desteklenmesine katkı sunmaktadır.', 'proje 3.jpg')">
         <img src="proje 3.jpg" class="card-img" alt="Proje 3" onerror="this.onerror=null; this.src='resimler/proje 3.jpg';">
         <div class="card-tag">PROJE 3 • SAHA EMNİYETİ</div>
@@ -494,7 +508,6 @@
         <span class="card-more-link">Proje Detaylarını İncele ➔</span>
       </div>
 
-      <!-- PROJE 4 -->
       <div class="card card-clickable" onclick="openModal('PROJE 4 • AKILLI ATÖLYE', 'Dijital Vagon Takip Sistemi', 'Atölyemizde yürütülen vagon bakım ve onarım süreçlerinin etkin şekilde takip edilmesi ve kayıt altına alınması amacıyla Dijital Vagon Takip Sistemi geliştirilmiştir.<br><br>Sistem ile vagonların giriş-çıkış tarihleri, bakım durumları, malzeme bekleme ve tamamlanma süreçleri dijital ortamda takip edilerek çalışmaların daha düzenli ve kontrollü yürütülmesi sağlanmaktadır.', '1.jpg')">
         <img src="1.jpg" class="card-img" alt="Proje 4" onerror="this.onerror=null; this.src='resimler/1.jpg';">
         <div class="card-tag">PROJE 4 • AKILLI ATÖLYE</div>
@@ -524,7 +537,6 @@
       </p>
     </div>
 
-    <!-- ONURSAL BAŞKANIMIZ ÖZEL KARTI -->
     <div class="card card-clickable" style="text-align: center; border: 2px solid var(--logo-gold); margin-bottom: 28px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(15, 23, 42, 0.9));" onclick="openModal('ONURSAL BAŞKANIMIZ', 'Hüseyin Kaya', 'Demiryol Bilim ve Kültür Kulübü Onursal Başkanımız Sayın Hüseyin Kaya, kulübümüzün kuruluş vizyonuna, gelişimine ve demiryolu kültürünün gelecek nesillere aktarılmasına öncülük eden kıymetli büyüğümüzdür.<br><br>Saha tecrübesi, kurumsal rehberliği ve liderliğiyle kulübümüzün tüm çalışmalarına ilham vermektedir.', 'hüseyinkaya.jpeg')">
       <img src="hüseyinkaya.jpeg" class="profile-card-img" alt="Hüseyin Kaya" onerror="tryNextImg(this, ['huseyinkaya.jpeg', 'hüseyinkaya.jpg', 'resimler/hüseyinkaya.jpeg'])">
       <div class="card-tag">⭐ ONURSAL BAŞKANIMIZ</div>
@@ -533,7 +545,6 @@
       <span class="card-more-link" style="margin-top: 10px;">Detayları Görüntüle ➔</span>
     </div>
 
-    <!-- YÖNETİM VE KOORDİNASYON KADROSU -->
     <div class="grid-2" style="margin-bottom: 35px;">
       <div class="card" style="border-left: 4px solid var(--logo-gold);">
         <div class="card-tag">YÖNETİM & DANIŞMA</div>
@@ -660,6 +671,7 @@
   <!-- Mobil Alt Menü Barı -->
   <div class="mobile-bottom-nav">
     <button class="active" onclick="showPage('home')"><span class="icon">🏠</span> Ana Sayfa</button>
+    <a href="fren-evi.html" class="fren-evi-mobile"><span class="icon">🛑</span> Fren Evi</a>
     <button onclick="showPage('duyurular')"><span class="icon">📢</span> Duyuru</button>
     <button onclick="showPage('etkinlikler')"><span class="icon">📅</span> Etkinlik</button>
     <button onclick="showPage('arge')"><span class="icon">⚡</span> Ar-Ge</button>
@@ -698,10 +710,10 @@
         targetPage.classList.add('active');
       }
       
-      const desktopBtn = Array.from(document.querySelectorAll('.nav-links button')).find(btn => btn.getAttribute('onclick').includes(pageId));
+      const desktopBtn = Array.from(document.querySelectorAll('.nav-links button')).find(btn => btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(pageId));
       if(desktopBtn) desktopBtn.classList.add('active');
 
-      const mobileBtn = Array.from(document.querySelectorAll('.mobile-bottom-nav button')).find(btn => btn.getAttribute('onclick').includes(pageId));
+      const mobileBtn = Array.from(document.querySelectorAll('.mobile-bottom-nav button')).find(btn => btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(pageId));
       if(mobileBtn) mobileBtn.classList.add('active');
 
       window.scrollTo(0, 0);
