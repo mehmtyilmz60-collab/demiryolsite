@@ -87,12 +87,6 @@
     .nav-links button:hover, .nav-links button.active {
       color: var(--logo-gold); background: rgba(212, 175, 55, 0.12); font-weight: 600;
     }
-    .nav-links button.fren-evi-tab {
-      color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.08);
-    }
-    .nav-links button.fren-evi-tab:hover, .nav-links button.fren-evi-tab.active {
-      background: rgba(239, 68, 68, 0.2); color: #f87171;
-    }
 
     /* Mobil Alt Menü Barı */
     .mobile-bottom-nav {
@@ -104,11 +98,10 @@
     .mobile-bottom-nav button {
       background: none; border: none; color: #64748b; font-size: 9.5px;
       display: flex; flex-direction: column; align-items: center; gap: 2px;
-      font-weight: 500; cursor: pointer; width: 14.5%; font-family: 'Inter', sans-serif;
+      font-weight: 500; cursor: pointer; width: 16.5%; font-family: 'Inter', sans-serif;
     }
     .mobile-bottom-nav button span.icon { font-size: 15px; }
     .mobile-bottom-nav button.active { color: var(--logo-gold); font-weight: 600; }
-    .mobile-bottom-nav button.fren-evi-mobi { color: #ef4444; }
 
     @media (max-width: 768px) {
       .nav-links { display: none; }
@@ -146,12 +139,6 @@
       box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); transition: all 0.2s ease; font-family: 'Inter', sans-serif;
     }
     .btn-glow:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(245, 158, 11, 0.45); }
-    .btn-fren-hero {
-      background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; padding: 13px 28px; border-radius: 10px;
-      font-weight: 700; font-size: 14px; cursor: pointer; border: none; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.35);
-      display: inline-flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; transition: all 0.2s ease;
-    }
-    .btn-fren-hero:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(239, 68, 68, 0.45); }
     .btn-outline {
       background: rgba(255, 255, 255, 0.04); color: var(--text-main); padding: 13px 28px; border-radius: 10px;
       text-decoration: none; font-weight: 600; font-size: 14px; border: 1px solid rgba(255, 255, 255, 0.15); cursor: pointer;
@@ -202,77 +189,6 @@
     .card-img { width: 100%; height: 185px; object-fit: cover; border-radius: 10px; margin-bottom: 14px; border: 1px solid rgba(255,255,255,0.08); background-color: #1a2230; }
     .profile-card-img { width: 130px; height: 130px; object-fit: cover; border-radius: 50%; margin: 0 auto 14px; border: 3px solid var(--logo-gold); background-color: #1a2230; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2); }
     .card-more-link { display: inline-block; margin-top: auto; padding-top: 12px; color: var(--logo-gold); font-size: 13px; font-weight: 700; text-decoration: none; }
-
-    /* FREN EVİ KONTROL PANELİ (TEK SAYFA İÇİ MODÜL) STİLLERİ */
-    .fren-cockpit-wrap {
-      background: #0e131f; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 16px; padding: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-family: 'Inter', sans-serif;
-    }
-    .cockpit-header {
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
-      margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(56, 189, 248, 0.2);
-    }
-    .manometer-widget {
-      display: flex; align-items: center; gap: 0.75rem; background: #07090e; border: 1px solid rgba(56, 189, 248, 0.3);
-      padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; font-weight: 500;
-    }
-    .status-dot {
-      width: 10px; height: 10px; background-color: var(--accent-green); border-radius: 50%;
-      box-shadow: 0 0 8px var(--accent-green); animation: pulse 2s infinite;
-    }
-    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
-    
-    .fren-tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; margin-bottom: 2rem; }
-    .fren-tab-btn {
-      background: #141b2d; border: 1px solid rgba(56, 189, 248, 0.2); color: var(--text-muted);
-      padding: 0.85rem 1rem; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer;
-      display: flex; justify-content: space-between; align-items: center; transition: all 0.2s; font-family: 'Inter', sans-serif;
-    }
-    .fren-tab-btn:hover { border-color: var(--accent-blue); color: #fff; }
-    .fren-tab-btn.active { background: rgba(239, 68, 68, 0.15); border-color: var(--accent-red); color: #fff; box-shadow: 0 0 12px rgba(239, 68, 68, 0.25); }
-
-    .fren-panel { display: none; }
-    .fren-panel.active { display: block; animation: fadeIn 0.3s ease; }
-    
-    .diag-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-    .diag-box { background: #141b2d; border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 8px; padding: 1.5rem; }
-    .diag-box h3 { color: var(--accent-blue); font-size: 1.05rem; font-weight: 700; margin-bottom: 1rem; }
-    .symptom-box { background: rgba(239, 68, 68, 0.08); border-left: 3px solid var(--accent-red); padding: 0.75rem; border-radius: 0 6px 6px 0; font-size: 0.88rem; margin-bottom: 1.25rem; color: #fca5a5; }
-    .action-list { list-style: none; color: var(--text-muted); font-size: 0.9rem; }
-    .action-list li { position: relative; padding-left: 1.5rem; margin-bottom: 0.75rem; }
-    .action-list li::before { content: "▶"; position: absolute; left: 0; color: var(--accent-blue); font-size: 0.7rem; top: 2px; }
-    .action-list strong { color: #fff; font-weight: 600; }
-
-    .glossary-search { width: 100%; background: #141b2d; border: 1px solid rgba(56, 189, 248, 0.2); padding: 0.8rem; border-radius: 6px; color: #fff; font-size: 0.9rem; margin-bottom: 1.25rem; outline: none; font-family: 'Inter', sans-serif; }
-    .glossary-search:focus { border-color: var(--accent-blue); }
-    .glossary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
-    .term-card-f { background: #141b2d; border: 1px solid rgba(56, 189, 248, 0.2); padding: 1.2rem; border-radius: 8px; }
-    .term-card-f h4 { color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; display: flex; justify-content: space-between; align-items: center; }
-    .term-card-f span { font-size: 0.7rem; background: rgba(56, 189, 248, 0.12); color: var(--accent-blue); padding: 0.1rem 0.4rem; border-radius: 3px; font-weight: 600; }
-    .term-card-f p { font-size: 0.85rem; color: var(--text-muted); }
-
-    .sim-grid-f { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
-    .sim-box-f { background: #141b2d; border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 8px; padding: 1.5rem; }
-    .sim-box-f h3 { font-size: 1rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; }
-    .gauge-group { margin-bottom: 1rem; }
-    .gauge-label { display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 500; margin-bottom: 0.3rem; }
-    .p-track { width: 100%; height: 12px; background: #07090e; border-radius: 6px; overflow: hidden; border: 1px solid rgba(56, 189, 248, 0.2); }
-    .p-fill { height: 100%; transition: width 0.4s ease, background-color 0.3s; }
-    .sim-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-top: 1rem; }
-    .s-btn { font-size: 0.78rem; font-weight: 600; padding: 0.6rem; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.3); background: #07090e; color: #fff; cursor: pointer; transition: 0.2s; font-family: 'Inter', sans-serif; }
-    .s-btn:hover { border-color: var(--accent-blue); background: rgba(56, 189, 248, 0.1); }
-    .s-btn.danger:hover { border-color: var(--accent-red); background: rgba(239, 68, 68, 0.15); }
-    .s-log { margin-top: 1rem; background: #07090e; border: 1px solid rgba(56, 189, 248, 0.2); padding: 0.75rem; border-radius: 6px; font-size: 0.8rem; font-weight: 500; color: var(--accent-green); min-height: 48px; }
-
-    .calc-row-f { margin-bottom: 0.85rem; }
-    .calc-row-f label { display: block; font-size: 0.8rem; font-weight: 500; color: var(--text-muted); margin-bottom: 0.3rem; }
-    .calc-inp { width: 100%; background: #07090e; border: 1px solid rgba(56, 189, 248, 0.2); color: #fff; padding: 0.6rem; border-radius: 6px; font-size: 0.88rem; outline: none; font-family: 'Inter', sans-serif; }
-    .calc-inp:focus { border-color: var(--accent-blue); }
-    .c-btn { width: 100%; background: var(--accent-blue); color: #07090e; font-weight: 700; font-size: 0.85rem; padding: 0.7rem; border: none; border-radius: 6px; cursor: pointer; margin-top: 0.4rem; transition: 0.2s; font-family: 'Inter', sans-serif; }
-    .c-btn:hover { opacity: 0.9; }
-    .c-res { margin-top: 1rem; background: #07090e; border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 6px; padding: 0.85rem; display: flex; justify-content: space-between; align-items: center; }
-    .c-res span { font-size: 0.8rem; color: var(--text-muted); }
-    .c-res strong { font-size: 1.25rem; font-weight: 700; color: var(--accent-green); }
 
     /* Modal Structure */
     .modal-overlay {
@@ -342,7 +258,6 @@
     </a>
     <div class="nav-links">
       <button class="active" onclick="showPage('home')">Ana Sayfa</button>
-      <button onclick="showPage('frenEvi')" class="fren-evi-tab">Fren Evi</button>
       <button onclick="showPage('duyurular')">Duyurular</button>
       <button onclick="showPage('etkinlikler')">Etkinlikler</button>
       <button onclick="showPage('arge')">Projeler & Ar-Ge</button>
@@ -360,7 +275,6 @@
         TCDD Taşımacılık A.Ş. Gebze Vagon Bakım Onarım Atölye Müdürlüğü bünyesinde doğan; demiryolu mekaniği, emniyet sistemleri ve saha tecrübesini bilimsel yaklaşımlarla harmanlayan kurumsal platform.
       </p>
       <div class="btn-group">
-        <button class="btn-fren-hero" onclick="showPage('frenEvi')">Fren Evi Kontrol Paneli</button>
         <button class="btn-glow" onclick="showPage('arge')">Ar-Ge Projelerimiz</button>
         <button class="btn-outline" onclick="showPage('duyurular')">Güncel Duyurular</button>
       </div>
@@ -424,7 +338,7 @@
         <div class="card card-clickable" onclick="openModal('🇯🇵 JAPONYA • SHINKANSEN', '60 Yıldır Sıfır Ölümlü Kaza Rekoru', '1964 yılında kullanıma açılan Japon Shinkansen (Mermi Tren) yüksek hızlı tren ağında, 60 yılı aşkın süredir saatte 320 km/s hıza rağmen tek bir ölümlü tren kazası dahi yaşanmamıştır.<br><br>Erken uyarı deprem sensörleri, tam otomatik hat denetimi ve yüksek bakım standartları sayesinde Shinkansen ağının tüm hatlarındaki yıllık ortalama gecikme süresi sadece 12 saniyedir.')">
           <div class="card-tag">🇯🇵 JAPONYA • SHINKANSEN</div>
           <h3 class="card-title">60 Yıldır Ölümlü Kaza Yok</h3>
-          <p class="card-text">Saatte 320 km hıza rağmen Shinkansen ağında 60 yıldır tek bir ölümlü kaza yaşanmamıştır. Yıllık ortalama gecikme ise 12 saniyedir.</p>
+          <p class="card-text">Saatte 320 km hıza rağmen Shinkansen ağında 60 yıldır tek bir ölümlü kaza yaşanmamıştır. Yıllık ortalama gecikse ise 12 saniyedir.</p>
           <span class="card-more-link">Detayları Oku ➔</span>
         </div>
 
@@ -466,172 +380,6 @@
           <h3 class="card-title">8 Saat Dilimini Geçen Hat</h3>
           <p class="card-text">Moskova-Vladivostok arası 9.289 km uzunluğuyla 8 farklı saat dilimini kesen devasa güzergah.</p>
           <span class="card-more-link">Detayları Oku ➔</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- FREN EVİ KONTROL PANELİ (TEK SAYFA İÇİ MODÜL) -->
-  <div id="frenEvi" class="page">
-    <div class="section-head">
-      <h2 class="section-title">Fren Evi Dijital Kontrol Paneli</h2>
-      <p class="section-desc">Bilimin Raylarında, Saha Tecrübesinin Ocağında • Gebze Fren Sistemleri Birimi</p>
-    </div>
-
-    <div class="fren-cockpit-wrap">
-      <div class="cockpit-header">
-        <div style="font-weight:700; font-size:1.05rem; color:#fff;">
-          GEBZE FREN KOKPİTİ // TEKNİK HAFIZA
-        </div>
-        <div class="manometer-widget">
-          <div class="status-dot" id="headerDot"></div>
-          <div>ANAHAT: <strong id="headerPressure" style="color:var(--accent-blue);">5.0 BAR</strong> (<span id="headerState">STABİL</span>)</div>
-        </div>
-      </div>
-
-      <!-- Sekme Butonları -->
-      <div class="fren-tabs">
-        <button class="fren-tab-btn active" onclick="switchFrenTab('frenAriza', this)">
-          <span>🔍 Arıza Teşhis Masası</span>
-          <span>[01]</span>
-        </button>
-        <button class="fren-tab-btn" onclick="switchFrenTab('frenSozluk', this)">
-          <span>📖 Saha Terimleri</span>
-          <span>[02]</span>
-        </button>
-        <button class="fren-tab-btn" onclick="switchFrenTab('frenBulten', this)">
-          <span>📄 Atölye Kırmızı Kitabı</span>
-          <span>[03]</span>
-        </button>
-        <button class="fren-tab-btn" onclick="switchFrenTab('frenSim', this)">
-          <span>⚡ Test &amp; Hesaplayıcı</span>
-          <span>[04]</span>
-        </button>
-      </div>
-
-      <!-- PANEL 1: ARIZA TEŞHİS -->
-      <div id="frenAriza" class="fren-panel active">
-        <div class="diag-grid">
-          <div class="diag-box">
-            <h3>1. Purjör Tutulması (Blokaj)</h3>
-            <div class="symptom-box">
-              <strong>⚠️ Saha Belirtisi:</strong> Pnömatik test sırasında purjör çıkışından su/hava tahliyesinin olmaması, silindir boşaltma gecikmesi.
-            </div>
-            <ul class="action-list">
-              <li><strong>Basınç Tahliyesi:</strong> İlgili hattın basıncı emniyetli şekilde sıfırlanır.</li>
-              <li><strong>Söküm:</strong> Purjör gövdesi sökülerek yay tansiyonu ve O-ringler kontrol edilir.</li>
-              <li><strong>Temizlik:</strong> Tiftiksiz bez ve onaylı solüsyon kullanılır <em>(Asla zımpara kullanılmaz)</em>.</li>
-              <li><strong>Conta Yenileme:</strong> Deforme olmuş contalar orijinal yenileriyle değiştirilir.</li>
-              <li><strong>Saha Testi:</strong> Hat 5 bar basınçlandırılarak manuel/otomatik tahliye test edilir.</li>
-            </ul>
-          </div>
-          <div class="diag-box">
-            <h3>2. Regülatör (Boşluk Kolu) Ayarsızlığı</h3>
-            <div class="symptom-box">
-              <strong>⚠️ Saha Belirtisi:</strong> Pabuç-tekerlek mesafesinin standart dışı olması, sefer sonrası tekerleklerde aşırı lokal ısınma.
-            </div>
-            <ul class="action-list">
-              <li><strong>Ölçüm:</strong> Pabuçlar serbestken kumpas/mastar ile çalışma boşluğu ölçülür.</li>
-              <li><strong>Temizlik:</strong> Cırcır dişlileri balata tozu ve kirden arındırılır.</li>
-              <li><strong>Kalibrasyon:</strong> Ayar cıvatasıyla milimetrik çalışma boşluğu ayarlanır.</li>
-              <li><strong>Emniyet:</strong> Bağlantı pimleri ve emniyet segmanları doğrulanır.</li>
-              <li><strong>Fonksiyon:</strong> Test tezgahında deneme frenlemesi yapılır.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- PANEL 2: SÖZLÜK -->
-      <div id="frenSozluk" class="fren-panel">
-        <input type="text" id="termSearch" class="glossary-search" placeholder="Terim ara (Örn: Akerman, Purjor, Regülatör...)" onkeyup="filterTerms()">
-        <div class="glossary-grid" id="glossaryGrid">
-          <div class="term-card-f" data-name="akerman">
-            <h4>Akerman <span>Ana Hat</span></h4>
-            <p>Vagona hava bağlanan musluktur. Vagonlar arası pnömatik ana boru hattını açıp kapatmaya yarar.</p>
-          </div>
-          <div class="term-card-f" data-name="menot">
-            <h4>Menot <span>Bağlantı</span></h4>
-            <p>Fren sisteminde veya hat üzerinde manevra, bakım ya da tahliye amacıyla kullanılan ara bağlantı elemanıdır.</p>
-          </div>
-          <div class="term-card-f" data-name="kaplin">
-            <h4>Kaplin <span>Hortum</span></h4>
-            <p>Vagonlar arasında basınçlı havanın kesintisiz iletilmesini sağlayan esnek fren hortumu başlığıdır.</p>
-          </div>
-          <div class="term-card-f" data-name="distribütör valf">
-            <h4>Distribütör Valf <span>Kontrol</span></h4>
-            <p>Ana borudaki basınç değişimlerine göre silindire hava dolumunu yöneten ana valftir (SAB WABCO / Knorr-Bremse).</p>
-          </div>
-          <div class="term-card-f" data-name="regülatör">
-            <h4>Regülatör <span>Ayar</span></h4>
-            <p>Pabuç aşındıkça tekerlek arasındaki çalışma boşluğunu otomatik sabitleyen mekanik ayar koludur.</p>
-          </div>
-          <div class="term-card-f" data-name="purjör">
-            <h4>Purjör <span>Tahliye</span></h4>
-            <p>Sistem içerisindeki aşırı basıncın, havanın veya yoğuşan suyun dışarı atılmasını sağlayan tahliye valfidir.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- PANEL 3: BÜLTEN -->
-      <div id="frenBulten" class="fren-panel">
-        <div style="background:#141b2d; border:1px solid rgba(56,189,248,0.2); padding:1.25rem; border-radius:8px; margin-bottom:1rem;">
-          <h3 style="color:#fff; font-size:1rem; font-weight:700; margin-bottom:0.4rem;">💧 Purjör Bakımı Püf Noktaları</h3>
-          <p style="font-size:0.88rem; color:var(--text-muted);">Özellikle mevsim geçişlerinde hava hatlarında biriken kondens suyu korozyona yol açar. Manuel tahliye aksatılmamalı; temizlikte tiftiksiz bez tercih edilerek oturma yüzeyleri asla aşındırılmamalıdır.</p>
-        </div>
-        <div style="background:#141b2d; border:1px solid rgba(56,189,248,0.2); padding:1.25rem; border-radius:8px;">
-          <h3 style="color:#fff; font-size:1rem; font-weight:700; margin-bottom:0.4rem;">⚙️ Regülatör Bakımı Püf Noktaları</h3>
-          <p style="font-size:0.88rem; color:var(--text-muted);">Cırcır dişlileri yoğun toz ve balata tozuna maruz kalır. Bakımda özel gres ile yağlanmalı, bağlantı pimleri ve burçlar aşınma yönünden incelenmelidir. Yanlış ayar tekerlek apleti riskini tetikler.</p>
-        </div>
-      </div>
-
-      <!-- PANEL 4: SİMÜLATÖR -->
-      <div id="frenSim" class="fren-panel">
-        <div class="sim-grid-f">
-          <div class="sim-box-f">
-            <h3>🎛️ Test Tezgahı <span>SAB / KNORR</span></h3>
-            <div class="gauge-group">
-              <div class="gauge-label">
-                <span>ANA BORU (HENDE)</span>
-                <strong id="mainPipeVal" style="color:var(--accent-blue);">5.0 BAR</strong>
-              </div>
-              <div class="p-track"><div id="mainPipeBar" class="p-fill" style="width:100%; background:var(--accent-blue);"></div></div>
-            </div>
-            <div class="gauge-group">
-              <div class="gauge-label">
-                <span>FREN SİLİNDİRİ</span>
-                <strong id="cylVal" style="color:var(--accent-green);">0.0 BAR</strong>
-              </div>
-              <div class="p-track"><div id="cylBar" class="p-fill" style="width:0%; background:var(--accent-green);"></div></div>
-            </div>
-            <div class="sim-btns">
-              <button class="s-btn" onclick="runBrakeSim('release')">🟢 5.0 BAR ÇÖZME</button>
-              <button class="s-btn" onclick="runBrakeSim('service')">🟡 SERVİS (3.8 BAR)</button>
-              <button class="s-btn danger" onclick="runBrakeSim('emergency')">🔴 İMDAT (0.0 BAR)</button>
-              <button class="s-btn" onclick="runBrakeSim('leak')">🔍 SIZDIRMAZLIK</button>
-            </div>
-            <div class="sim-log" id="simLog">[SİSTEM HAZIR] Ana boru 5.0 bar. Frenler çözük konumda.</div>
-          </div>
-
-          <div class="sim-box-f">
-            <h3>🧮 Fren Yüzdesi (λ) <span>UIC</span></h3>
-            <div class="calc-row-f">
-              <label>Vagon Darası (Ton)</label>
-              <input type="number" id="tareWeight" class="calc-inp" value="22" step="0.5">
-            </div>
-            <div class="calc-row-f">
-              <label>Yük Ağırlığı (Ton)</label>
-              <input type="number" id="cargoWeight" class="calc-inp" value="40" step="0.5">
-            </div>
-            <div class="calc-row-f">
-              <label>Fren Ağırlığı (Ton)</label>
-              <input type="number" id="brakeWeight" class="calc-inp" value="54" step="0.5">
-            </div>
-            <button class="c-btn" onclick="calculateBrakePercent()">HESAPLA</button>
-            <div class="c-res">
-              <div><span>TOPLAM: <strong id="totalWeightOut" style="color:#fff;">62.0 t</strong></span><br><span>FREN ORANI</span></div>
-              <strong id="brakePercentOut">%87.1</strong>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -916,8 +664,7 @@
   <!-- Mobil Alt Menü Barı -->
   <div class="mobile-bottom-nav">
     <button class="active" onclick="showPage('home')"><span class="icon">🏠</span> Ana Sayfa</button>
-    <button onclick="showPage('frenEvi')" class="fren-evi-mobi"><span class="icon">🔧</span> Fren Evi</button>
-    <button onclick="showPage('duyurular')"><span class="icon">📢</span> Duyuru</button>
+    <button onclick="showPage('duyurular')"><span class="icon">📢</span> Duyurular</button>
     <button onclick="showPage('etkinlikler')"><span class="icon">📅</span> Etkinlik</button>
     <button onclick="showPage('arge')"><span class="icon">⚡</span> Ar-Ge</button>
     <button onclick="showPage('hakkimizda')"><span class="icon">ℹ️</span> Kulüp</button>
@@ -964,68 +711,6 @@
       window.scrollTo(0, 0);
     }
 
-    function switchFrenTab(panelId, btn) {
-      document.querySelectorAll('.fren-panel').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.fren-tab-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById(panelId).classList.add('active');
-      btn.classList.add('active');
-    }
-
-    function filterTerms() {
-      let input = document.getElementById('termSearch').value.toLowerCase();
-      document.querySelectorAll('.term-card-f').forEach(card => {
-        let name = card.getAttribute('data-name');
-        card.style.display = name.includes(input) ? "block" : "none";
-      });
-    }
-
-    function runBrakeSim(mode) {
-      const mainVal = document.getElementById('mainPipeVal');
-      const mainBar = document.getElementById('mainPipeBar');
-      const cylVal = document.getElementById('cylVal');
-      const cylBar = document.getElementById('cylBar');
-      const simLog = document.getElementById('simLog');
-      const hPress = document.getElementById('headerPressure');
-      const hState = document.getElementById('headerState');
-      const hDot = document.getElementById('headerDot');
-
-      if (mode === 'release') {
-        mainVal.textContent = "5.0 BAR"; mainBar.style.width = "100%"; mainBar.style.background = "var(--accent-blue)";
-        cylVal.textContent = "0.0 BAR"; cylBar.style.width = "0%";
-        simLog.style.color = "var(--accent-green)";
-        simLog.textContent = "[ÇÖZME] Ana boru 5.0 bar. Fren silindiri tahliye edildi.";
-        hPress.textContent = "5.0 BAR"; hState.textContent = "STABİL"; hDot.style.background = "var(--accent-green)";
-      } else if (mode === 'service') {
-        mainVal.textContent = "3.8 BAR"; mainBar.style.width = "76%"; mainBar.style.background = "var(--accent-amber)";
-        cylVal.textContent = "2.9 BAR"; cylBar.style.width = "76%"; cylBar.style.background = "var(--accent-amber)";
-        simLog.style.color = "var(--accent-amber)";
-        simLog.textContent = "[SERVİS FRENİ] Ana hat düşürüldü, pabuçlar sıktı.";
-        hPress.textContent = "3.8 BAR"; hState.textContent = "FRENLEME"; hDot.style.background = "var(--accent-amber)";
-      } else if (mode === 'emergency') {
-        mainVal.textContent = "0.0 BAR"; mainBar.style.width = "0%";
-        cylVal.textContent = "3.8 BAR (MAX)"; cylBar.style.width = "100%"; cylBar.style.background = "var(--accent-red)";
-        simLog.style.color = "#fca5a5";
-        simLog.textContent = "[İMDAT FRENİ] Ana boru sıfırlandı, maksimum basınç uygulandı.";
-        hPress.textContent = "0.0 BAR"; hState.textContent = "İMDAT FRENİ"; hDot.style.background = "var(--accent-red)";
-      } else if (mode === 'leak') {
-        mainVal.textContent = "4.9 BAR"; mainBar.style.width = "98%"; mainBar.style.background = "var(--accent-blue)";
-        cylVal.textContent = "0.0 BAR"; cylBar.style.width = "0%";
-        simLog.style.color = "var(--accent-blue)";
-        simLog.textContent = "[SIZDIRMAZLIK] Test başarılı, basınç düşümü < 0.1 bar.";
-        hPress.textContent = "4.9 BAR"; hState.textContent = "TEST OK"; hDot.style.background = "var(--accent-blue)";
-      }
-    }
-
-    function calculateBrakePercent() {
-      const tare = parseFloat(document.getElementById('tareWeight').value) || 0;
-      const cargo = parseFloat(document.getElementById('cargoWeight').value) || 0;
-      const brake = parseFloat(document.getElementById('brakeWeight').value) || 0;
-      const total = tare + cargo;
-      const ratio = total > 0 ? (brake / total) * 100 : 0;
-      document.getElementById('totalWeightOut').textContent = total.toFixed(1) + " t";
-      document.getElementById('brakePercentOut').textContent = "%" + ratio.toFixed(1);
-    }
-
     function tryNextImg(imgEl, candidates) {
       let idx = parseInt(imgEl.getAttribute('data-try-idx') || '0', 10);
       if (idx < candidates.length) {
@@ -1041,8 +726,7 @@
       "Japon Shinkansen ağında 1964 yılından bu yana saatte 320 km hızla taşınan milyonlarca yolcuya rağmen tek bir ölümlü kaza yaşanmadığını biliyor muydunuz?",
       "Dünyanın en uzun tüneli olan İsviçre Gotthard Taban Tüneli, yer yüzeyinin 2.300 metre altında tam 57 kilometre uzunluğundadır.",
       "Japonya'da başlayan 5S metodolojisinin (Seiri, Seiton, Seiso, Seiketsu, Shitsuke) üretim sahalarındaki iş kazalarını %70'e varan oranlarda azaltan bir emniyet kültürü olduğunu biliyor muydunuz?",
-      "Heinrich Kaza Piramidi'ne göre: Meydana gelen her 1 ağır iş kazasının temelinde 29 hafif yaralanma ve 300 adet 'ramak kala' olayı yatar. Aksaklıkları bildirmek hayat kurtarır!",
-      "Vagon pnömatik fren sistemlerindeki distribütör valfler, tren boyunca fren sinyalini ses hızına yakın bir süratle (yaklaşık 250-280 m/sn) iletir."
+      "Heinrich Kaza Piramidi'ne göre: Meydana gelen her 1 ağır iş kazasının temelinde 29 hafif yaralanma ve 300 adet 'ramak kala' olayı yatar. Aksaklıkları bildirmek hayat kurtarır!"
     ];
     let bilgiIndex = 0;
 
